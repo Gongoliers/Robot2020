@@ -1,14 +1,14 @@
-package frc.robot.commands;
+package frc.robot.commands.powerCell;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * TODO
  */
-public class StopClimber extends CommandGroup {
+public class StopPowerCellManipulator extends CommandGroup {
 
 
-    public StopClimber() {
+    public StopPowerCellManipulator() {
 
         // Add Commands here:
         // e.g. addSequential(new Command1());

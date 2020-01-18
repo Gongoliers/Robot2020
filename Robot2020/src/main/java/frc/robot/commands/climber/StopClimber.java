@@ -1,13 +1,14 @@
-package frc.robot.commands;
+package frc.robot.commands.climber;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * TODO
  */
-public class RotatePanelSpinnerToColor extends CommandGroup {
+public class StopClimber extends CommandGroup {
 
-    public RotatePanelSpinnerToColor() {
+
+    public StopClimber() {
 
         // Add Commands here:
         // e.g. addSequential(new Command1());

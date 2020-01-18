@@ -1,15 +1,15 @@
-package frc.robot.commands;
+package frc.robot.commands.powerCell;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
 /**
  * TODO
  */
-public class StopClimberDelivery extends InstantCommand {
+public class StopShooter extends InstantCommand {
 
-    public StopClimberDelivery() {
+    public StopShooter() {
 
-        requires(Robot.climber);
+        requires(Robot.powerCellManipulator);
 
     }
 

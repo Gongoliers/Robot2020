@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.StopPanelSpinner;
+import frc.robot.commands.controlPanel.*;
 
 import com.thegongoliers.output.actuators.GSpeedController;
 

@@ -1,14 +1,13 @@
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * TODO
  */
-public class SpinnerRotateControl extends CommandGroup {
+public class TurnAngle extends CommandGroup {
 
-
-    public SpinnerRotateControl() {
+    public TurnAngle() {
 
         // Add Commands here:
         // e.g. addSequential(new Command1());
@@ -27,6 +26,5 @@ public class SpinnerRotateControl extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
 
- 
     } 
 }

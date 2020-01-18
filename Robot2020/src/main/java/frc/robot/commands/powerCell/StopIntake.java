@@ -1,15 +1,15 @@
-package frc.robot.commands;
+package frc.robot.commands.powerCell;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
 /**
  * TODO
  */
-public class StopPanelSpinner extends InstantCommand {
+public class StopIntake extends InstantCommand {
 
-    public StopPanelSpinner() {
+    public StopIntake() {
 
-        requires(Robot.controlPanelManipulator);
+        requires(Robot.powerCellManipulator);
 
     }
 

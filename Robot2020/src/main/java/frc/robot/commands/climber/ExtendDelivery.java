@@ -1,15 +1,15 @@
-package frc.robot.commands;
+package frc.robot.commands.climber;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
  * TODO
  */
-public class StageIndexer extends Command {
+public class ExtendDelivery extends Command {
 
-    public StageIndexer() {
+    public ExtendDelivery() {
 
-        requires(Robot.powerCellManipulator);
+        requires(Robot.climber);
 
     }
 

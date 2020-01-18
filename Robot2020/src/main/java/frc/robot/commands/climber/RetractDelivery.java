@@ -1,15 +1,15 @@
-package frc.robot.commands;
+package frc.robot.commands.climber;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
  * TODO
  */
-public class Turn extends Command {
+public class RetractDelivery extends Command {
 
-    public Turn() {
+    public RetractDelivery() {
 
-        requires(Robot.drivetrain);
+        requires(Robot.climber);
 
     }
 

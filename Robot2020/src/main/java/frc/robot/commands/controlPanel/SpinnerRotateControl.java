@@ -1,14 +1,14 @@
-package frc.robot.commands;
+package frc.robot.commands.controlPanel;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * TODO
  */
-public class StopPowerCellManipulator extends CommandGroup {
+public class SpinnerRotateControl extends CommandGroup {
 
 
-    public StopPowerCellManipulator() {
+    public SpinnerRotateControl() {
 
         // Add Commands here:
         // e.g. addSequential(new Command1());
@@ -26,6 +26,7 @@ public class StopPowerCellManipulator extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+
  
     } 
 }

@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import frc.robot.NavxGyro;
 import frc.robot.RobotMap;
-import frc.robot.commands.*;
+import frc.robot.commands.drivetrain.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import java.util.List;
@@ -34,6 +34,7 @@ public class Drivetrain extends Subsystem {
     public AHRS navx = new AHRS(SerialPort.Port.kMXP);
 
     private ModularDrivetrain modularDrivetrain;
+    private VoltageControlModule voltageControlModule;
 
     public Drivetrain() {
         leftDriveController = new PWMVictorSPX(RobotMap.LEFT_DRIVE_PWM);
@@ -65,7 +66,7 @@ public class Drivetrain extends Subsystem {
         pathFollowerModule.setForwardTolerance(0.6); // 1/2 feet
         pathFollowerModule.setTurnTolerance(1); // 1 degree
 
-        VoltageControlModule voltageControlModule = new VoltageControlModule(12);
+        voltageControlModule = new VoltageControlModule(12);
 
         PowerEfficiencyModule powerEfficiencyModule = new PowerEfficiencyModule(0.25, 0.2);
 
@@ -98,6 +99,14 @@ public class Drivetrain extends Subsystem {
 
     public ModularDrivetrain getModularDrivetrain() {
         return modularDrivetrain;
+    }
+
+    public void setTurboEnabled(boolean turboEnabled) {
+        if (turboEnabled) {
+            voltageControlModule.setMaxVoltage(13.0);
+        } else {
+            voltageControlModule.setMaxVoltage(12.0);
+        }
     }
 
 }

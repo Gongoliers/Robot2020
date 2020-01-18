@@ -1,15 +1,15 @@
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
  * TODO
  */
-public class ExtendDelivery extends Command {
+public class DrivetrainOperatorContol extends Command {
 
-    public ExtendDelivery() {
+    public DrivetrainOperatorContol() {
 
-        requires(Robot.climber);
+        requires(Robot.drivetrain);
 
     }
 

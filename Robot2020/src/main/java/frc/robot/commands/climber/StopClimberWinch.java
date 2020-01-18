@@ -1,15 +1,15 @@
-package frc.robot.commands;
+package frc.robot.commands.climber;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
 /**
  * TODO
  */
-public class StopIndexer extends InstantCommand {
+public class StopClimberWinch extends InstantCommand {
 
-    public StopIndexer() {
+    public StopClimberWinch() {
 
-        requires(Robot.powerCellManipulator);
+        requires(Robot.climber);
 
     }
 

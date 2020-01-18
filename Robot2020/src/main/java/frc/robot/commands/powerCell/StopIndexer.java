@@ -1,13 +1,13 @@
-package frc.robot.commands;
+package frc.robot.commands.powerCell;
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
 /**
  * TODO
  */
-public class StopIntake extends InstantCommand {
+public class StopIndexer extends InstantCommand {
 
-    public StopIntake() {
+    public StopIndexer() {
 
         requires(Robot.powerCellManipulator);
 

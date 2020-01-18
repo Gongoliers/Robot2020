@@ -1,15 +1,15 @@
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
  * TODO
  */
-public class ShootPowerCellLow extends Command {
+public class Drive extends Command {
 
-    public ShootPowerCellLow() {
+    public Drive() {
 
-        requires(Robot.powerCellManipulator);
+        requires(Robot.drivetrain);
 
     }
 

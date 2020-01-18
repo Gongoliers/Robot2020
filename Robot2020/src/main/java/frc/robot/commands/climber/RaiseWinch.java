@@ -1,15 +1,15 @@
-package frc.robot.commands;
+package frc.robot.commands.climber;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
  * TODO
  */
-public class OuttakePowerCell extends Command {
+public class RaiseWinch extends Command {
 
-    public OuttakePowerCell() {
+    public RaiseWinch() {
 
-        requires(Robot.powerCellManipulator);
+        requires(Robot.climber);
 
     }
 

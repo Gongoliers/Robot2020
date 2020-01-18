@@ -1,15 +1,15 @@
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
  * TODO
  */
-public class RotatePanelSpinner extends Command {
+public class Turn extends Command {
 
-    public RotatePanelSpinner() {
+    public Turn() {
 
-        requires(Robot.controlPanelManipulator);
+        requires(Robot.drivetrain);
 
     }
 

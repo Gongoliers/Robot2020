@@ -1,13 +1,13 @@
-package frc.robot.commands;
+package frc.robot.commands.controlPanel;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * TODO
  */
-public class DriveDistance extends CommandGroup {
+public class RotatePanelSpinnerToColor extends CommandGroup {
 
-    public DriveDistance() {
+    public RotatePanelSpinnerToColor() {
 
         // Add Commands here:
         // e.g. addSequential(new Command1());
@@ -25,6 +25,6 @@ public class DriveDistance extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-
+ 
     } 
 }

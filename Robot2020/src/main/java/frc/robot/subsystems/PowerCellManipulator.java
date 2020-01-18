@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.StopPowerCellManipulator;
+import frc.robot.commands.powerCell.*;
 
 import com.thegongoliers.output.actuators.GSpeedController;
 

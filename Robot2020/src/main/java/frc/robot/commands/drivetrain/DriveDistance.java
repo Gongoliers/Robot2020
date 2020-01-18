@@ -1,13 +1,13 @@
-package frc.robot.commands;
+package frc.robot.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  * TODO
  */
-public class TurnAngle extends CommandGroup {
+public class DriveDistance extends CommandGroup {
 
-    public TurnAngle() {
+    public DriveDistance() {
 
         // Add Commands here:
         // e.g. addSequential(new Command1());
