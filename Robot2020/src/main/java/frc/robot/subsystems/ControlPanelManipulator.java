@@ -1,27 +1,29 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 import frc.robot.commands.StopPanelSpinner;
+
+import com.thegongoliers.output.actuators.GSpeedController;
+
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
 
 /**
  *
  */
 public class ControlPanelManipulator extends Subsystem {
 
-    private PWMVictorSPX panelSpinningController;
+    private GSpeedController panelSpinningController;
     private Encoder panelSpinningEncoder;
 
     public ControlPanelManipulator() {
-        panelSpinningController = new PWMVictorSPX(4);
-        addChild("PanelSpinningController", panelSpinningController);
-        panelSpinningController.setInverted(false);
-
-        panelSpinningEncoder = new Encoder(6, 7, false, EncodingType.k4X);
-        addChild("PanelSpinningEncoder", panelSpinningEncoder);
+        
+        panelSpinningEncoder = new Encoder(RobotMap.PANEL_SPINNER_ENCODER_A, RobotMap.PANEL_SPINNER_ENCODER_B);
         panelSpinningEncoder.setDistancePerPulse(1.0);
+
+        panelSpinningController = new GSpeedController(new PWMVictorSPX(RobotMap.PANEL_SPINNER_PWM), panelSpinningEncoder, 0.1, 0.1); // TODO: tune
+        panelSpinningController.setInverted(false);
 
     }
 

@@ -1,5 +1,7 @@
 package frc.robot;
 
+import com.thegongoliers.input.power.Battery;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -17,6 +19,7 @@ import frc.robot.subsystems.*;
  */
 public class Robot extends TimedRobot {
     public static OI oi;
+    public static Battery battery;
 
     public static Drivetrain drivetrain;
     public static PowerCellManipulator powerCellManipulator;
@@ -33,10 +36,21 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void robotInit() {
+
+        drivetrain = new Drivetrain();
+        powerCellManipulator = new PowerCellManipulator();
+        controlPanelManipulator = new ControlPanelManipulator();
+        climber = new Climber();
+        vision = new Vision();
+
+        battery = new Battery(10.5, 13.5, 18);
+
         oi = new OI();
+
         autoChooser.setDefaultOption("No Auto", null);
         // autoChooser.addOption("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", autoChooser);
+        
     }
 
     /**
