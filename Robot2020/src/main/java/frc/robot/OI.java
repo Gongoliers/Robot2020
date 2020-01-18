@@ -20,8 +20,8 @@ public class OI {
     private static final int DRIVER_JOYSTICK_PORT = 0;
     private static final int MANIPULATOR_XBOX_PORT = 1;
 
-    private Joystick driverJoystick;
-    private XboxController xboxController;
+    public static Joystick driverJoystick;
+    public static XboxController xboxController;
 
     public OI() {
 
