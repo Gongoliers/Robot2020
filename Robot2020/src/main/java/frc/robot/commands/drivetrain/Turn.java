@@ -7,9 +7,12 @@ import frc.robot.Robot;
  */
 public class Turn extends Command {
 
-    public Turn() {
+    private double speed;
+
+    public Turn(double speed) {
 
         requires(Robot.drivetrain);
+        this.speed = speed;
 
     }
 
@@ -21,6 +24,7 @@ public class Turn extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        Robot.drivetrain.arcadeDrive(0, speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -32,11 +36,13 @@ public class Turn extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.drivetrain.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        end();
     }
 }

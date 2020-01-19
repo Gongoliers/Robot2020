@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
 /**
- * TODO
+ * Stops the delivery motor in the climber subsystem.
  */
 public class StopClimberDelivery extends InstantCommand {
 
@@ -16,6 +16,7 @@ public class StopClimberDelivery extends InstantCommand {
     // Called once when this command runs
     @Override
     protected void initialize() {
+        Robot.climber.stopDelivery();
     }
 
 }

@@ -22,7 +22,9 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ * Our drivetrain is composed of a 6-CIM (3 per side) West Coast
+ * drop-center drivetrain.  We use an encoder for each side 
+ * and a NavX for an IMU/gyro.
  */
 public class Drivetrain extends Subsystem {
 
