@@ -3,7 +3,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
- * TODO
+ * Pushes a power cell out of the intake mechanism of the 
+ * power cell manipulator.
  */
 public class OuttakePowerCell extends Command {
 
@@ -21,6 +22,7 @@ public class OuttakePowerCell extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
+        Robot.powerCellManipulator.outtake();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -32,11 +34,13 @@ public class OuttakePowerCell extends Command {
     // Called once after isFinished returns true
     @Override
     protected void end() {
+        Robot.powerCellManipulator.stopIntake();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     @Override
     protected void interrupted() {
+        end();
     }
 }

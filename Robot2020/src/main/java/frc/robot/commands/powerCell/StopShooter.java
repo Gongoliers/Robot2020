@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
 /**
- * TODO
+ * Stops the shooter mechanism of the power cell manipulator subsystem.
  */
 public class StopShooter extends InstantCommand {
 
@@ -16,6 +16,7 @@ public class StopShooter extends InstantCommand {
     // Called once when this command runs
     @Override
     protected void initialize() {
+        Robot.powerCellManipulator.stopShooter();
     }
 
 }
