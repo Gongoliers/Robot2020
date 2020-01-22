@@ -37,11 +37,11 @@ public class Robot extends TimedRobot {
     @Override
     public void robotInit() {
 
-        drivetrain = new Drivetrain();
+        vision = new Vision();
+        drivetrain = new Drivetrain(vision);
         powerCellManipulator = new PowerCellManipulator();
         controlPanelManipulator = new ControlPanelManipulator();
         climber = new Climber();
-        vision = new Vision();
 
         battery = new Battery(10.5, 13.5, 18);
 

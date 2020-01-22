@@ -12,6 +12,7 @@ import com.thegongoliers.output.drivetrain.ModularDrivetrain;
 import com.thegongoliers.output.drivetrain.PathFollowerModule;
 import com.thegongoliers.output.drivetrain.PowerEfficiencyModule;
 import com.thegongoliers.output.drivetrain.StabilityModule;
+import com.thegongoliers.output.drivetrain.TargetAlignmentModule;
 import com.thegongoliers.output.drivetrain.VoltageControlModule;
 
 import edu.wpi.first.wpilibj.Encoder;
@@ -38,7 +39,7 @@ public class Drivetrain extends Subsystem {
     private ModularDrivetrain modularDrivetrain;
     private VoltageControlModule voltageControlModule;
 
-    public Drivetrain() {
+    public Drivetrain(Vision vision) {
         leftDriveController = new PWMVictorSPX(RobotMap.LEFT_DRIVE_PWM);
         leftDriveController.setInverted(false);
 
@@ -68,11 +69,13 @@ public class Drivetrain extends Subsystem {
         pathFollowerModule.setForwardTolerance(0.6); // 1/2 feet
         pathFollowerModule.setTurnTolerance(1); // 1 degree
 
+        TargetAlignmentModule targetAlignmentModule = new TargetAlignmentModule(vision.getTargetingCamera(), 0.02, 0.1, false); // TODO: tune
+
         voltageControlModule = new VoltageControlModule(12);
 
         PowerEfficiencyModule powerEfficiencyModule = new PowerEfficiencyModule(0.25, 0.2);
 
-        modularDrivetrain.setModules(stabilityModule, pathFollowerModule, voltageControlModule, powerEfficiencyModule);
+        modularDrivetrain.setModules(stabilityModule, pathFollowerModule, targetAlignmentModule, voltageControlModule, powerEfficiencyModule);
 
     }
 
