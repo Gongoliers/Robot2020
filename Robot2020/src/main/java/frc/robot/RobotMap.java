@@ -9,7 +9,7 @@ package frc.robot;
 public class RobotMap {
 
     // Drivetrain
-    // --> PWM (motors)
+    // --> PWM (motors) (We will be using wire splitter cables to control three motors per motor controller)
     public static final int LEFT_DRIVE_PWM = 0;
     public static final int RIGHT_DRIVE_PWM = 1;
     // --> DIO (encoders & limit switches)
