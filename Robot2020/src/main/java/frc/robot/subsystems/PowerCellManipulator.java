@@ -6,7 +6,6 @@ import frc.robot.commands.powerCell.*;
 
 import com.thegongoliers.output.actuators.GSpeedController;
 
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 
@@ -31,12 +30,8 @@ public class PowerCellManipulator extends Subsystem {
     private PWMVictorSPX intakeController;
     private GSpeedController indexerController;
     private Encoder indexerEncoder;
-    private GSpeedController leftShooterController;
-    private GSpeedController rightShooterController;
-    private Encoder rightShooterEncoder;
-    private Encoder leftShooterEncoder;
-    private DigitalInput cellEnterLimitSwitch;
-    private DigitalInput cellExitLimitSwitch;
+    private GSpeedController shooterController;
+    private Encoder shooterEncoder;
 
     public PowerCellManipulator() {
 
@@ -49,21 +44,11 @@ public class PowerCellManipulator extends Subsystem {
         indexerController = new GSpeedController(new PWMVictorSPX(RobotMap.INDEXER_PWM), indexerEncoder, 0.1, 0.1); // TODO: tune
         indexerController.setInverted(false);
 
-        rightShooterEncoder = new Encoder(RobotMap.RIGHT_SHOOTER_ENCODER_A, RobotMap.RIGHT_SHOOTER_ENCODER_B);
-        rightShooterEncoder.setDistancePerPulse(1.0);
+        shooterEncoder = new Encoder(RobotMap.SHOOTER_ENCODER_A, RobotMap.SHOOTER_ENCODER_B);
+        shooterEncoder.setDistancePerPulse(1.0);
 
-        leftShooterEncoder = new Encoder(RobotMap.LEFT_SHOOTER_ENCODER_A, RobotMap.LEFT_SHOOTER_ENCODER_B);
-        leftShooterEncoder.setDistancePerPulse(1.0);
-
-        leftShooterController = new GSpeedController(new PWMVictorSPX(RobotMap.LEFT_SHOOTER_PWM), leftShooterEncoder, 0.1, 0.1);  // TODO: tune
-        leftShooterController.setInverted(false);
-
-        rightShooterController = new GSpeedController(new PWMVictorSPX(RobotMap.RIGHT_SHOOTER_PWM), rightShooterEncoder, 0.1, 0.1);  // TODO: tune
-        rightShooterController.setInverted(false);
-
-        cellEnterLimitSwitch = new DigitalInput(RobotMap.CELL_ENTER_SWITCH);
-
-        cellExitLimitSwitch = new DigitalInput(RobotMap.CELL_EXIT_SWITCH);
+        shooterController = new GSpeedController(new PWMVictorSPX(RobotMap.SHOOTER_PWM), shooterEncoder, 0.1, 0.1);  // TODO: tune
+        shooterController.setInverted(false);
 
     }
 
@@ -87,8 +72,7 @@ public class PowerCellManipulator extends Subsystem {
     }
 
     public void stopShooter() {
-        leftShooterController.stopMotor();
-        rightShooterController.stopMotor();
+        shooterController.stopMotor();
     }
 
     public void intake() {
@@ -100,13 +84,11 @@ public class PowerCellManipulator extends Subsystem {
     }
 
     public void shootHigh() {
-        leftShooterController.set(HIGH_SHOOTER_SPEED);
-        rightShooterController.set(HIGH_SHOOTER_SPEED);
+        shooterController.set(HIGH_SHOOTER_SPEED);
     }
 
     public void shootLow() {
-        leftShooterController.set(LOW_SHOOTER_SPEED);
-        rightShooterController.set(LOW_SHOOTER_SPEED);
+        shooterController.set(LOW_SHOOTER_SPEED);
     }
 
 }

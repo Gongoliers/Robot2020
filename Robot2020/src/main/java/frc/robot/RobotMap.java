@@ -28,23 +28,22 @@ public class RobotMap {
     // Control Panel Manipulator
     // --> PWM (motors)
     public static final int PANEL_SPINNER_PWM = 4;
+    // --> Pneumatic (pistons)
+    public static final int PANEL_DEPLOY_PISTON = 0;
     // --> DIO (encoders & limit switches)
-    public static final int PANEL_SPINNER_ENCODER_A = 12;
-    public static final int PANEL_SPINNER_ENCODER_B = 13;
+    public static final int PANEL_SPINNER_ENCODER_A = 4;
+    public static final int PANEL_SPINNER_ENCODER_B = 5;
 
     // Power Cell Manipulator
     // --> PWM (motors)
     public static final int INTAKE_PWM = 5;
     public static final int INDEXER_PWM = 6;
-    public static final int LEFT_SHOOTER_PWM = 7;
-    public static final int RIGHT_SHOOTER_PWM = 8;
+    public static final int SHOOTER_PWM = 7;
+    // --> Pneumatic (pistons)
+    public static final int DEPLOY_INTAKE_PISTON = 1;
     // --> DIO (encoders & limit switches)
-    public static final int INDEXER_ENCODER_A = 4;
-    public static final int INDEXER_ENCODER_B = 5;
-    public static final int LEFT_SHOOTER_ENCODER_A = 6;
-    public static final int LEFT_SHOOTER_ENCODER_B = 7;
-    public static final int RIGHT_SHOOTER_ENCODER_A = 8;
-    public static final int RIGHT_SHOOTER_ENCODER_B = 9;
-    public static final int CELL_ENTER_SWITCH = 10;
-    public static final int CELL_EXIT_SWITCH = 11;
+    public static final int INDEXER_ENCODER_A = 6;
+    public static final int INDEXER_ENCODER_B = 7;
+    public static final int SHOOTER_ENCODER_A = 8;
+    public static final int SHOOTER_ENCODER_B = 9;
 }
