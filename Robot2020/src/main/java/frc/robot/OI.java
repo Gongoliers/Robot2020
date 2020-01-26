@@ -7,8 +7,13 @@ import com.thegongoliers.hardware.Hardware;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
+import frc.robot.DPadButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
+import frc.robot.commands.climber.ExtendDelivery;
+import frc.robot.commands.climber.RaiseWinch;
+import frc.robot.commands.climber.RetractDelivery;
+import frc.robot.commands.climber.StopClimber;
+import frc.robot.commands.climber.StopClimberWinch;
 import frc.robot.commands.drivetrain.*;
 
 /**
@@ -44,6 +49,21 @@ public class OI {
 
         //// TODO: Manipulator Xbox Controller setup
 
+
+
+        // Climber Manipulator Xbox Controller Setup
+        // The POV angles start at 0 in the up direction, and increase clockwise (eg right is 90, * upper-left is 315)
+        DPadButton upButton = new DPadButton(xboxController, DPadButton.Direction.UP);
+        upButton.whenPressed(new ExtendDelivery());
+
+        DPadButton downButton = new DPadButton(xboxController, DPadButton.Direction.DOWN);
+        downButton.whenPressed(new RetractDelivery());
+
+        DPadButton leftButton = new DPadButton(xboxController, DPadButton.Direction.LEFT);
+        leftButton.whenPressed(new RaiseWinch());
+
+        DPadButton rightButton = new DPadButton(xboxController, DPadButton.Direction.RIGHT);
+        rightButton.whenPressed(new StopClimberWinch());
     }
 
     //// CREATING BUTTONS
