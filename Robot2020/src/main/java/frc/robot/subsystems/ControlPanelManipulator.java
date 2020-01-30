@@ -29,7 +29,7 @@ public class ControlPanelManipulator extends Subsystem {
         panelSpinningEncoder = new Encoder(RobotMap.PANEL_SPINNER_ENCODER_A, RobotMap.PANEL_SPINNER_ENCODER_B);
         panelSpinningEncoder.setDistancePerPulse(1.0);
 
-        panelSpinningController = new GSpeedController(new PWMVictorSPX(RobotMap.PANEL_SPINNER_PWM), panelSpinningEncoder, 0.1, 0.1); // TODO: tune
+        panelSpinningController = new GSpeedController(new PWMVictorSPX(RobotMap.PANEL_SPINNER_PWM), panelSpinningEncoder, 0.1, 0.1); // TODO: implement PID
         panelSpinningController.setInverted(false);
 
         panelDeployPiston = new GPiston(new Solenoid(RobotMap.PANEL_DEPLOY_PISTON));

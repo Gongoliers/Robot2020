@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-
+import frc.robot.commands.StopAll;
 import frc.robot.commands.drivetrain.*;
 
 /**
@@ -33,6 +33,9 @@ public class OI {
         Button driverTrigger = new JoystickButton(driverJoystick, 1);
         driverTrigger.whenPressed(new SetTurboDrivetrain(true));
         driverTrigger.whenReleased(new SetTurboDrivetrain(false));
+
+        Button driverStopAll = new JoystickButton(driverJoystick, 11);
+        driverStopAll.whenPressed(new StopAll());
 
         Button driveStickMoved = Hardware.makeButton(new BooleanSupplier() {
             @Override

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
- * TODO
+ * Drives forward at a specified speed until stopped/interrupted.
  */
 public class Drive extends Command {
 

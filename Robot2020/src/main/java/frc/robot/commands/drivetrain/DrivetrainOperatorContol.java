@@ -4,7 +4,7 @@ import frc.robot.OI;
 import frc.robot.Robot;
 
 /**
- * TODO
+ * Allows the driver to control movement using a joystick / controller.
  */
 public class DrivetrainOperatorContol extends Command {
 

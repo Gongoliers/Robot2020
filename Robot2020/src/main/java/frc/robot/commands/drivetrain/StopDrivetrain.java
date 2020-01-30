@@ -3,7 +3,7 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
 /**
- * TODO
+ * Stops the motors of the drivetrain.
  */
 public class StopDrivetrain extends InstantCommand {
 

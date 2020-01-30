@@ -41,13 +41,13 @@ public class PowerCellManipulator extends Subsystem {
         indexerEncoder = new Encoder(RobotMap.INDEXER_ENCODER_A, RobotMap.INDEXER_ENCODER_B);
         indexerEncoder.setDistancePerPulse(1.0);
 
-        indexerController = new GSpeedController(new PWMVictorSPX(RobotMap.INDEXER_PWM), indexerEncoder, 0.1, 0.1); // TODO: tune
+        indexerController = new GSpeedController(new PWMVictorSPX(RobotMap.INDEXER_PWM), indexerEncoder, 0.1, 0.1); // TODO: Implement PID
         indexerController.setInverted(false);
 
         shooterEncoder = new Encoder(RobotMap.SHOOTER_ENCODER_A, RobotMap.SHOOTER_ENCODER_B);
         shooterEncoder.setDistancePerPulse(1.0);
 
-        shooterController = new GSpeedController(new PWMVictorSPX(RobotMap.SHOOTER_PWM), shooterEncoder, 0.1, 0.1);  // TODO: tune
+        shooterController = new GSpeedController(new PWMVictorSPX(RobotMap.SHOOTER_PWM), shooterEncoder, 0.1, 0.1);  // TODO: Implement PID
         shooterController.setInverted(false);
 
     }

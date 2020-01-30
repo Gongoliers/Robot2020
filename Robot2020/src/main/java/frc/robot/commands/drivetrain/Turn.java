@@ -3,7 +3,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
- * TODO
+ * Turns the robot at a particular speed until stopped/interrupted.
+ * Turns right if speed is positive or left if speed is negative.
  */
 public class Turn extends Command {
 

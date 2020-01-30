@@ -3,28 +3,13 @@ package frc.robot.commands.drivetrain;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- * TODO
+ * Drives forwards for a particular distance, then stops.
  */
 public class DriveDistance extends CommandGroup {
 
-    public DriveDistance() {
+    public DriveDistance(double distance) {
 
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
-
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
-
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
+        // addSequential(new Drive(speed)); TODO
 
     } 
 }
