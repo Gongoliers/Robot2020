@@ -16,9 +16,8 @@ import edu.wpi.first.wpilibj.Solenoid;
  *
  */
 public class ControlPanelManipulator extends Subsystem {
-
-    private static final double STOWED_POTENTIOMETER_VALUE = 0; // TODO tune these values
-    private static final double DEPLOYED_POTENTIOMETER_VALUE = 1;
+    
+    private static final double PANEL_SPINNER_SPEED = 0.6; // TODO tune
 
     private GSpeedController panelSpinningController;
     private Encoder panelSpinningEncoder;
@@ -45,7 +44,26 @@ public class ControlPanelManipulator extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
+    }
 
+    public void deploy() {
+        panelDeployPiston.extend();
+    }
+
+    public void retract() {
+        panelDeployPiston.retract();
+    }
+
+	public void rotate() {
+        panelSpinningController.set(PANEL_SPINNER_SPEED);
+	}
+
+	public void stopSpinner() {
+        panelSpinningController.stopMotor();
+    }
+    
+    public double getSpinnerDistance() {
+        return panelSpinningEncoder.getDistance();
     }
 
 }

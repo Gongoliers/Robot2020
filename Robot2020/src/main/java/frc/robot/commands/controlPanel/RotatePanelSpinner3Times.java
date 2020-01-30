@@ -1,21 +1,25 @@
 package frc.robot.commands.controlPanel;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
  * Rotates the spinner until driver stops it
  */
-public class RotatePanelSpinner extends Command {
+public class RotatePanelSpinner3Times extends Command {
 
-    public RotatePanelSpinner() {
+    public RotatePanelSpinner3Times() {
 
         requires(Robot.controlPanelManipulator);
 
     }
 
+    private double startingDistance;
+
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        startingDistance = Robot.controlPanelManipulator.getSpinnerDistance();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,7 +31,7 @@ public class RotatePanelSpinner extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false;
+        return Robot.controlPanelManipulator.getSpinnerDistance() >= (startingDistance+3); // TODO tune
     }
 
     // Called once after isFinished returns true

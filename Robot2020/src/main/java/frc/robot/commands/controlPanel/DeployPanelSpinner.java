@@ -1,22 +1,21 @@
 package frc.robot.commands.controlPanel;
+
 import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
 /**
- * TODO
+ * deploy pistons to spin control panel
  */
-public class StopPanelSpinner extends InstantCommand {
-
-    public StopPanelSpinner() {
-
+public class DeployPanelSpinner extends InstantCommand {
+    
+    public DeployPanelSpinner() {
         requires(Robot.controlPanelManipulator);
-
     }
 
-    // Called once when this command runs
+    // Called once when the command executes
     @Override
     protected void initialize() {
-        Robot.controlPanelManipulator.stopSpinner();
+        Robot.controlPanelManipulator.deploy();
     }
 
 }
