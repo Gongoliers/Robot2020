@@ -6,10 +6,18 @@ import com.thegongoliers.hardware.Hardware;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.StopAll;
+import frc.robot.commands.controlPanel.RotatePanelSpinner;
+import frc.robot.commands.controlPanel.RotatePanelSpinnerToColor;
+import frc.robot.commands.controlPanel.StopPanelSpinner;
 import frc.robot.commands.drivetrain.*;
+import frc.robot.commands.powerCell.IntakePowerCell;
+import frc.robot.commands.powerCell.OuttakePowerCell;
+import frc.robot.commands.powerCell.ShootPowerCellHigh;
+import frc.robot.commands.powerCell.ShootPowerCellLow;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -46,6 +54,77 @@ public class OI {
         driveStickMoved.whenPressed(new DrivetrainOperatorContol());
 
         //// TODO: Manipulator Xbox Controller setup
+        Button manipulatorStopAll = Hardware.makeButton(new BooleanSupplier() {
+            @Override
+            public boolean getAsBoolean() {
+                return xboxController.getBackButtonPressed() || xboxController.getStartButtonPressed();
+            }
+        });
+        manipulatorStopAll.whenPressed(new StopAll());
+
+        Button manipulatorIntake = Hardware.makeButton(new BooleanSupplier() {
+            @Override
+            public boolean getAsBoolean() {
+                return xboxController.getAButtonPressed();
+            }
+        });
+        manipulatorIntake.whenPressed(new IntakePowerCell()); // TODO
+
+        Button manipulatorShootHigh = Hardware.makeButton(new BooleanSupplier() {
+            @Override
+            public boolean getAsBoolean() {
+                return xboxController.getXButtonPressed();
+            }
+        });
+        manipulatorShootHigh.whenPressed(new ShootPowerCellHigh());
+
+        Button manipulatorShootLow = Hardware.makeButton(new BooleanSupplier() {
+            @Override
+            public boolean getAsBoolean() {
+                return xboxController.getBButtonPressed();
+            }
+        });
+        manipulatorShootLow.whenPressed(new ShootPowerCellLow());
+
+        Button manipulatorOuttake = Hardware.makeButton(new BooleanSupplier() {
+            @Override
+            public boolean getAsBoolean() {
+                return xboxController.getYButtonPressed();
+            }
+        });
+        manipulatorOuttake.whenPressed(new OuttakePowerCell());
+
+        Button manipulatorDeployPanelSpinner = Hardware.makeButton(new BooleanSupplier() {
+            @Override
+            public boolean getAsBoolean() {
+                return xboxController.getBumperPressed(Hand.kRight);
+            }
+        });
+        manipulatorDeployPanelSpinner.whenPressed(new StopPanelSpinner()); // TODO
+
+        Button manipulatorResetPanelSpinner = Hardware.makeButton(new BooleanSupplier() {
+            @Override
+            public boolean getAsBoolean() {
+                return xboxController.getBumperPressed(Hand.kLeft);
+            }
+        });
+        manipulatorResetPanelSpinner.whenPressed(new StopPanelSpinner()); // TODO
+
+        Button manipulatorRotateFast = Hardware.makeButton(new BooleanSupplier() {
+            @Override
+            public boolean getAsBoolean() {
+                return xboxController.getTriggerAxis(Hand.kLeft) > 0.6;
+            }
+        });
+        manipulatorRotateFast.whenPressed(new RotatePanelSpinner());
+
+        Button manipulatorRotateColor = Hardware.makeButton(new BooleanSupplier() {
+            @Override
+            public boolean getAsBoolean() {
+                return xboxController.getTriggerAxis(Hand.kRight) > 0.6;
+            }
+        });
+        manipulatorRotateColor.whenPressed(new RotatePanelSpinnerToColor());
 
     }
 
