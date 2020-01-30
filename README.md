@@ -16,10 +16,10 @@ Team 5112's drivetrain consists of a drop-center West Coast chassis with six whe
 Team 5112's climber subsystem consists of a hook-delivery arm and a winch to do a pull-up on the shield generator switch.  The hook-delivery arm is a telescopic design that lifts and attaches a hook to the bar.  The arm then retracts, leaving the hook there, and a winch pulls to robot up to the hook.  There is one Victor SPX used for the hook-delivery system, and one Victor SPX used for he winch.  A potentiometer is attached to the hook-delivery motor.
 
 ### Control Panel Manipulator
-Team 5112's control panel manipulator is composed of a Victor SPX used for deploying the manipulator and a Victor SPX for spinning the control panel.  The deploy motor must raise the manipulator to a specific position (as measured by an analog potentiometer) for the spinner to function.  An encoder is attached to the spinner motor.
+Team 5112's control panel manipulator is composed of a Victor SPX for spinning the control panel and a pneumatic piston for deploying the spinner.  An encoder is attached to the spinner motor.
 
 ### Power Cell Manipulator
-Team 5112's power cell manipulator is composed of a Victor SPX used for intaking power cells, a Victor SPX for indexing, and two Victor SPXs for the flywheel/scoring the power cells.  A pneumatic piston will be used for deploying the intake harvester.  Encoders will be on each flywheel motor and the indexer motor.
+Team 5112's power cell manipulator is composed of a Victor SPX used for intaking power cells, a Victor SPX for indexing, and one Victor SPX for the flywheel/scoring the power cells.  A pneumatic piston will be used for deploying the intake harvester.  An encoder will be on the flywheel.
 
 ### Vision
 We use a Limelight for target processing, especially for aligning with the power port for shooting.
