@@ -22,6 +22,7 @@ public class IntakePowerCell extends Command {
     @Override
     protected void execute() {
         Robot.powerCellManipulator.intake();
+        Robot.powerCellManipulator.indexerUp();
     }
 
     // Make this return true when this Command no longer needs to run execute()

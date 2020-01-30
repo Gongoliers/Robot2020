@@ -40,7 +40,7 @@ public class RobotMap {
     public static final int INDEXER_PWM = 6;
     public static final int SHOOTER_PWM = 7;
     // --> Pneumatic (pistons)
-    public static final int DEPLOY_INTAKE_PISTON = 1;
+    public static final int HARVESTER_PISTON = 1;
     // --> DIO (encoders & limit switches)
     public static final int INDEXER_ENCODER_A = 6;
     public static final int INDEXER_ENCODER_B = 7;

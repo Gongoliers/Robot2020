@@ -6,6 +6,10 @@
  #### What is FRC?
  The FIRST Robotics Competition is an international high school robotics competition that gives students just 7 weeks to design a 125 pound robot to complete challenges and play a sport!  [Learn more about this years game here.](https://www.youtube.com/watch?v=gmiYWTmFRVE)
 
+## Controls
+We use a joystick / flightstick for driving the chassis and we use an Xbox controller for manipulating the other subsystems.
+!(https://github.com/Gongoliers/Robot2020/raw/master/XboxController.png "Xbox Controller Mappings")
+
 ## Design Synopsis
 Our robot consists of four major subsystems: the drivetrain, the climber, the control panel manipulator, and the power cell manipulator.
 

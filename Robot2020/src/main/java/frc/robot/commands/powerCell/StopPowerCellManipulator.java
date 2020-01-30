@@ -7,7 +7,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class StopPowerCellManipulator extends CommandGroup {
 
-
     public StopPowerCellManipulator() {
 
         addSequential(new StopIndexer());
