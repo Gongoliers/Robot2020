@@ -8,7 +8,7 @@
 
 ## Controls
 We use a joystick / flightstick for driving the chassis and we use an Xbox controller for manipulating the other subsystems.
-!(https://github.com/Gongoliers/Robot2020/raw/master/XboxController.png "Xbox Controller Mappings")
+![Xbox Controller Mappings](https://github.com/Gongoliers/Robot2020/raw/master/XboxController.png "Xbox Controller Mappings")
 
 ## Design Synopsis
 Our robot consists of four major subsystems: the drivetrain, the climber, the control panel manipulator, and the power cell manipulator.
