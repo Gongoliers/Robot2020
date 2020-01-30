@@ -1,6 +1,5 @@
 package frc.robot.commands.drivetrain;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.Robot;
 
 /**
@@ -22,8 +21,8 @@ public class DrivetrainOperatorContol extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        double speed = -OI.driverJoystick.getY();
-        double rotation = OI.driverJoystick.getZ();
+        double speed = -Robot.oi.getDriverSpeed();
+        double rotation = Robot.oi.getDriverRotation();
 
         Robot.drivetrain.arcadeDrive(speed, rotation);
     }

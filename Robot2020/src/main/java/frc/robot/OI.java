@@ -31,11 +31,18 @@ import frc.robot.commands.powerCell.ShootPowerCellLow;
  */
 public class OI {
 
+    /**
+     * When this is set to true, the Xbox controller will be used for 
+     * both driving and manipulation.  When false, the controls will be
+     * split between a joystick and a controller.
+     */
+    private static final boolean SINGLE_DRIVER_MODE = false;
+
     private static final int DRIVER_JOYSTICK_PORT = 0;
     private static final int MANIPULATOR_XBOX_PORT = 1;
 
-    public static Joystick driverJoystick;
-    public static XboxController xboxController;
+    public Joystick driverJoystick;
+    public XboxController xboxController;
 
     /**
      * The driver joystick controls the drivetrain with the Y and Z axis.
@@ -77,12 +84,13 @@ public class OI {
         Button driveStickMoved = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
-                return Math.abs(driverJoystick.getY()) > 0.3 || Math.abs(driverJoystick.getZ()) > 0.1;
+                return Math.abs(getDriverSpeed()) > 0.3 || Math.abs(getDriverRotation()) > 0.1;
             }
         });
         driveStickMoved.whenPressed(new DrivetrainOperatorContol());
 
         //// Manipulator Xbox Controller setup
+
         Button manipulatorStopAll = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
@@ -173,4 +181,13 @@ public class OI {
         DPadButton rightButton = new DPadButton(xboxController, DPadButton.Direction.RIGHT);
         rightButton.whenPressed(new StopClimberWinch());
     }
+
+    public double getDriverSpeed() {
+        return SINGLE_DRIVER_MODE ? xboxController.getY(Hand.kLeft) : driverJoystick.getY();
+    }
+
+    public double getDriverRotation() {
+        return SINGLE_DRIVER_MODE ? xboxController.getX(Hand.kRight) : driverJoystick.getZ();
+    }
+
 }
