@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.DPadButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.StopAll;
+import frc.robot.commands.controlPanel.DeployPanelSpinner;
+import frc.robot.commands.controlPanel.RetractPanelSpinner;
 import frc.robot.commands.controlPanel.RotatePanelSpinner;
 import frc.robot.commands.controlPanel.RotatePanelSpinnerToColor;
-import frc.robot.commands.controlPanel.StopPanelSpinner;
 import frc.robot.commands.climber.ExtendDelivery;
 import frc.robot.commands.climber.RaiseWinch;
 import frc.robot.commands.climber.RetractDelivery;
-import frc.robot.commands.climber.StopClimber;
 import frc.robot.commands.climber.StopClimberWinch;
 import frc.robot.commands.drivetrain.*;
 import frc.robot.commands.powerCell.IntakePowerCell;
@@ -37,6 +37,29 @@ public class OI {
     public static Joystick driverJoystick;
     public static XboxController xboxController;
 
+    /**
+     * The driver joystick controls the drivetrain with the Y and Z axis.
+     * Button 1 on the joystick will enable turbo mode while held.
+     * Button 11 on the joystick will stop all active commands when pressed.
+     * 
+     * The manipulator Xbox controller controlls all manipulator subsystems.
+     * The menu/start buttons (small buttons in the center) will stop all.
+     * The colored ABXY buttons control the power cell manipulator:
+     * * A = Start Intake
+     * * X = Start Shooting High
+     * * B = Start Shooting Low
+     * * Y = Start Reverse Intake / Outtake
+     * The bumpers and triggers control the control panel manipulator:
+     * * Right Bumper = Deploy Panel Spinner
+     * * Left Bumper = Retract Panel Spinner
+     * * Right Trigger = Spin/Rotate Panel to FMS Color
+     * * Left Trigger = Spin/Rotate Panel Three Times
+     * The DPAD buttons control the climber subsystem:
+     * * Left = Raise Winch
+     * * Right = Stop Winch
+     * * Down = Retract/Lower Delivery
+     * * Up =  Extend/Raise Delivery
+     */
     public OI() {
 
         driverJoystick = new Joystick(DRIVER_JOYSTICK_PORT);
@@ -59,7 +82,7 @@ public class OI {
         });
         driveStickMoved.whenPressed(new DrivetrainOperatorContol());
 
-        //// TODO: Manipulator Xbox Controller setup
+        //// Manipulator Xbox Controller setup
         Button manipulatorStopAll = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
@@ -67,6 +90,8 @@ public class OI {
             }
         });
         manipulatorStopAll.whenPressed(new StopAll());
+
+        // Power Cell Manipulator
 
         Button manipulatorIntake = Hardware.makeButton(new BooleanSupplier() {
             @Override
@@ -100,26 +125,28 @@ public class OI {
         });
         manipulatorOuttake.whenPressed(new OuttakePowerCell());
 
+        // Control Panel Manipulator
+
         Button manipulatorDeployPanelSpinner = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
                 return xboxController.getBumperPressed(Hand.kRight);
             }
         });
-        manipulatorDeployPanelSpinner.whenPressed(new StopPanelSpinner()); // TODO
+        manipulatorDeployPanelSpinner.whenPressed(new DeployPanelSpinner());
 
-        Button manipulatorResetPanelSpinner = Hardware.makeButton(new BooleanSupplier() {
+        Button manipulatorRetractPanelSpinner = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
                 return xboxController.getBumperPressed(Hand.kLeft);
             }
         });
-        manipulatorResetPanelSpinner.whenPressed(new StopPanelSpinner()); // TODO
+        manipulatorRetractPanelSpinner.whenPressed(new RetractPanelSpinner());
 
         Button manipulatorRotateFast = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
-                return xboxController.getTriggerAxis(Hand.kLeft) > 0.6;
+                return xboxController.getTriggerAxis(Hand.kLeft) > 0.8 && Robot.controlPanelManipulator.isDeployed();
             }
         });
         manipulatorRotateFast.whenPressed(new RotatePanelSpinner());
@@ -127,15 +154,13 @@ public class OI {
         Button manipulatorRotateColor = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
-                return xboxController.getTriggerAxis(Hand.kRight) > 0.6;
+                return xboxController.getTriggerAxis(Hand.kRight) > 0.8 && Robot.controlPanelManipulator.isDeployed();
             }
         });
         manipulatorRotateColor.whenPressed(new RotatePanelSpinnerToColor());
 
+        // Climber
 
-
-        // Climber Manipulator Xbox Controller Setup
-        // The POV angles start at 0 in the up direction, and increase clockwise (eg right is 90, * upper-left is 315)
         DPadButton upButton = new DPadButton(xboxController, DPadButton.Direction.UP);
         upButton.whenPressed(new ExtendDelivery());
 
@@ -148,32 +173,4 @@ public class OI {
         DPadButton rightButton = new DPadButton(xboxController, DPadButton.Direction.RIGHT);
         rightButton.whenPressed(new StopClimberWinch());
     }
-
-    //// CREATING BUTTONS
-    // One type of button is a joystick button which is any button on a
-    //// joystick.
-    // You create one by telling it which joystick it's on and which button
-    // number it is.
-    // Joystick stick = new Joystick(port);
-    // Button button = new JoystickButton(stick, buttonNumber);
-
-    // There are a few additional built in buttons you can use. Additionally,
-    // by subclassing Button you can create custom triggers and bind those to
-    // commands the same as any other Button.
-
-    //// TRIGGERING COMMANDS WITH BUTTONS
-    // Once you have a button, it's trivial to bind it to a button in one of
-    // three ways:
-
-    // Start the command when the button is pressed and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenPressed(new ExampleCommand());
-
-    // Run the command while the button is being held down and interrupt it once
-    // the button is released.
-    // button.whileHeld(new ExampleCommand());
-
-    // Start the command when the button is released and let it run the command
-    // until it is finished as determined by it's isFinished method.
-    // button.whenReleased(new ExampleCommand());
 }

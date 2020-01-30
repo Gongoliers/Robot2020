@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 import frc.robot.Robot;
 
 /**
- * deploy pistons to spin control panel
+ * Deploy pistons to spin control panel
  */
 public class DeployPanelSpinner extends InstantCommand {
     

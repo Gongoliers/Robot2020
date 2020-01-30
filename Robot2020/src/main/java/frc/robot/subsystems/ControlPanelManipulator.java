@@ -66,4 +66,8 @@ public class ControlPanelManipulator extends Subsystem {
         return panelSpinningEncoder.getDistance();
     }
 
+    public boolean isDeployed() {
+        return panelDeployPiston.isExtended();
+    }
+
 }
