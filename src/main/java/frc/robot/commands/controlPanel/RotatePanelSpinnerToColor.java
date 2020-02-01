@@ -1,30 +1,111 @@
 package frc.robot.commands.controlPanel;
 
-import edu.wpi.first.wpilibj.command.CommandGroup;
+import java.util.HashMap;
+
+import com.thegongoliers.input.gameMessages.GameSpecificMessage2020;
+import com.thegongoliers.input.gameMessages.GameSpecificMessage2020.ColorAssignment;
+
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 /**
  * TODO
  */
-public class RotatePanelSpinnerToColor extends CommandGroup {
+public class RotatePanelSpinnerToColor extends Command {
+
+    private ColorAssignment targetColor;
+    private double targetDistance;
 
     public RotatePanelSpinnerToColor() {
+        requires(Robot.controlPanelManipulator);
+    }
 
-        // Add Commands here:
-        // e.g. addSequential(new Command1());
-        //      addSequential(new Command2());
-        // these will run in order.
+    // Called just before this Command runs the first time
+    @Override
+    protected void initialize() {
+        ColorAssignment fmsColor = new GameSpecificMessage2020().getColorAssignment();
 
-        // To run multiple commands at the same time,
-        // use addParallel()
-        // e.g. addParallel(new Command1());
-        //      addSequential(new Command2());
-        // Command1 and Command2 will run in parallel.
+        // adjust for the fact that our sensor is two spaces off from the field's sensor
+        switch (fmsColor) {
+        case Blue:
+            targetColor = ColorAssignment.Red;
+            break;
+        case Red:
+            targetColor = ColorAssignment.Blue;
+            break;
+        case Yellow:
+            targetColor = ColorAssignment.Green;
+            break;
+        case Green:
+            targetColor = ColorAssignment.Yellow;
+            break;
+        default:
+            targetColor = ColorAssignment.Unknown;
+            break;
+        }
 
-        // A command group will require all of the subsystems that each member
-        // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
-        // arm.
- 
-    } 
+        ColorAssignment currentColor = Robot.controlPanelManipulator.getColor();
+
+        // blue yellow red green (left to right)
+        HashMap<ColorAssignment, Integer> colorMap = new HashMap<>();
+        colorMap.put(ColorAssignment.Unknown, Integer.MIN_VALUE);
+        colorMap.put(ColorAssignment.Blue, 0);
+        colorMap.put(ColorAssignment.Yellow, 1);
+        colorMap.put(ColorAssignment.Red, 2);
+        colorMap.put(ColorAssignment.Green, 3);
+
+        int currentIndex = colorMap.get(currentColor);
+        int targetIndex = colorMap.get(targetColor);
+
+        int leftDistance;
+        int rightDistance;
+
+        if (currentIndex >= targetIndex) {
+            leftDistance = currentIndex - targetIndex;
+            rightDistance = 4 + targetIndex - currentIndex;
+        } else {
+            leftDistance = 4 + currentIndex - targetIndex;
+            rightDistance = targetIndex - currentIndex;
+        }
+
+        if (rightDistance <= leftDistance) {
+            targetDistance = rightDistance;
+        } else {
+            targetDistance = -leftDistance;
+        }
+
+        Robot.controlPanelManipulator.resetSpinnerDistance();
+    }
+
+    private boolean atDistance = false;
+
+    // Called repeatedly when this Command is scheduled to run
+    @Override
+    protected void execute() {
+        if (Robot.controlPanelManipulator.isSpinnerAtDistance() || atDistance) {
+            atDistance = true;
+            Robot.controlPanelManipulator.slowRotate();
+        } else {
+            Robot.controlPanelManipulator.setSpinnerDistance(targetDistance);
+        }
+    }
+
+    // Make this return true when this Command no longer needs to run execute()
+    @Override
+    protected boolean isFinished() {
+        return Robot.controlPanelManipulator.getColor() == targetColor;
+    }
+
+    // Called once after isFinished returns true
+    @Override
+    protected void end() {
+        Robot.controlPanelManipulator.stopSpinner();
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    @Override
+    protected void interrupted() {
+        end();
+    }
 }
