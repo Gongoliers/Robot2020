@@ -63,7 +63,7 @@ public class OI {
         driverJoystick = new Joystick(DRIVER_JOYSTICK_PORT);
         xboxController = new XboxController(MANIPULATOR_XBOX_PORT);
 
-        //// Driver Joystick setup
+        //// -- Driver Joystick setup
 
         Button driverTrigger = new JoystickButton(driverJoystick, 1);
         driverTrigger.whenPressed(new SetTurboDrivetrain(true));
@@ -75,12 +75,12 @@ public class OI {
         Button driveStickMoved = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
-                return Math.abs(getDriverSpeed()) > 0.3 || Math.abs(getDriverRotation()) > 0.1;
+                return Math.abs(getDriverSpeed()) > 0.3 || Math.abs(getDriverRotation()) > 0.3;
             }
         });
         driveStickMoved.whenPressed(new DrivetrainOperatorContol());
 
-        //// Manipulator Xbox Controller setup
+        //// -- Manipulator Xbox Controller setup
 
         Button manipulatorStopAll = Hardware.makeButton(new BooleanSupplier() {
             @Override
@@ -171,6 +171,7 @@ public class OI {
 
         DPadButton rightButton = new DPadButton(xboxController, DPadButton.Direction.RIGHT);
         rightButton.whenPressed(new StopClimberWinch());
+
     }
 
     public double getDriverSpeed() {

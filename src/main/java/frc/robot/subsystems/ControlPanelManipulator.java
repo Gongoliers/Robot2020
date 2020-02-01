@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class ControlPanelManipulator extends Subsystem {
     
-    private static final double PANEL_SPINNER_SPEED = 0.6; // TODO tune
+    private static final double PANEL_SPINNER_SPEED = 0.6; // TODO: tune panel spinner speed
 
     private GSpeedController panelSpinningController;
     private Encoder panelSpinningEncoder;
@@ -28,7 +28,7 @@ public class ControlPanelManipulator extends Subsystem {
         panelSpinningEncoder = new Encoder(RobotMap.PANEL_SPINNER_ENCODER_A, RobotMap.PANEL_SPINNER_ENCODER_B);
         panelSpinningEncoder.setDistancePerPulse(1.0);
 
-        panelSpinningController = new GSpeedController(new PWMVictorSPX(RobotMap.PANEL_SPINNER_PWM), panelSpinningEncoder, 0.1, 0.1); // TODO: implement PID
+        panelSpinningController = new GSpeedController(new PWMVictorSPX(RobotMap.PANEL_SPINNER_PWM), panelSpinningEncoder, null, null); // TODO: Implement PID for panel spinner ***
         panelSpinningController.setInverted(false);
 
         panelDeployPiston = new GPiston(new Solenoid(RobotMap.PANEL_DEPLOY_PISTON));

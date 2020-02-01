@@ -31,8 +31,7 @@ public class PowerCellManipulator extends Subsystem {
     private static final double HIGH_SHOOTER_SPEED = 0.6;
 
     private PWMVictorSPX intakeController;
-    private GSpeedController indexerController;
-    private Encoder indexerEncoder;
+    private PWMVictorSPX indexerController;
     private GSpeedController shooterController;
     private Encoder shooterEncoder;
     private Piston harvesterPiston;
@@ -42,16 +41,13 @@ public class PowerCellManipulator extends Subsystem {
         intakeController = new PWMVictorSPX(RobotMap.INTAKE_PWM);
         intakeController.setInverted(false);
 
-        indexerEncoder = new Encoder(RobotMap.INDEXER_ENCODER_A, RobotMap.INDEXER_ENCODER_B);
-        indexerEncoder.setDistancePerPulse(1.0);
-
-        indexerController = new GSpeedController(new PWMVictorSPX(RobotMap.INDEXER_PWM), indexerEncoder, 0.1, 0.1); // TODO: Implement PID
+        indexerController = new PWMVictorSPX(RobotMap.INDEXER_PWM);
         indexerController.setInverted(false);
 
         shooterEncoder = new Encoder(RobotMap.SHOOTER_ENCODER_A, RobotMap.SHOOTER_ENCODER_B);
         shooterEncoder.setDistancePerPulse(1.0);
 
-        shooterController = new GSpeedController(new PWMVictorSPX(RobotMap.SHOOTER_PWM), shooterEncoder, 0.1, 0.1);  // TODO: Implement PID
+        shooterController = new GSpeedController(new PWMVictorSPX(RobotMap.SHOOTER_PWM), shooterEncoder, null, null);  // TODO: Implement PID ***
         shooterController.setInverted(false);
 
         harvesterPiston = new GPiston(new Solenoid(RobotMap.HARVESTER_PISTON));
@@ -112,6 +108,10 @@ public class PowerCellManipulator extends Subsystem {
 
     public void indexerDown() {
         indexerController.set(-INDEXER_SPEED);
+    }
+
+    public boolean isFlywheelReady() {
+        return shooterEncoder.getRate() >= HIGH_SHOOTER_SPEED; // TODO: Consider setting this to its own value (needs tuning/testing) 
     }
 
 }
