@@ -31,4 +31,6 @@ public class Vision extends Subsystem {
 
     }
 
+    // TODO: Add getters for angle to target, target area, and is target found
+
 }
