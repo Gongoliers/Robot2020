@@ -84,7 +84,7 @@ public class RotatePanelSpinnerToColor extends Command {
     protected void execute() {
         if (Robot.controlPanelManipulator.isSpinnerAtDistance() || atDistance) {
             atDistance = true;
-            Robot.controlPanelManipulator.slowRotate();
+            Robot.controlPanelManipulator.slowRotate(targetDistance > 0);
         } else {
             Robot.controlPanelManipulator.setSpinnerDistance(targetDistance);
         }

@@ -110,12 +110,20 @@ public class ControlPanelManipulator extends Subsystem {
         panelSpinningController.set(PANEL_SPINNER_SPEED);
     }
 
-    public void slowRotate() {
-        panelSpinningController.set(SLOW_PANEL_SPINNER_SPEED);
+    public void slowRotate(boolean positive) {
+        if (positive) {
+            panelSpinningController.set(SLOW_PANEL_SPINNER_SPEED);
+        } else {
+            panelSpinningController.set(-SLOW_PANEL_SPINNER_SPEED);
+        }
     }
 
     public void stopSpinner() {
         panelSpinningController.stopMotor();
+    }
+
+    public double getSpinnerDistance() {
+        return panelSpinningController.getDistance();
     }
 
     public void setSpinnerDistance(double distance) {
@@ -133,7 +141,5 @@ public class ControlPanelManipulator extends Subsystem {
     public boolean isDeployed() {
         return panelDeployPiston.isExtended();
     }
-
-
 
 }
