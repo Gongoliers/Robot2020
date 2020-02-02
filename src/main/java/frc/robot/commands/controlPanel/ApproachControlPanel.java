@@ -24,7 +24,7 @@ public class ApproachControlPanel extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    if (Robot.controlPanelManipulator.getProximity() >= DISTANCE_FROM_SENSOR_TO_PANEL && Robot.controlPanelManipulator.isConfident()) {
+    if (Robot.controlPanelManipulator.getProximity() >= DISTANCE_FROM_SENSOR_TO_PANEL) {
       return true;
     }
     else{

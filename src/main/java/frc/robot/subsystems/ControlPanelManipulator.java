@@ -93,7 +93,4 @@ public class ControlPanelManipulator extends Subsystem {
         return colorSensor.getProximity();
     }
 
-    public boolean isConfident(){
-        return colorMatcher.matchClosestColor(colorSensor.getColor()).confidence >= .75;
-    }
 }
