@@ -142,4 +142,9 @@ public class ControlPanelManipulator extends Subsystem {
         return panelDeployPiston.isExtended();
     }
 
+    // These two methods are mainly for approaching the control panel
+    public int getProximity(){
+        return colorSensor.getProximity();
+    }
+
 }
