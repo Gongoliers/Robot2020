@@ -12,9 +12,7 @@ public class Vision extends Subsystem {
     private LimelightCamera targetingCamera;
 
     public Vision() {
-
         targetingCamera = new LimelightCamera();
-
     }
 
     public LimelightCamera getTargetingCamera() {
@@ -28,9 +26,18 @@ public class Vision extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-
     }
 
-    // TODO: Add getters for angle to target, target area, and is target found
+    public double getAngleToTarget() {
+        return targetingCamera.getHorizontalOffset();
+    }
+
+    public double getTargetArea() {
+        return targetingCamera.getTargetArea();
+    }
+
+    public boolean isTargetFound() {
+        return targetingCamera.hasTarget();
+    }
 
 }
