@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.powerCell.*;
 
+import com.kylecorry.pid.PID;
 import com.thegongoliers.output.actuators.GPiston;
 import com.thegongoliers.output.actuators.GSpeedController;
 import com.thegongoliers.output.interfaces.Piston;
@@ -30,6 +31,9 @@ public class PowerCellManipulator extends Subsystem {
     private static final double LOW_SHOOTER_SPEED = 0.1;
     private static final double HIGH_SHOOTER_SPEED = 0.6;
 
+    private PID distancePID = new PID(0.1, 0.0, 0.0); // TODO: Tune PID values
+    private PID velocityPID = new PID(0.1, 0.0, 0.0);
+
     private PWMVictorSPX intakeController;
     private PWMVictorSPX indexerController;
     private GSpeedController shooterController;
@@ -47,7 +51,7 @@ public class PowerCellManipulator extends Subsystem {
         shooterEncoder = new Encoder(RobotMap.SHOOTER_ENCODER_A, RobotMap.SHOOTER_ENCODER_B);
         shooterEncoder.setDistancePerPulse(1.0);
 
-        shooterController = new GSpeedController(new PWMVictorSPX(RobotMap.SHOOTER_PWM), shooterEncoder, null, null);  // TODO: Implement PID ***
+        shooterController = new GSpeedController(new PWMVictorSPX(RobotMap.SHOOTER_PWM), shooterEncoder, distancePID, velocityPID);
         shooterController.setInverted(false);
 
         harvesterPiston = new GPiston(new Solenoid(RobotMap.HARVESTER_PISTON));
@@ -63,7 +67,6 @@ public class PowerCellManipulator extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-
     }
 
     public void stopIndexer() {

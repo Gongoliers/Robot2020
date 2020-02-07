@@ -41,7 +41,6 @@ public class Climber extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-
     }
 
     public void stopWinch() {

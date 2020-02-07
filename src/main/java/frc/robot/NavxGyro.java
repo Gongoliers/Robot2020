@@ -17,7 +17,7 @@ public class NavxGyro implements Gyro {
 
     @Override
     public void close() throws Exception {
-        navx.close();
+        // intentionally empty since you cannot close Navx
     }
 
     @Override

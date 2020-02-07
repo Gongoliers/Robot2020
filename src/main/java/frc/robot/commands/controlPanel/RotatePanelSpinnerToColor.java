@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
- * TODO
+ * Fetches the necessary ROTATE CONTROL, then spins the CONTROL PANEL
+ * to the necessary color and stops.
  */
 public class RotatePanelSpinnerToColor extends Command {
 

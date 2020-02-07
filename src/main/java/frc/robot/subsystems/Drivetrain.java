@@ -81,9 +81,7 @@ public class Drivetrain extends Subsystem {
 
     @Override
     public void initDefaultCommand() {
-
         setDefaultCommand(new DrivetrainOperatorContol());
-
     }
 
     @Override
