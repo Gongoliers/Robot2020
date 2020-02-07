@@ -6,6 +6,7 @@ import com.thegongoliers.input.gameMessages.GameSpecificMessage2020;
 import com.thegongoliers.input.gameMessages.GameSpecificMessage2020.ColorAssignment;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 
 /**
@@ -45,6 +46,9 @@ public class RotatePanelSpinnerToColor extends Command {
             break;
         }
 
+        SmartDashboard.putString("Control Panel FMS Color", fmsColor.name());
+        SmartDashboard.putString("Control Panel Target Color", targetColor.name());
+        
         ColorAssignment currentColor = Robot.controlPanelManipulator.getColor();
 
         // blue yellow red green (left to right)
