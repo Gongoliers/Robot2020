@@ -29,7 +29,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Drivetrain extends Subsystem {
 
-    private PWMVictorSPX leftDriveController;
+    public static final double NORMAL_VOLTAGE = 12.5;
+
+	private PWMVictorSPX leftDriveController;
     private PWMVictorSPX rightDriveController;
     private Encoder leftDriveEncoder;
     private Encoder rightDriveEncoder;
@@ -38,6 +40,9 @@ public class Drivetrain extends Subsystem {
 
     private ModularDrivetrain modularDrivetrain;
     private VoltageControlModule voltageControlModule;
+
+    private boolean turboEnabled = true;
+    private double enforcedMaxVoltage = NORMAL_VOLTAGE;
 
     public Drivetrain(Vision vision) {
         leftDriveController = new PWMVictorSPX(RobotMap.LEFT_DRIVE_PWM);
@@ -69,9 +74,9 @@ public class Drivetrain extends Subsystem {
         pathFollowerModule.setForwardTolerance(0.6); // 1/2 feet
         pathFollowerModule.setTurnTolerance(1); // 1 degree
 
-        TargetAlignmentModule targetAlignmentModule = new TargetAlignmentModule(vision.getTargetingCamera(), 0.02, 0.1, false); // TODO: tune
+        TargetAlignmentModule targetAlignmentModule = new TargetAlignmentModule(vision.getTargetingCamera(), 0.02, 0, false); // TODO: tune
 
-        voltageControlModule = new VoltageControlModule(12);
+        voltageControlModule = new VoltageControlModule(NORMAL_VOLTAGE);
 
         PowerEfficiencyModule powerEfficiencyModule = new PowerEfficiencyModule(0.25, 0.2);
 
@@ -105,11 +110,17 @@ public class Drivetrain extends Subsystem {
     }
 
     public void setTurboEnabled(boolean turboEnabled) {
+        this.turboEnabled = turboEnabled;
         if (turboEnabled) {
-            voltageControlModule.setMaxVoltage(13.0);
+            voltageControlModule.setMaxVoltage(Math.min(NORMAL_VOLTAGE, enforcedMaxVoltage));
         } else {
-            voltageControlModule.setMaxVoltage(12.0);
+            voltageControlModule.setMaxVoltage(Math.min(6.0, enforcedMaxVoltage));
         }
+    }
+
+    public void enforceMaxVoltage(double voltage) {
+        enforcedMaxVoltage = voltage;
+        setTurboEnabled(turboEnabled);
     }
 
 }

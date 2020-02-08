@@ -1,9 +1,13 @@
 package frc.robot.commands.autonomous;
 
+import com.thegongoliers.commands.AlignTargetCommand;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.Robot;
 import frc.robot.commands.drivetrain.DriveDistance;
+import frc.robot.commands.powerCell.DeployIntakePowerCell;
 import frc.robot.commands.powerCell.EjectPowerCellHigh;
-import frc.robot.commands.powerCell.IntakePowerCell;
+import frc.robot.commands.powerCell.ShootPowerCellHigh;
 
 /**
  * Condition: Starts the match lined up with the POWER PORT.
@@ -18,8 +22,10 @@ public class AutoShootCollectShoot extends CommandGroup {
     public AutoShootCollectShoot() {
         addSequential(new EjectPowerCellHigh(), 3.5);
         addParallel(new DriveDistance(17), 4);
-        addSequential(new IntakePowerCell(), 4);
+        addSequential(new DeployIntakePowerCell(), 4);
         addSequential(new DriveDistance(-17), 4);
-        addSequential(new EjectPowerCellHigh(), 3.5);
+        addSequential(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0), 0.5);
+        addSequential(new ShootPowerCellHigh(), 3.5);
     }
 }
+

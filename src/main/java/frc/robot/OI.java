@@ -2,6 +2,7 @@ package frc.robot;
 
 import java.util.function.BooleanSupplier;
 
+import com.thegongoliers.commands.AlignTargetCommand;
 import com.thegongoliers.hardware.Hardware;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -66,11 +67,14 @@ public class OI {
         //// -- Driver Joystick setup
 
         Button driverTrigger = new JoystickButton(driverJoystick, 1);
-        driverTrigger.whenPressed(new SetTurboDrivetrain(true));
-        driverTrigger.whenReleased(new SetTurboDrivetrain(false));
+        driverTrigger.whenReleased(new SetTurboDrivetrain(true));
+        driverTrigger.whenPressed(new SetTurboDrivetrain(false));
 
         Button driverStopAll = new JoystickButton(driverJoystick, 11);
         driverStopAll.whenPressed(new StopAll());
+
+        Button driverAlignTarget = new JoystickButton(driverJoystick, 12);
+        driverAlignTarget.whenPressed(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
 
         Button driveStickMoved = Hardware.makeButton(new BooleanSupplier() {
             @Override

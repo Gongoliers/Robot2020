@@ -9,7 +9,7 @@ import frc.robot.Robot;
 public class StageIndexer extends TimedCommand {
 
     public StageIndexer() {
-        super(500);
+        super(0.5);
         requires(Robot.powerCellManipulator);
     }
 
