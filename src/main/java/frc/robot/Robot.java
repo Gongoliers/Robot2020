@@ -3,20 +3,15 @@ package frc.robot;
 import com.thegongoliers.input.power.Battery;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import frc.robot.commands.autonomous.AutoShootAndBackup;
+import frc.robot.commands.autonomous.AutoShootCollectShoot;
 import frc.robot.subsystems.*;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the TimedRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the build.gradle file in the
- * project.
- */
 public class Robot extends TimedRobot {
     public static OI oi;
     public static Battery battery;
@@ -27,12 +22,11 @@ public class Robot extends TimedRobot {
     public static Climber climber;
     public static Vision vision;
 
-    Command autonomousCommand;
-    SendableChooser<Command> autoChooser = new SendableChooser<>();
+    private Command autonomousCommand;
+    private SendableChooser<Command> autoChooser = new SendableChooser<>();
 
     /**
-     * This function is run when the robot is first started up and should be used
-     * for any initialization code.
+     * This function is run when the robot is first started up.
      */
     @Override
     public void robotInit() {
@@ -48,28 +42,23 @@ public class Robot extends TimedRobot {
         oi = new OI();
 
         autoChooser.setDefaultOption("No Auto", null);
-        // autoChooser.addOption("My Auto", new MyAutoCommand());
+        autoChooser.addOption("Shoot 3", new AutoShootAndBackup());
+        autoChooser.addOption("Shoot 6", new AutoShootCollectShoot());
         SmartDashboard.putData("Auto mode", autoChooser);
         
     }
 
     /**
-     * This function is called every robot packet, no matter the mode. Use this for
-     * items like diagnostics that you want ran during disabled, autonomous,
-     * teleoperated and test.
-     *
-     * <p>
-     * This runs after the mode specific periodic functions, but before LiveWindow
-     * and SmartDashboard integrated updating.
+     * This function is called every robot packet, no matter the mode.
      */
     @Override
     public void robotPeriodic() {
+        SmartDashboard.putNumber("Match Time", Timer.getMatchTime());
+        SmartDashboard.putNumber("Battery %", battery.getBatteryPercentage());
     }
 
     /**
-     * This function is called once each time the robot enters Disabled mode. You
-     * can use it to reset any subsystem information you want to clear when the
-     * robot is disabled.
+     * This function is called once each time the robot enters Disabled mode.
      */
     @Override
     public void disabledInit() {
@@ -81,29 +70,14 @@ public class Robot extends TimedRobot {
     }
 
     /**
-     * This autonomous (along with the chooser code above) shows how to select
-     * between different autonomous modes using the dashboard. The sendable chooser
-     * code works with the Java SmartDashboard. If you prefer the LabVIEW Dashboard,
-     * remove all of the chooser code and uncomment the getString code to get the
-     * auto name from the text box below the Gyro
-     *
-     * <p>
-     * You can add additional auto modes by adding additional commands to the
-     * chooser code above (like the commented example) or additional comparisons to
-     * the switch structure below with additional strings & commands.
+     * This function is called once each time the robot enters Autonomous mode.
+     * The auto command that is run is chosen by the SmartDashboard sendableChooser.
      */
     @Override
     public void autonomousInit() {
         autonomousCommand = autoChooser.getSelected();
 
-        /*
-         * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-         * switch(autoSelected) { case "My Auto": autonomousCommand = new
-         * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
-         * ExampleCommand(); break; }
-         */
-
-        // schedule the autonomous command (example)
+        // schedule the autonomous command
         if (autonomousCommand != null) {
             autonomousCommand.start();
         }
@@ -117,15 +91,11 @@ public class Robot extends TimedRobot {
         Scheduler.getInstance().run();
     }
 
+    /**
+     * This function is called once each time the robot enters Teleop mode.
+     */
     @Override
     public void teleopInit() {
-        // This makes sure that the autonomous stops running when
-        // teleop starts running. If you want the autonomous to
-        // continue until interrupted by another command, remove
-        // this line or comment it out.
-        if (autonomousCommand != null) {
-            autonomousCommand.cancel();
-        }
     }
 
     /**

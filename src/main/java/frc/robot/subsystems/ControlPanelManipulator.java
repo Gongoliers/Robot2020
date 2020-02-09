@@ -65,6 +65,9 @@ public class ControlPanelManipulator extends Subsystem {
         colorMatcher.addColorMatch(redTarget);
         colorMatcher.addColorMatch(yellowTarget);
 
+        SmartDashboard.putString("Detected Color", "N/A");
+        SmartDashboard.putNumber("Color Confidence", 0);
+
     }
 
     @Override
@@ -75,6 +78,9 @@ public class ControlPanelManipulator extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
+        SmartDashboard.putBoolean("Spinner Deployed?", isDeployed());
+        SmartDashboard.putNumber("Spinner Motor", panelSpinningController.get());
+        SmartDashboard.putNumber("Spinner Encoder", getSpinnerDistance());
     }
 
     public ColorAssignment getColor() {
