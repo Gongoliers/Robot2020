@@ -5,7 +5,9 @@ import frc.robot.RobotMap;
 import frc.robot.commands.drivetrain.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.thegongoliers.output.drivetrain.ModularDrivetrain;
@@ -42,7 +44,7 @@ public class Drivetrain extends Subsystem {
     private VoltageControlModule voltageControlModule;
 
     private boolean turboEnabled = true;
-    private double enforcedMaxVoltage = NORMAL_VOLTAGE;
+    private Map<Subsystem, Double> enforcedMaxVoltages = new HashMap<>();
 
     public Drivetrain(Vision vision) {
         leftDriveController = new PWMVictorSPX(RobotMap.LEFT_DRIVE_PWM);
@@ -112,15 +114,27 @@ public class Drivetrain extends Subsystem {
     public void setTurboEnabled(boolean turboEnabled) {
         this.turboEnabled = turboEnabled;
         if (turboEnabled) {
-            voltageControlModule.setMaxVoltage(Math.min(NORMAL_VOLTAGE, enforcedMaxVoltage));
+            voltageControlModule.setMaxVoltage(getMaxVoltage());
         } else {
-            voltageControlModule.setMaxVoltage(Math.min(6.0, enforcedMaxVoltage));
+            voltageControlModule.setMaxVoltage(getMaxVoltage() / 2);
         }
     }
 
-    public void enforceMaxVoltage(double voltage) {
-        enforcedMaxVoltage = voltage;
+    public void addEnforcedMaxVoltage(Subsystem requester, double maxVoltage){
+        enforcedMaxVoltages.put(requester, maxVoltage);
         setTurboEnabled(turboEnabled);
+    }
+
+    public void removeEnforcedMaxVoltage(Subsystem requester){
+        enforcedMaxVoltages.remove(requester);
+        setTurboEnabled(turboEnabled);
+    }
+
+    private double getMaxVoltage(){
+        return enforcedMaxVoltages.values()
+                .stream()
+                .min(Double::compareTo)
+                .orElse(NORMAL_VOLTAGE);
     }
 
 }
