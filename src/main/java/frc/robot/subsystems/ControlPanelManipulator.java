@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 import frc.robot.RobotMap;
-import frc.robot.commands.controlPanel.*;
+import frc.robot.commands.controlpanel.*;
 
 import com.kylecorry.pid.PID;
 import com.revrobotics.ColorMatch;

@@ -1,4 +1,4 @@
-package frc.robot.commands.controlPanel;
+package frc.robot.commands.controlpanel;
 
 import java.util.HashMap;
 

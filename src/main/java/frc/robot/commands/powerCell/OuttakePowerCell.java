@@ -1,4 +1,4 @@
-package frc.robot.commands.powerCell;
+package frc.robot.commands.powercell;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 

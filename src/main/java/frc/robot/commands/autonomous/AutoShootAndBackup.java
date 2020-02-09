@@ -2,7 +2,7 @@ package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.drivetrain.DriveDistance;
-import frc.robot.commands.powerCell.EjectPowerCellHigh;
+import frc.robot.commands.powercell.EjectPowerCellHigh;
 
 /**
  * Condition: Starts the match lined up with the POWER PORT.

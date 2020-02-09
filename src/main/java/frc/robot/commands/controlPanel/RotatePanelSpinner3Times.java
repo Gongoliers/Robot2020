@@ -1,4 +1,4 @@
-package frc.robot.commands.controlPanel;
+package frc.robot.commands.controlpanel;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;

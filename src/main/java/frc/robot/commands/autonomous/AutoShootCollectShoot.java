@@ -5,9 +5,9 @@ import com.thegongoliers.commands.AlignTargetCommand;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 import frc.robot.commands.drivetrain.DriveDistance;
-import frc.robot.commands.powerCell.DeployIntakePowerCell;
-import frc.robot.commands.powerCell.EjectPowerCellHigh;
-import frc.robot.commands.powerCell.ShootPowerCellHigh;
+import frc.robot.commands.powercell.DeployIntakePowerCell;
+import frc.robot.commands.powercell.EjectPowerCellHigh;
+import frc.robot.commands.powercell.ShootPowerCellHigh;
 
 /**
  * Condition: Starts the match lined up with the POWER PORT.
