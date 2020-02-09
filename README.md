@@ -1,3 +1,4 @@
+![Java Gradle Build](https://github.com/Gongoliers/Robot2020/workflows/Java%20Gradle%20Build/badge.svg)
 # Robot2020
  Team 5112's official competition code for FRC Infinite Recharge 2020 season.
  Our robot code uses our homemade [Library of Gongolierium](https://github.com/Gongoliers/Library-of-Gongolierium), which you can easily implement in your robot code.
