@@ -17,6 +17,7 @@ public class DeployPanelSpinner extends InstantCommand {
     protected void initialize() {
         Robot.controlPanelManipulator.deploy();
         Robot.drivetrain.enforceMaxVoltage(4.0);
+        Robot.oi.setControllerRumble(0.2);
     }
 
 }

@@ -8,6 +8,7 @@ import com.thegongoliers.hardware.Hardware;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.DPadButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -184,6 +185,11 @@ public class OI {
 
     public double getDriverRotation() {
         return SINGLE_DRIVER_MODE ? xboxController.getX(Hand.kRight) : driverJoystick.getZ();
+    }
+
+    public void setControllerRumble(double value){
+        xboxController.setRumble(RumbleType.kLeftRumble, value);
+        xboxController.setRumble(RumbleType.kRightRumble, value);
     }
 
 }
