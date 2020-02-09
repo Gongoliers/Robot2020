@@ -1,9 +1,12 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import frc.robot.RobotMap;
 import frc.robot.commands.climber.*;
-import edu.wpi.first.wpilibj.AnalogPotentiometer;
+
+import com.thegongoliers.hardware.Hardware;
+
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 
 /**
@@ -20,7 +23,7 @@ public class Climber extends Subsystem {
 
     private PWMVictorSPX climberDeliveryController;
     private PWMVictorSPX climberWinchController;
-    private AnalogPotentiometer climberPotentiometer;
+    private Potentiometer climberPotentiometer;
 
     public Climber() {
         climberDeliveryController = new PWMVictorSPX(RobotMap.CLIMBER_DELIVER_PWM);
@@ -29,8 +32,7 @@ public class Climber extends Subsystem {
         climberWinchController = new PWMVictorSPX(RobotMap.CLIMBER_WINCH_PWM);
         climberWinchController.setInverted(false);
 
-        climberPotentiometer = new AnalogPotentiometer(RobotMap.CLIMBER_POTENTIOMETER, 1.0, 0.0);
-
+        climberPotentiometer = Hardware.createPotentiometer(RobotMap.CLIMBER_POTENTIOMETER, 1.0, 0.0);
     }
 
     @Override
