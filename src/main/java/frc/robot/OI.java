@@ -30,6 +30,7 @@ public class OI {
      * split between a joystick and a controller.
      */
     private static final boolean SINGLE_DRIVER_MODE = false;
+    private static final double RUMBLE_INTENSITY = 0.3;
 
     private static final int DRIVER_JOYSTICK_PORT = 0;
     private static final int MANIPULATOR_XBOX_PORT = 1;
@@ -187,9 +188,12 @@ public class OI {
         return SINGLE_DRIVER_MODE ? xboxController.getX(Hand.kRight) : driverJoystick.getZ();
     }
 
-    public void setControllerRumble(double value){
-        xboxController.setRumble(RumbleType.kLeftRumble, value);
-        xboxController.setRumble(RumbleType.kRightRumble, value);
+    public void setLeftRumble(boolean rumble){
+        xboxController.setRumble(RumbleType.kLeftRumble, rumble ? RUMBLE_INTENSITY : 0);
+    }
+
+    public void setRightRumble(boolean rumble) {
+        xboxController.setRumble(RumbleType.kRightRumble, rumble ? RUMBLE_INTENSITY : 0);
     }
 
 }

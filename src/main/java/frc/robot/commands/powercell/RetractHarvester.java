@@ -17,7 +17,7 @@ public class RetractHarvester extends InstantCommand {
     protected void initialize() {
         Robot.powerCellManipulator.retract();
         Robot.drivetrain.removeEnforcedMaxVoltage(Robot.powerCellManipulator);
-        Robot.oi.setControllerRumble(0);
+        Robot.oi.setLeftRumble(false);
     }
 
 }

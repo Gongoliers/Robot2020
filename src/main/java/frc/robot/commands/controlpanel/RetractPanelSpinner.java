@@ -17,7 +17,7 @@ public class RetractPanelSpinner extends InstantCommand {
     protected void initialize() {
         Robot.controlPanelManipulator.retract();
         Robot.drivetrain.removeEnforcedMaxVoltage(Robot.controlPanelManipulator);
-        Robot.oi.setControllerRumble(0);
+        Robot.oi.setRightRumble(false);
     }
 
 }
