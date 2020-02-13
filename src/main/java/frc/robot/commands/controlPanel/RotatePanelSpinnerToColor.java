@@ -14,6 +14,7 @@ import frc.robot.Robot;
 public class RotatePanelSpinnerToColor extends Command {
 
     private ColorAssignment targetColor;
+    public static String colorString;
     private double targetDistance;
 
     public RotatePanelSpinnerToColor() {
@@ -29,15 +30,19 @@ public class RotatePanelSpinnerToColor extends Command {
         switch (fmsColor) {
         case Blue:
             targetColor = ColorAssignment.Red;
+            colorString = "Red";
             break;
         case Red:
             targetColor = ColorAssignment.Blue;
+            colorString = "Blue";
             break;
         case Yellow:
             targetColor = ColorAssignment.Green;
+            colorString = "Green";
             break;
         case Green:
             targetColor = ColorAssignment.Yellow;
+            colorString = "Yellow";
             break;
         default:
             targetColor = ColorAssignment.Unknown;

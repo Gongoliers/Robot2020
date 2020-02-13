@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.DPadButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.StopAll;
 import frc.robot.commands.controlPanel.*;
 import frc.robot.commands.climber.*;
@@ -172,6 +173,30 @@ public class OI {
         DPadButton rightButton = new DPadButton(xboxController, DPadButton.Direction.RIGHT);
         rightButton.whenPressed(new StopClimberWinch());
 
+        // SmartDashboard Commands
+        SmartDashboard.putData("TestButton", new StopAll());
+
+        // Drivetrain information which is extending existing information in Drivtrain subsystem
+        SmartDashboard.putBoolean("Robot Moving", getDriverSpeed() > .05);
+        SmartDashboard.putBoolean("Rotating To Target", false); // TODO: make this work
+    
+        // Power Cell information
+        SmartDashboard.putString("Current Target", "High"); //TODO: Make this work
+        // SmartDashboard.putData("Calibrate Autoshooter", ); // THIS WILL NOT WORK YET
+        SmartDashboard.putBoolean("Shooting...", false); //TODO: make this work
+
+        // Climber Information
+        SmartDashboard.putBoolean("Delivery Extended", false);
+        SmartDashboard.putBoolean("Winch Raished", false);
+
+        // Control Panel Information
+        SmartDashboard.putString("Target Color", RotatePanelSpinnerToColor.colorString);
+        SmartDashboard.putBoolean("Control Panel Deployed", Robot.controlPanelManipulator.isDeployed());
+
+        // Buttons
+
+
+
     }
 
     public double getDriverSpeed() {
@@ -181,5 +206,6 @@ public class OI {
     public double getDriverRotation() {
         return SINGLE_DRIVER_MODE ? xboxController.getX(Hand.kRight) : driverJoystick.getZ();
     }
+
 
 }
