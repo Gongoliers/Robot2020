@@ -35,11 +35,11 @@ public class RotatePanelSpinnerToColor extends Command {
         case Red:
             targetColor = ColorAssignment.Blue;
             break;
-        case Yellow:
-            targetColor = ColorAssignment.Green;
+        case Yellow: 
+            targetColor = ColorAssignment.Green; // This value is green because of the difference between the field's color sensor and our own
             break;
         case Green:
-            targetColor = ColorAssignment.Yellow;
+            targetColor = ColorAssignment.Yellow; // This value is yellow because of the difference between the field's color sensor and our own
             break;
         default:
             targetColor = ColorAssignment.Unknown;

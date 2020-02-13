@@ -110,7 +110,9 @@ public class Drivetrain extends Subsystem {
     public ModularDrivetrain getModularDrivetrain() {
         return modularDrivetrain;
     }
-
+    
+    /* This function can also be known as turtle mode, as when this function is disabled (it is enabled by default), 
+    the robot will drastically slow down. This will be used for apporaching the control panel on the field, or precisely position the robot*/
     public void setTurboEnabled(boolean turboEnabled) {
         this.turboEnabled = turboEnabled;
         if (turboEnabled) {
