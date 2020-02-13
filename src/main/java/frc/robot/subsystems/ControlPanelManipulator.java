@@ -65,6 +65,8 @@ public class ControlPanelManipulator extends Subsystem {
         colorMatcher.addColorMatch(redTarget);
         colorMatcher.addColorMatch(yellowTarget);
 
+        SmartDashboard.putNumber("Spinner Encoder", panelSpinningEncoder.getDistance());
+        SmartDashboard.putNumber("Spinner Motor", panelSpinningController.get()); 
     }
 
     @Override

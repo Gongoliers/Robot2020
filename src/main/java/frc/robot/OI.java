@@ -174,28 +174,13 @@ public class OI {
         rightButton.whenPressed(new StopClimberWinch());
 
         // SmartDashboard Commands
-        SmartDashboard.putData("TestButton", new StopAll());
+        SmartDashboard.putData("Stop Robot", new StopAll());
 
         // Drivetrain information which is extending existing information in Drivtrain subsystem
-        SmartDashboard.putBoolean("Robot Moving", getDriverSpeed() > .05);
-        SmartDashboard.putBoolean("Rotating To Target", false); // TODO: make this work
-    
-        // Power Cell information
-        SmartDashboard.putString("Current Target", "High"); //TODO: Make this work
-        // SmartDashboard.putData("Calibrate Autoshooter", ); // THIS WILL NOT WORK YET
-        SmartDashboard.putBoolean("Shooting...", false); //TODO: make this work
+        SmartDashboard.putBoolean("Robot Moving?", getDriverSpeed() > .05);
 
-        // Climber Information
-        SmartDashboard.putBoolean("Delivery Extended", false);
-        SmartDashboard.putBoolean("Winch Raished", false);
-
-        // Control Panel Information
-        SmartDashboard.putString("Target Color", RotatePanelSpinnerToColor.colorString);
-        SmartDashboard.putBoolean("Control Panel Deployed", Robot.controlPanelManipulator.isDeployed());
-
-        // Buttons
-
-
+        // Information
+        SmartDashboard.putBoolean("Spinner Deployed?", Robot.controlPanelManipulator.isDeployed());
 
     }
 

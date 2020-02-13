@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.climber.*;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -41,7 +42,9 @@ public class Climber extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-
+        SmartDashboard.putNumber("Delivery Position", climberPotentiometer.get());
+        SmartDashboard.putNumber("Delivery Motor", climberDeliveryController.get());
+        SmartDashboard.putNumber("Winch Motor", climberWinchController.get());
     }
 
     public void stopWinch() {

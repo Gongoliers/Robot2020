@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.powerCell.*;
 
@@ -62,8 +63,10 @@ public class PowerCellManipulator extends Subsystem {
 
     @Override
     public void periodic() {
-        // Put code here to be run every loop
-
+        SmartDashboard.putNumber("Shooter Encoder", shooterEncoder.getDistance());
+        SmartDashboard.putNumber("Shooter Motor", shooterController.get());
+        SmartDashboard.putNumber("Indexer Motor", indexerController.get());
+        SmartDashboard.putNumber("Intake Motor", intakeController.get());
     }
 
     public void stopIndexer() {
@@ -96,10 +99,12 @@ public class PowerCellManipulator extends Subsystem {
 
     public void deploy() {
         harvesterPiston.extend();
+        SmartDashboard.putBoolean("Harvester Deployed?", true);
     }
 
     public void retract() {
         harvesterPiston.retract();
+        SmartDashboard.putBoolean("Harvester Deployed?", false);
     }
 
     public void indexerUp() {
