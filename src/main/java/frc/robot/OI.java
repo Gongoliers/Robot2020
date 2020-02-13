@@ -25,7 +25,7 @@ import frc.robot.commands.powercell.*;
 public class OI {
 
     /**
-     * When this is set to true, the Xbox controller will be used for 
+     * When this is set to true, the Xbox controller will be used for
      * both driving and manipulation.  When false, the controls will be
      * split between a joystick and a controller.
      */
@@ -42,7 +42,8 @@ public class OI {
      * The driver joystick controls the drivetrain with the Y and Z axis.
      * Button 1 on the joystick will enable turbo mode while held.
      * Button 11 on the joystick will stop all active commands when pressed.
-     * 
+     * Button 12 on the joystick will align the drivetrain to the camera target.
+     *
      * The manipulator Xbox controller controlls all manipulator subsystems.
      * The menu/start buttons (small buttons in the center) will stop all.
      * The colored ABXY buttons control the power cell manipulator:
