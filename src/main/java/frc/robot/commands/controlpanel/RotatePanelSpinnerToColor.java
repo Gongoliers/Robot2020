@@ -30,16 +30,16 @@ public class RotatePanelSpinnerToColor extends Command {
         // adjust for the fact that our sensor is two spaces off from the field's sensor
         switch (fmsColor) {
         case Blue:
-            targetColor = ColorAssignment.Red;
+            targetColor = ColorAssignment.Red; // when the field sees blue, our robot sees red
             break;
         case Red:
-            targetColor = ColorAssignment.Blue;
+            targetColor = ColorAssignment.Blue; // when the field sees red, our robot sees blue
             break;
         case Yellow: 
-            targetColor = ColorAssignment.Green; // This value is green because of the difference between the field's color sensor and our own
+            targetColor = ColorAssignment.Green; // when the field sees yellow, our robot sees green
             break;
         case Green:
-            targetColor = ColorAssignment.Yellow; // This value is yellow because of the difference between the field's color sensor and our own
+            targetColor = ColorAssignment.Yellow; // when the field sees green, our robot sees yellow
             break;
         default:
             targetColor = ColorAssignment.Unknown;

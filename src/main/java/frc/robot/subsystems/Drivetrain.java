@@ -25,15 +25,14 @@ import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Our drivetrain is composed of a 6-CIM (3 per side) West Coast
- * drop-center drivetrain.  We use an encoder for each side 
- * and a NavX for an IMU/gyro.
+ * Our drivetrain is composed of a 6-CIM (3 per side) West Coast drop-center
+ * drivetrain. We use an encoder for each side and a NavX for an IMU/gyro.
  */
 public class Drivetrain extends Subsystem {
 
     public static final double NORMAL_VOLTAGE = 12.5;
 
-	private PWMVictorSPX leftDriveController;
+    private PWMVictorSPX leftDriveController;
     private PWMVictorSPX rightDriveController;
     private Encoder leftDriveEncoder;
     private Encoder rightDriveEncoder;
@@ -76,13 +75,15 @@ public class Drivetrain extends Subsystem {
         pathFollowerModule.setForwardTolerance(0.6); // 1/2 feet
         pathFollowerModule.setTurnTolerance(1); // 1 degree
 
-        TargetAlignmentModule targetAlignmentModule = new TargetAlignmentModule(vision.getTargetingCamera(), 0.02, 0, false); // TODO: tune
+        TargetAlignmentModule targetAlignmentModule = new TargetAlignmentModule(vision.getTargetingCamera(), 0.02, 0,
+                false); // TODO: tune
 
         voltageControlModule = new VoltageControlModule(NORMAL_VOLTAGE);
 
         PowerEfficiencyModule powerEfficiencyModule = new PowerEfficiencyModule(0.25, 0.2);
 
-        modularDrivetrain.setModules(stabilityModule, pathFollowerModule, targetAlignmentModule, voltageControlModule, powerEfficiencyModule);
+        modularDrivetrain.setModules(stabilityModule, pathFollowerModule, targetAlignmentModule, voltageControlModule,
+                powerEfficiencyModule);
 
     }
 
@@ -110,9 +111,16 @@ public class Drivetrain extends Subsystem {
     public ModularDrivetrain getModularDrivetrain() {
         return modularDrivetrain;
     }
-    
-    /* This function can also be known as turtle mode, as when this function is disabled (it is enabled by default), 
-    the robot will drastically slow down. This will be used for apporaching the control panel on the field, or precisely position the robot*/
+
+    /**
+     * This function can also be known as "turtle mode", as when this function is
+     * disabled (it is enabled by default), the robot will drastically slow down.
+     * This will be used for apporaching the control panel on the field, or
+     * precisely position the robot.
+     * 
+     * Turbo (true) = full speed
+     * Turtle (false) = super slow
+     */
     public void setTurboEnabled(boolean turboEnabled) {
         this.turboEnabled = turboEnabled;
         if (turboEnabled) {
@@ -122,21 +130,18 @@ public class Drivetrain extends Subsystem {
         }
     }
 
-    public void addEnforcedMaxVoltage(Subsystem requester, double maxVoltage){
+    public void addEnforcedMaxVoltage(Subsystem requester, double maxVoltage) {
         enforcedMaxVoltages.put(requester, maxVoltage);
         setTurboEnabled(turboEnabled);
     }
 
-    public void removeEnforcedMaxVoltage(Subsystem requester){
+    public void removeEnforcedMaxVoltage(Subsystem requester) {
         enforcedMaxVoltages.remove(requester);
         setTurboEnabled(turboEnabled);
     }
 
-    private double getMaxVoltage(){
-        return enforcedMaxVoltages.values()
-                .stream()
-                .min(Double::compareTo)
-                .orElse(NORMAL_VOLTAGE);
+    private double getMaxVoltage() {
+        return enforcedMaxVoltages.values().stream().min(Double::compareTo).orElse(NORMAL_VOLTAGE);
     }
 
 }
