@@ -38,7 +38,8 @@ public class RobotMap {
     // --> PWM (motors)
     public static final int INTAKE_PWM = 5;
     public static final int INDEXER_PWM = 6;
-    public static final int SHOOTER_PWM = 7;
+    public static final int SHOOTER_LEFT_PWM = 7;
+    public static final int SHOOTER_RIGHT_PWM = 8;
     // --> Pneumatic (pistons)
     public static final int HARVESTER_PISTON = 1;
     // --> DIO (encoders & limit switches)

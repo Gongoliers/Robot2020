@@ -24,7 +24,7 @@ Team 5112's climber subsystem consists of a hook-delivery arm and a winch to do 
 Team 5112's control panel manipulator is composed of a Victor SPX for spinning the control panel and a pneumatic piston for deploying the spinner.  An encoder is attached to the spinner motor.  A color sensor / proximity sensor is used for detecting the color of the control panel.
 
 ### Power Cell Manipulator
-Team 5112's power cell manipulator is composed of a Victor SPX used for intaking power cells, a Victor SPX for indexing, and two Victor SPXs for the flywheel/scoring the power cells (although these are spliced so the code sees them as one).  A pneumatic piston will be used for deploying the intake harvester.  An encoder will be on the flywheel.
+Team 5112's power cell manipulator is composed of a Victor SPX used for intaking power cells, a Victor SPX for indexing, and two Victor SPXs for the flywheel/scoring the power cells.  A pneumatic piston will be used for deploying the intake harvester.  An encoder will be on the flywheel.
 
 ### Vision
 We use a Limelight for target processing, especially for aligning with the power port for shooting.  As documented above, the control panel subsystem uses a color sensor / proximity sensor.
