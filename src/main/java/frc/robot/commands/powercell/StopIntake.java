@@ -8,9 +8,7 @@ import frc.robot.Robot;
 public class StopIntake extends InstantCommand {
 
     public StopIntake() {
-
         requires(Robot.powerCellManipulator);
-
     }
 
     // Called once when this command runs

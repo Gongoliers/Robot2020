@@ -23,7 +23,6 @@ public class OuttakePowerCell extends Command {
     @Override
     protected void execute() {
         Robot.powerCellManipulator.outtake();
-        Robot.powerCellManipulator.indexerDown();
     }
 
     // Make this return true when this Command no longer needs to run execute()

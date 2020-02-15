@@ -22,7 +22,7 @@ public class EjectPowerCellHigh extends Command {
     @Override
     protected void execute() {
         Robot.powerCellManipulator.shootHigh();
-        if (Robot.powerCellManipulator.isFlywheelReady()) Robot.powerCellManipulator.indexerUp();
+        if (Robot.powerCellManipulator.isFlywheelReady()) Robot.powerCellManipulator.intake();
     }
 
     // Make this return true when this Command no longer needs to run execute()

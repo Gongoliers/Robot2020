@@ -21,13 +21,13 @@ public class StageIndexer extends TimedCommand {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.powerCellManipulator.indexerDown();
+        Robot.powerCellManipulator.outtake();
     }
 
     // Called once after timeout
     @Override
     protected void end() {
-        Robot.powerCellManipulator.stopIndexer();
+        Robot.powerCellManipulator.stopIntake();
     }
 
     // Called when another command which requires one or more of the same

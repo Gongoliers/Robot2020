@@ -28,7 +28,6 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class PowerCellManipulator extends Subsystem {
 
     private static final double INTAKE_SPEED = 0.5; // TODO: test and tune these values
-    private static final double INDEXER_SPEED = 0.1;
     private static final double LOW_SHOOTER_SPEED = 0.1;
     private static final double HIGH_SHOOTER_SPEED = 0.6;
     private static final double THRESHOLD_SHOOTER_RATE = 0;
@@ -36,8 +35,8 @@ public class PowerCellManipulator extends Subsystem {
     private PID distancePID = new PID(0.1, 0.0, 0.0); // TODO: Tune PID values
     private PID velocityPID = new PID(0.1, 0.0, 0.0);
 
-    private PWMVictorSPX intakeController;
-    private PWMVictorSPX indexerController;
+    private PWMVictorSPX intakeLeftController;
+    private PWMVictorSPX intakeRightController;
     private GSpeedController leftShooterController;
     private GSpeedController rightShooterController;
     private Encoder shooterEncoder;
@@ -45,11 +44,11 @@ public class PowerCellManipulator extends Subsystem {
 
     public PowerCellManipulator() {
 
-        intakeController = new PWMVictorSPX(RobotMap.INTAKE_PWM);
-        intakeController.setInverted(false);
+        intakeLeftController = new PWMVictorSPX(RobotMap.INTAKE_LEFT_PWM);
+        intakeLeftController.setInverted(false);
 
-        indexerController = new PWMVictorSPX(RobotMap.INDEXER_PWM);
-        indexerController.setInverted(false);
+        intakeRightController = new PWMVictorSPX(RobotMap.INTAKE_RIGHT_PWM);
+        intakeRightController.setInverted(false);
 
         shooterEncoder = new Encoder(RobotMap.SHOOTER_ENCODER_A, RobotMap.SHOOTER_ENCODER_B);
         shooterEncoder.setDistancePerPulse(1.0);
@@ -74,18 +73,14 @@ public class PowerCellManipulator extends Subsystem {
     public void periodic() {
         // Put code here to be run every loop
         SmartDashboard.putBoolean("Harvester Deployed?", harvesterPiston.isExtended());
-        SmartDashboard.putNumber("Intake Motor", intakeController.get());
-        SmartDashboard.putNumber("Indexer Motor", indexerController.get());
+        SmartDashboard.putNumber("Intake Motor", (intakeLeftController.get() + intakeRightController.get()) / 2);
         SmartDashboard.putNumber("Shooter Motor", (leftShooterController.get() + rightShooterController.get()) / 2);
         SmartDashboard.putNumber("Shooter Encoder", shooterEncoder.getRate());
     }
 
-    public void stopIndexer() {
-        indexerController.stopMotor();
-    }
-
     public void stopIntake() {
-        intakeController.stopMotor();
+        intakeLeftController.stopMotor();
+        intakeRightController.stopMotor();
     }
 
     public void stopShooter() {
@@ -94,11 +89,13 @@ public class PowerCellManipulator extends Subsystem {
     }
 
     public void intake() {
-        intakeController.set(INTAKE_SPEED);
+        intakeLeftController.set(INTAKE_SPEED);
+        intakeRightController.set(INTAKE_SPEED);
     }
 
     public void outtake() {
-        intakeController.set(-INTAKE_SPEED);
+        intakeLeftController.set(-INTAKE_SPEED);
+        intakeLeftController.set(-INTAKE_SPEED);
     }
 
     public void shootHigh() {
@@ -117,14 +114,6 @@ public class PowerCellManipulator extends Subsystem {
 
     public void retract() {
         harvesterPiston.retract();
-    }
-
-    public void indexerUp() {
-        indexerController.set(INDEXER_SPEED);
-    }
-
-    public void indexerDown() {
-        indexerController.set(-INDEXER_SPEED);
     }
 
     public boolean isFlywheelReady() {

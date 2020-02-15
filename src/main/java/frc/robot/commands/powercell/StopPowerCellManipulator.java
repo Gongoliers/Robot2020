@@ -9,7 +9,6 @@ public class StopPowerCellManipulator extends CommandGroup {
 
     public StopPowerCellManipulator() {
 
-        addSequential(new StopIndexer());
         addSequential(new StopIntake());
         addSequential(new StopShooter());
  
