@@ -7,6 +7,7 @@ import frc.robot.Robot;
 import frc.robot.commands.drivetrain.DriveDistance;
 import frc.robot.commands.powercell.DeployIntakePowerCell;
 import frc.robot.commands.powercell.EjectPowerCellHigh;
+import frc.robot.commands.powercell.ResetPowerCellManipulator;
 import frc.robot.commands.powercell.ShootPowerCellHigh;
 
 /**
@@ -24,6 +25,7 @@ public class AutoShootCollectShoot extends CommandGroup {
         addParallel(new DriveDistance(17), 4);
         addSequential(new DeployIntakePowerCell(), 4);
         addSequential(new DriveDistance(-17), 4);
+        addSequential(new ResetPowerCellManipulator());
         addSequential(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0), 0.5);
         addSequential(new ShootPowerCellHigh(), 3.5);
     }

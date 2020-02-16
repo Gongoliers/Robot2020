@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.autonomous.AutoLowGoal;
 import frc.robot.commands.autonomous.AutoShootAndBackup;
 import frc.robot.commands.autonomous.AutoShootCollectShoot;
 import frc.robot.subsystems.*;
@@ -42,6 +43,7 @@ public class Robot extends TimedRobot {
         oi = new OI();
 
         autoChooser.setDefaultOption("No Auto", null);
+        autoChooser.addOption("Low Goal", new AutoLowGoal());
         autoChooser.addOption("Shoot 3", new AutoShootAndBackup());
         autoChooser.addOption("Shoot 6", new AutoShootCollectShoot());
         SmartDashboard.putData("Auto mode", autoChooser);
