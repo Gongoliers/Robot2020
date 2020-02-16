@@ -165,11 +165,6 @@
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Indexer Motor",
-                  "_title": "Indexer Motor"
-                },
-                {
-                  "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Intake Motor",
                   "_title": "Intake Motor"
                 }
@@ -330,6 +325,12 @@
                   "Range/Center": 0.0,
                   "Visuals/Orientation": "HORIZONTAL",
                   "Visuals/Number of tick marks": 5
+                },
+                {
+                  "_type": "Speed Controller",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[8]",
+                  "_title": "PWMVictorSPX[8]",
+                  "Visuals/Orientation": "HORIZONTAL"
                 }
               ]
             }
