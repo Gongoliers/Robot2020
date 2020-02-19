@@ -8,9 +8,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.autonomous.AutoLowGoal;
-import frc.robot.commands.autonomous.AutoShootAndBackup;
-import frc.robot.commands.autonomous.AutoShootCollectShoot;
+import frc.robot.commands.autonomous.*;
 import frc.robot.subsystems.*;
 
 public class Robot extends TimedRobot {
@@ -46,6 +44,7 @@ public class Robot extends TimedRobot {
         autoChooser.addOption("Low Goal", new AutoLowGoal());
         autoChooser.addOption("Shoot 3", new AutoShootAndBackup());
         autoChooser.addOption("Shoot 6", new AutoShootCollectShoot());
+        autoChooser.addOption("Full System Check", new FullSystemCheck());
         SmartDashboard.putData("Auto mode", autoChooser);
         
     }
