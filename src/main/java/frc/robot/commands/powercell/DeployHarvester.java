@@ -16,7 +16,7 @@ public class DeployHarvester extends InstantCommand {
     @Override
     protected void initialize() {
         Robot.powerCellManipulator.deploy();
-        Robot.drivetrain.addEnforcedMaxVoltage(Robot.powerCellManipulator, 6.0);
+        Robot.drivetrain.addEnforcedMaxVoltage(Robot.powerCellManipulator, 7.0);
         Robot.oi.setLeftRumble(true);
     }
 

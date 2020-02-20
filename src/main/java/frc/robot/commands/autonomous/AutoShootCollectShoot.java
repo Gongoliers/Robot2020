@@ -22,8 +22,8 @@ public class AutoShootCollectShoot extends CommandGroup {
 
     public AutoShootCollectShoot() {
         addSequential(new EjectPowerCellHigh(), 3.5);
-        addParallel(new DriveDistance(17), 4);
-        addSequential(new DeployIntakePowerCell(), 4);
+        addParallel(new DeployIntakePowerCell(), 6.5);
+        addSequential(new DriveDistance(17), 4);
         addSequential(new DriveDistance(-17), 4);
         addSequential(new ResetPowerCellManipulator());
         addSequential(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0), 0.5);

@@ -132,6 +132,11 @@
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Speed",
                   "_title": "Speed"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Drive Motors",
+                  "_title": "Drive Motors"
                 }
               ]
             }
@@ -167,6 +172,11 @@
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Intake Motor",
                   "_title": "Intake Motor"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Indexer Motor",
+                  "_title": "Indexer Motor"
                 }
               ]
             }

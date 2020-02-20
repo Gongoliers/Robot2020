@@ -36,8 +36,8 @@ public class RobotMap {
 
     // Power Cell Manipulator
     // --> PWM (motors)
-    public static final int INTAKE_LEFT_PWM = 5;
-    public static final int INTAKE_RIGHT_PWM = 6;
+    public static final int INTAKE_PWM = 5;
+    public static final int INDEXER_PWM = 6;
     public static final int SHOOTER_LEFT_PWM = 7;
     public static final int SHOOTER_RIGHT_PWM = 8;
     // --> Pneumatic (pistons)
