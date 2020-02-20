@@ -84,9 +84,16 @@ public class ControlPanelManipulator extends Subsystem {
     }
 
     public ColorAssignment getColor() {
-        ColorMatchResult matchResult = colorMatcher.matchClosestColor(colorSensor.getColor());
+        ColorMatchResult matchResult;
         ColorAssignment colorResult;
 
+        try {
+            matchResult = colorMatcher.matchClosestColor(colorSensor.getColor());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ColorAssignment.Unknown;
+        }
+        
         if (matchResult.color == blueTarget) {
             colorResult = ColorAssignment.Blue;
         } else if (matchResult.color == redTarget) {
