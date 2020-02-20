@@ -10,7 +10,7 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "7,1": {
+          "0,0": {
             "size": [
               2,
               1
@@ -21,9 +21,9 @@
               "_title": "Auto mode"
             }
           },
-          "7,2": {
+          "2,0": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
@@ -32,7 +32,7 @@
               "_title": "Match Time"
             }
           },
-          "8,2": {
+          "4,0": {
             "size": [
               1,
               1
@@ -43,10 +43,10 @@
               "_title": "Battery %"
             }
           },
-          "9,1": {
+          "4,1": {
             "size": [
               1,
-              2
+              4
             ],
             "content": {
               "_type": "List Layout",
@@ -64,13 +64,23 @@
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Angle to Target",
                   "_title": "Angle to Target"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Detected Color",
+                  "_title": "Detected Color"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/Color Confidence",
+                  "_title": "Color Confidence"
                 }
               ]
             }
           },
-          "1,0": {
+          "3,1": {
             "size": [
-              2,
+              1,
               4
             ],
             "content": {
@@ -97,18 +107,18 @@
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Detected Color",
-                  "_title": "Detected Color"
+                  "_source0": "network_table:///SmartDashboard/Control Panel FMS Color",
+                  "_title": "FMS Color"
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Color Confidence",
-                  "_title": "Color Confidence"
+                  "_source0": "network_table:///SmartDashboard/Control Panel Target Color",
+                  "_title": "Target Color"
                 }
               ]
             }
           },
-          "0,0": {
+          "0,1": {
             "size": [
               1,
               4
@@ -141,9 +151,9 @@
               ]
             }
           },
-          "3,0": {
+          "1,1": {
             "size": [
-              2,
+              1,
               4
             ],
             "content": {
@@ -181,9 +191,9 @@
               ]
             }
           },
-          "5,0": {
+          "2,1": {
             "size": [
-              2,
+              1,
               4
             ],
             "content": {
@@ -207,6 +217,20 @@
                   "_title": "Winch Motor"
                 }
               ]
+            }
+          },
+          "5,0": {
+            "size": [
+              5,
+              5
+            ],
+            "content": {
+              "_type": "Grid Layout",
+              "_title": "Camera",
+              "Layout/Number of columns": 3,
+              "Layout/Number of rows": 3,
+              "Layout/Label position": "BOTTOM",
+              "_children": {}
             }
           }
         }
