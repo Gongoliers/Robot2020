@@ -79,7 +79,6 @@ public class ControlPanelManipulator extends Subsystem {
     public void periodic() {
         // Put code here to be run every loop
         SmartDashboard.putBoolean("Spinner Deployed?", isDeployed());
-        SmartDashboard.putNumber("Spinner Motor", panelSpinningController.get());
         SmartDashboard.putNumber("Spinner Encoder", getSpinnerDistance());
     }
 

@@ -2,13 +2,13 @@
   "tabPane": [
     {
       "title": "SmartDashboard",
-      "autoPopulate": true,
+      "autoPopulate": false,
       "autoPopulatePrefix": "SmartDashboard/",
       "widgetPane": {
         "gridSize": 128.0,
-        "showGrid": true,
-        "hgap": 16.0,
-        "vgap": 16.0,
+        "showGrid": false,
+        "hgap": 6.0,
+        "vgap": 6.0,
         "tiles": {
           "0,0": {
             "size": [
@@ -23,7 +23,7 @@
           },
           "2,0": {
             "size": [
-              2,
+              1,
               1
             ],
             "content": {
@@ -32,7 +32,7 @@
               "_title": "Match Time"
             }
           },
-          "4,0": {
+          "3,0": {
             "size": [
               1,
               1
@@ -102,18 +102,13 @@
                 },
                 {
                   "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Spinner Motor",
-                  "_title": "Spinner Motor"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Control Panel FMS Color",
-                  "_title": "FMS Color"
-                },
-                {
-                  "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Control Panel Target Color",
                   "_title": "Target Color"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///FMSInfo/GameSpecificMessage",
+                  "_title": "FMS Color"
                 }
               ]
             }
@@ -142,11 +137,6 @@
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Speed",
                   "_title": "Speed"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Drive Motors",
-                  "_title": "Drive Motors"
                 }
               ]
             }
@@ -172,49 +162,6 @@
                   "_type": "Text View",
                   "_source0": "network_table:///SmartDashboard/Shooter Encoder",
                   "_title": "Shooter Encoder"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Shooter Motor",
-                  "_title": "Shooter Motor"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Intake Motor",
-                  "_title": "Intake Motor"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Indexer Motor",
-                  "_title": "Indexer Motor"
-                }
-              ]
-            }
-          },
-          "2,1": {
-            "size": [
-              1,
-              4
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Climber",
-              "Layout/Label position": "BOTTOM",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Delivery Position",
-                  "_title": "Delivery Position"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Delivery Motor",
-                  "_title": "Delivery Motor"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Winch Motor",
-                  "_title": "Winch Motor"
                 }
               ]
             }
@@ -232,6 +179,79 @@
               "Layout/Label position": "BOTTOM",
               "_children": {}
             }
+          },
+          "2,1": {
+            "size": [
+              1,
+              4
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "Climber",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/Delivery High?",
+                  "_title": "/SmartDashboard/Delivery High?",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///SmartDashboard/Delivery Low?",
+                  "_title": "/SmartDashboard/Delivery Low?",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                }
+              ]
+            }
+          },
+          "4,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///LiveWindow/Ungrouped/Compressor[0]/Enabled",
+              "_title": "/LiveWindow/Ungrouped/Compressor[0]/Enabled",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
+            }
+          },
+          "10,0": {
+            "size": [
+              1,
+              5
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "TEMPORARY",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/HIGH SHOOT",
+                  "_title": "HIGH SHOOT"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///SmartDashboard/LOW SHOOT",
+                  "_title": "LOW SHOOT"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///FMSInfo/EventName",
+                  "_title": "/FMSInfo/EventName"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///FMSInfo/MatchNumber",
+                  "_title": "/FMSInfo/MatchNumber"
+                }
+              ]
+            }
           }
         }
       }
@@ -242,14 +262,14 @@
       "autoPopulatePrefix": "LiveWindow/",
       "widgetPane": {
         "gridSize": 128.0,
-        "showGrid": true,
-        "hgap": 16.0,
-        "vgap": 16.0,
+        "showGrid": false,
+        "hgap": 6.0,
+        "vgap": 6.0,
         "tiles": {
           "0,0": {
             "size": [
               2,
-              4
+              5
             ],
             "content": {
               "_type": "Subsystem Layout",
@@ -258,16 +278,85 @@
               "Layout/Label position": "BOTTOM",
               "_children": [
                 {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[7]",
-                  "_title": "PWMVictorSPX[7]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
                   "_type": "PDP",
                   "_source0": "network_table:///LiveWindow/Ungrouped/PowerDistributionPanel[0]",
                   "_title": "PowerDistributionPanel[0]",
                   "Visuals/Show voltage and current values": true
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Compressor[0]/Enabled",
+                  "_title": "Compressor[0]/Enabled",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Compressor[0]/Pressure switch",
+                  "_title": "Compressor[0]/Pressure switch",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                }
+              ]
+            }
+          },
+          "2,0": {
+            "size": [
+              2,
+              5
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/Climber",
+              "_title": "Climber",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[0,0]/Value",
+                  "_title": "Solenoid[0,0]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Speed Controller",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[2]",
+                  "_title": "PWMVictorSPX[2]",
+                  "Visuals/Orientation": "HORIZONTAL"
+                },
+                {
+                  "_type": "Speed Controller",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[3]",
+                  "_title": "PWMVictorSPX[3]",
+                  "Visuals/Orientation": "HORIZONTAL"
+                }
+              ]
+            }
+          },
+          "4,0": {
+            "size": [
+              2,
+              5
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/PowerCellManipulator",
+              "_title": "PowerCellManipulator",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[8]/Value",
+                  "_title": "DigitalInput[8]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DigitalInput[9]/Value",
+                  "_title": "DigitalInput[9]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
                 },
                 {
                   "_type": "Speed Controller",
@@ -275,6 +364,57 @@
                   "_title": "PWMVictorSPX[5]",
                   "Visuals/Orientation": "HORIZONTAL"
                 },
+                {
+                  "_type": "Speed Controller",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[7]",
+                  "_title": "PWMVictorSPX[7]",
+                  "Visuals/Orientation": "HORIZONTAL"
+                },
+                {
+                  "_type": "Speed Controller",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[8]",
+                  "_title": "PWMVictorSPX[8]",
+                  "Visuals/Orientation": "HORIZONTAL"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[0,1]/Value",
+                  "_title": "Solenoid[0,1]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[0,2]/Value",
+                  "_title": "Solenoid[0,2]/Value",
+                  "Colors/Color when true": "#7CFC00FF",
+                  "Colors/Color when false": "#8B0000FF"
+                },
+                {
+                  "_type": "Speed Controller",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[6]",
+                  "_title": "PWMVictorSPX[6]",
+                  "Visuals/Orientation": "HORIZONTAL"
+                },
+                {
+                  "_type": "Encoder",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Encoder[3]",
+                  "_title": "Encoder[3]"
+                }
+              ]
+            }
+          },
+          "6,0": {
+            "size": [
+              2,
+              5
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/Drivetrain",
+              "_title": "Drivetrain",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
                 {
                   "_type": "Differential Drivebase",
                   "_source0": "network_table:///LiveWindow/Ungrouped/DifferentialDrive[1]",
@@ -294,131 +434,39 @@
                 },
                 {
                   "_type": "Encoder",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Encoder[2]",
-                  "_title": "Encoder[2]"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[2]",
-                  "_title": "PWMVictorSPX[2]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[6]",
-                  "_title": "PWMVictorSPX[6]",
-                  "Visuals/Orientation": "HORIZONTAL"
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Encoder[0]",
+                  "_title": "Encoder[0]"
                 },
                 {
                   "_type": "Encoder",
                   "_source0": "network_table:///LiveWindow/Ungrouped/Encoder[1]",
                   "_title": "Encoder[1]"
+                }
+              ]
+            }
+          },
+          "8,0": {
+            "size": [
+              2,
+              5
+            ],
+            "content": {
+              "_type": "List Layout",
+              "_title": "ControlPanelManipulator",
+              "Layout/Label position": "BOTTOM",
+              "_children": [
+                {
+                  "_type": "Encoder",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Encoder[2]",
+                  "_title": "Encoder[2]"
                 },
                 {
                   "_type": "Speed Controller",
                   "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[4]",
                   "_title": "PWMVictorSPX[4]",
                   "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Encoder",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Encoder[3]",
-                  "_title": "Encoder[3]"
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[3]",
-                  "_title": "PWMVictorSPX[3]",
-                  "Visuals/Orientation": "HORIZONTAL"
-                },
-                {
-                  "_type": "Encoder",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Encoder[0]",
-                  "_title": "Encoder[0]"
-                },
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[0,1]/Value",
-                  "_title": "Solenoid[0,1]/Value",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                },
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/Solenoid[0,0]/Value",
-                  "_title": "Solenoid[0,0]/Value",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                },
-                {
-                  "_type": "Voltage View",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/AnalogPotentiometer[0]",
-                  "_title": "AnalogPotentiometer[0]",
-                  "Range/Min": 0.0,
-                  "Range/Max": 5.0,
-                  "Range/Center": 0.0,
-                  "Visuals/Orientation": "HORIZONTAL",
-                  "Visuals/Number of tick marks": 5
-                },
-                {
-                  "_type": "Speed Controller",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/PWMVictorSPX[8]",
-                  "_title": "PWMVictorSPX[8]",
-                  "Visuals/Orientation": "HORIZONTAL"
                 }
               ]
-            }
-          },
-          "2,0": {
-            "size": [
-              2,
-              4
-            ],
-            "content": {
-              "_type": "Subsystem Layout",
-              "_source0": "network_table:///LiveWindow/Climber",
-              "_title": "Climber",
-              "Layout/Label position": "BOTTOM",
-              "_children": []
-            }
-          },
-          "4,0": {
-            "size": [
-              2,
-              4
-            ],
-            "content": {
-              "_type": "Subsystem Layout",
-              "_source0": "network_table:///LiveWindow/PowerCellManipulator",
-              "_title": "PowerCellManipulator",
-              "Layout/Label position": "BOTTOM",
-              "_children": []
-            }
-          },
-          "6,0": {
-            "size": [
-              2,
-              4
-            ],
-            "content": {
-              "_type": "Subsystem Layout",
-              "_source0": "network_table:///LiveWindow/Vision",
-              "_title": "Vision",
-              "Layout/Label position": "BOTTOM",
-              "_children": []
-            }
-          },
-          "8,0": {
-            "size": [
-              2,
-              4
-            ],
-            "content": {
-              "_type": "Subsystem Layout",
-              "_source0": "network_table:///LiveWindow/Drivetrain",
-              "_title": "Drivetrain",
-              "Layout/Label position": "BOTTOM",
-              "_children": []
             }
           }
         }

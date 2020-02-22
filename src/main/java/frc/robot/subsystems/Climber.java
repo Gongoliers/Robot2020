@@ -43,8 +43,6 @@ public class Climber extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        SmartDashboard.putNumber("Delivery Motor", climberDeliveryController.get());
-        SmartDashboard.putNumber("Winch Motor", climberWinchController.get());
         SmartDashboard.putBoolean("Delivery Low?", lowClimberSwitch.isTriggered());
         SmartDashboard.putBoolean("Delivery High?", highClimberSwitch.isTriggered());
     }

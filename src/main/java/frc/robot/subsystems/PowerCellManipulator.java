@@ -84,9 +84,6 @@ public class PowerCellManipulator extends Subsystem {
         SmartDashboard.putBoolean("Harvester Deployed?", harvesterPiston.isExtended());
         SmartDashboard.putBoolean("High Goal Mode?", hoodPiston.isRetracted());
         SmartDashboard.putBoolean("Low Goal Mode?", hoodPiston.isExtended());
-        SmartDashboard.putNumber("Intake Motor", intakeController.get());
-        SmartDashboard.putNumber("Indexer Motor", indexerController.get());
-        SmartDashboard.putNumber("Shooter Motor", (Math.abs(leftShooterController.get()) + Math.abs(rightShooterController.get())) / 2);
         SmartDashboard.putNumber("Shooter Encoder", shooterEncoder.getRate());
 
         LOW_SHOOTER_SPEED = SmartDashboard.getNumber("LOW SHOOT", 0.35); // TODO here for debug/testing only

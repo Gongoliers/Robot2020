@@ -98,7 +98,6 @@ public class Drivetrain extends Subsystem {
         SmartDashboard.putNumber("Heading", navx.getAngle());
         SmartDashboard.putNumber("Distance", (leftDriveEncoder.getDistance() + rightDriveEncoder.getDistance()) / 2);
         SmartDashboard.putNumber("Speed", (leftDriveEncoder.getRate() + rightDriveEncoder.getRate()) / 2);
-        SmartDashboard.putNumber("Drive Motors", (-leftDriveController.get() + rightDriveController.get()) / 2);
     }
 
     public void arcadeDrive(double forwardSpeed, double turnSpeed) {
