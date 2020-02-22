@@ -22,8 +22,9 @@ public class RobotMap {
     // --> PWM (motors)
     public static final int CLIMBER_DELIVER_PWM = 2;
     public static final int CLIMBER_WINCH_PWM = 3;
-    // --> ANALOG (potentiometers)
-    public static final int CLIMBER_POTENTIOMETER = 0;
+    // --> DIGITAL (encoders & limit switches)
+    public static final int LOW_CLIMBER_SWITCH = 8;
+    public static final int HIGH_CLIMBER_SWITCH = 9;
 
     // Control Panel Manipulator
     // --> PWM (motors)
@@ -42,6 +43,7 @@ public class RobotMap {
     public static final int SHOOTER_RIGHT_PWM = 8;
     // --> Pneumatic (pistons)
     public static final int HARVESTER_PISTON = 1;
+    public static final int HOOD_PISTON = 2;
     // --> DIO (encoders & limit switches)
     public static final int SHOOTER_ENCODER_A = 6;
     public static final int SHOOTER_ENCODER_B = 7;

@@ -102,7 +102,7 @@ public class Drivetrain extends Subsystem {
     }
 
     public void arcadeDrive(double forwardSpeed, double turnSpeed) {
-        modularDrivetrain.arcade(forwardSpeed, turnSpeed);
+        modularDrivetrain.arcade(-forwardSpeed, turnSpeed);
     }
 
     public void stop() {

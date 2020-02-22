@@ -1,12 +1,11 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import frc.robot.commands.climber.*;
 
-import com.thegongoliers.hardware.Hardware;
+import com.thegongoliers.input.switches.LimitSwitch;
 
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 
@@ -17,14 +16,13 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
  */
 public class Climber extends Subsystem {
 
-    private static final double BOTTOM_POTENTIOMETER_VALUE = 0; // TODO tune these values
-    private static final double TOP_POTENTIOMETER_VALUE = 1;
     private static final double WINCH_SPEED = 0.5;
     private static final double DELIVERY_SPEED = 0.5;
 
     private PWMVictorSPX climberDeliveryController;
     private PWMVictorSPX climberWinchController;
-    private Potentiometer climberPotentiometer;
+    private LimitSwitch lowClimberSwitch;
+    private LimitSwitch highClimberSwitch;
 
     public Climber() {
         climberDeliveryController = new PWMVictorSPX(RobotMap.CLIMBER_DELIVER_PWM);
@@ -33,7 +31,8 @@ public class Climber extends Subsystem {
         climberWinchController = new PWMVictorSPX(RobotMap.CLIMBER_WINCH_PWM);
         climberWinchController.setInverted(false);
 
-        climberPotentiometer = Hardware.createPotentiometer(RobotMap.CLIMBER_POTENTIOMETER, 1.0, 0.0);
+        lowClimberSwitch = new LimitSwitch(RobotMap.LOW_CLIMBER_SWITCH);
+        highClimberSwitch = new LimitSwitch(RobotMap.HIGH_CLIMBER_SWITCH);
     }
 
     @Override
@@ -46,7 +45,8 @@ public class Climber extends Subsystem {
         // Put code here to be run every loop
         SmartDashboard.putNumber("Delivery Motor", climberDeliveryController.get());
         SmartDashboard.putNumber("Winch Motor", climberWinchController.get());
-        SmartDashboard.putNumber("Delivery Position", climberPotentiometer.get());
+        SmartDashboard.putBoolean("Delivery Low?", lowClimberSwitch.isTriggered());
+        SmartDashboard.putBoolean("Delivery High?", highClimberSwitch.isTriggered());
     }
 
     public void stopWinch() {
@@ -66,11 +66,11 @@ public class Climber extends Subsystem {
     }
 
     public boolean isDeliveryAtTop() {
-        return climberPotentiometer.get() >= TOP_POTENTIOMETER_VALUE;
+        return highClimberSwitch.isTriggered();
     }
 
     public boolean isDeliveryAtBottom() {
-        return climberPotentiometer.get() <= BOTTOM_POTENTIOMETER_VALUE;
+        return lowClimberSwitch.isTriggered();
     }
 
 	public void raiseWinch() {

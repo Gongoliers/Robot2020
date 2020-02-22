@@ -2,6 +2,7 @@ package frc.robot;
 
 import com.thegongoliers.input.power.Battery;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -15,6 +16,7 @@ public class Robot extends TimedRobot {
     public static OI oi;
     public static Battery battery;
 
+    public static Compressor compressor;
     public static Drivetrain drivetrain;
     public static PowerCellManipulator powerCellManipulator;
     public static ControlPanelManipulator controlPanelManipulator;
@@ -35,6 +37,7 @@ public class Robot extends TimedRobot {
         powerCellManipulator = new PowerCellManipulator();
         controlPanelManipulator = new ControlPanelManipulator();
         climber = new Climber();
+        compressor = new Compressor();
 
         battery = new Battery(10.5, 13.5, 18);
 
@@ -56,6 +59,7 @@ public class Robot extends TimedRobot {
     public void robotPeriodic() {
         SmartDashboard.putNumber("Match Time", Timer.getMatchTime());
         SmartDashboard.putNumber("Battery %", battery.getBatteryPercentage());
+        compressor.stop(); // TODO for early testing only (remove when ready for pneumatics) 
     }
 
     /**

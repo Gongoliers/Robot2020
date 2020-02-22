@@ -29,9 +29,10 @@ public class PowerCellManipulator extends Subsystem {
 
     private static final double INTAKE_SPEED = 0.5; // TODO: test and tune these values
     private static final double INDEX_SPEED = 0.4;
-    private static final double LOW_SHOOTER_SPEED = 0.3;
-    private static final double HIGH_SHOOTER_SPEED = 0.8;
+    private static /*final*/ double LOW_SHOOTER_SPEED = 0.35;
+    private static /*final*/ double HIGH_SHOOTER_SPEED = 0.95;
     private static final double THRESHOLD_SHOOTER_RATE = 0;
+    private static final double MAX_VOLTAGE = 12.5;
 
     private PID distancePID = new PID(0.1, 0.0, 0.0); // TODO: Tune PID values
     private PID velocityPID = new PID(0.1, 0.0, 0.0);
@@ -42,6 +43,7 @@ public class PowerCellManipulator extends Subsystem {
     private GSpeedController rightShooterController;
     private Encoder shooterEncoder;
     private Piston harvesterPiston;
+    private Piston hoodPiston;
 
     public PowerCellManipulator() {
 
@@ -55,13 +57,19 @@ public class PowerCellManipulator extends Subsystem {
         shooterEncoder.setDistancePerPulse(1.0);
 
         leftShooterController = new GSpeedController(new PWMVictorSPX(RobotMap.SHOOTER_LEFT_PWM), shooterEncoder, distancePID, velocityPID);
-        leftShooterController.setInverted(true);
+        leftShooterController.setInverted(false);
 
         rightShooterController = new GSpeedController(new PWMVictorSPX(RobotMap.SHOOTER_RIGHT_PWM), shooterEncoder, distancePID, velocityPID);
-        rightShooterController.setInverted(false);
+        rightShooterController.setInverted(true);
 
         harvesterPiston = new GPiston(new Solenoid(RobotMap.HARVESTER_PISTON));
         harvesterPiston.setInverted(false);
+
+        hoodPiston = new GPiston(new Solenoid(RobotMap.HOOD_PISTON));
+        hoodPiston.setInverted(false);
+
+        SmartDashboard.putNumber("LOW SHOOT", 0.35); // TODO here for debug/testing only
+        SmartDashboard.putNumber("HIGH SHOOT", 0.95); // TODO here for debug/testing only
 
     }
 
@@ -74,10 +82,15 @@ public class PowerCellManipulator extends Subsystem {
     public void periodic() {
         // Put code here to be run every loop
         SmartDashboard.putBoolean("Harvester Deployed?", harvesterPiston.isExtended());
+        SmartDashboard.putBoolean("High Goal Mode?", hoodPiston.isRetracted());
+        SmartDashboard.putBoolean("Low Goal Mode?", hoodPiston.isExtended());
         SmartDashboard.putNumber("Intake Motor", intakeController.get());
         SmartDashboard.putNumber("Indexer Motor", indexerController.get());
         SmartDashboard.putNumber("Shooter Motor", (Math.abs(leftShooterController.get()) + Math.abs(rightShooterController.get())) / 2);
         SmartDashboard.putNumber("Shooter Encoder", shooterEncoder.getRate());
+
+        LOW_SHOOTER_SPEED = SmartDashboard.getNumber("LOW SHOOT", 0.35); // TODO here for debug/testing only
+        HIGH_SHOOTER_SPEED = SmartDashboard.getNumber("HIGH SHOOT", 0.95); // TODO here for debug/testing only
     }
 
     public void stopIntake() {
@@ -101,13 +114,13 @@ public class PowerCellManipulator extends Subsystem {
     }
 
     public void shootHigh() {
-        leftShooterController.set(HIGH_SHOOTER_SPEED);
-        rightShooterController.set(HIGH_SHOOTER_SPEED);
+        leftShooterController.setVoltage(HIGH_SHOOTER_SPEED * MAX_VOLTAGE);
+        rightShooterController.setVoltage(HIGH_SHOOTER_SPEED * MAX_VOLTAGE);
     }
 
     public void shootLow() {
-        leftShooterController.set(LOW_SHOOTER_SPEED);
-        rightShooterController.set(LOW_SHOOTER_SPEED);
+        leftShooterController.setVoltage(LOW_SHOOTER_SPEED * MAX_VOLTAGE);
+        rightShooterController.setVoltage(LOW_SHOOTER_SPEED * MAX_VOLTAGE);
     }
 
     public void deploy() {
@@ -120,6 +133,14 @@ public class PowerCellManipulator extends Subsystem {
 
     public boolean isFlywheelReady() {
         return shooterEncoder.getRate() >= THRESHOLD_SHOOTER_RATE;
+    }
+
+    public void lowerHood() {
+        hoodPiston.extend();
+    }
+
+    public void raiseHood() {
+        hoodPiston.retract();
     }
 
 }
