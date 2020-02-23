@@ -17,11 +17,11 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
 public class Climber extends Subsystem {
 
     private static final double WINCH_SPEED = 0.5;
-    private static final double DELIVERY_SPEED = 0.5;
+    private static final double FAST_DELIVERY_SPEED = 0.5;
+    private static final double SLOW_DELIVERY_SPEED = 0.05;
 
     private PWMVictorSPX climberDeliveryController;
     private PWMVictorSPX climberWinchController;
-    private LimitSwitch lowClimberSwitch;
     private LimitSwitch highClimberSwitch;
 
     public Climber() {
@@ -31,7 +31,6 @@ public class Climber extends Subsystem {
         climberWinchController = new PWMVictorSPX(RobotMap.CLIMBER_WINCH_PWM);
         climberWinchController.setInverted(false);
 
-        lowClimberSwitch = new LimitSwitch(RobotMap.LOW_CLIMBER_SWITCH);
         highClimberSwitch = new LimitSwitch(RobotMap.HIGH_CLIMBER_SWITCH);
     }
 
@@ -43,7 +42,6 @@ public class Climber extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        SmartDashboard.putBoolean("Delivery Low?", lowClimberSwitch.isTriggered());
         SmartDashboard.putBoolean("Delivery High?", highClimberSwitch.isTriggered());
     }
 
@@ -55,20 +53,17 @@ public class Climber extends Subsystem {
         climberDeliveryController.stopMotor();
     }
 
-    public void extendDelivery() {
-        climberDeliveryController.set(DELIVERY_SPEED);
+    public void extendDelivery(boolean fast) {
+        if (fast) climberDeliveryController.set(FAST_DELIVERY_SPEED);
+        else climberDeliveryController.set(SLOW_DELIVERY_SPEED);
     }
 
     public void retractDelivery() {
-        climberDeliveryController.set(-DELIVERY_SPEED);
+        climberDeliveryController.set(-FAST_DELIVERY_SPEED);
     }
 
     public boolean isDeliveryAtTop() {
         return highClimberSwitch.isTriggered();
-    }
-
-    public boolean isDeliveryAtBottom() {
-        return lowClimberSwitch.isTriggered();
     }
 
 	public void raiseWinch() {

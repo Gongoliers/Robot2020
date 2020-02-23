@@ -1,17 +1,16 @@
 package frc.robot.commands.climber;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.TimedCommand;
 import frc.robot.Robot;
 
 /**
  * Retracts the arm that deploys the climber hook to
  * the shield generator switch.
  */
-public class RetractDelivery extends Command {
+public class RetractDelivery extends TimedCommand {
 
     public RetractDelivery() {
-
+        super(0.5);
         requires(Robot.climber);
-
     }
 
     // Called just before this Command runs the first time
@@ -28,7 +27,7 @@ public class RetractDelivery extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return Robot.climber.isDeliveryAtBottom();
+        return false;
     }
 
     // Called once after isFinished returns true
