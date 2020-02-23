@@ -80,6 +80,7 @@ public class ControlPanelManipulator extends Subsystem {
         // Put code here to be run every loop
         SmartDashboard.putBoolean("Spinner Deployed?", isDeployed());
         SmartDashboard.putNumber("Spinner Encoder", getSpinnerDistance());
+        SmartDashboard.putNumber("Proximity", getProximity());
     }
 
     public ColorAssignment getColor() {

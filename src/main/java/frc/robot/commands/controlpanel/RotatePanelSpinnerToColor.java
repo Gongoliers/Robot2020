@@ -87,12 +87,14 @@ public class RotatePanelSpinnerToColor extends Command {
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        if (Robot.controlPanelManipulator.isSpinnerAtDistance() || atDistance) {
-            atDistance = true;
-            Robot.controlPanelManipulator.slowRotate(targetDistance > 0);
-        } else {
-            Robot.controlPanelManipulator.setSpinnerDistance(targetDistance);
-        }
+        // if (Robot.controlPanelManipulator.isSpinnerAtDistance() || atDistance) {
+        //     atDistance = true;
+        //     Robot.controlPanelManipulator.slowRotate(targetDistance > 0);
+        // } else {
+        //     Robot.controlPanelManipulator.setSpinnerDistance(targetDistance);
+        // }
+
+        Robot.controlPanelManipulator.slowRotate(targetDistance > 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()

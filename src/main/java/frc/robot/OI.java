@@ -155,7 +155,7 @@ public class OI {
                 return xboxController.getTriggerAxis(Hand.kLeft) > 0.8 && Robot.controlPanelManipulator.isDeployed();
             }
         });
-        manipulatorRotateFast.whenPressed(new RotatePanelSpinner());
+        manipulatorRotateFast.whileHeld(new RotatePanelSpinner());
 
         Button manipulatorRotateColor = Hardware.makeButton(new BooleanSupplier() {
             @Override
@@ -168,16 +168,16 @@ public class OI {
         // Climber
 
         DPadButton upButton = new DPadButton(xboxController, DPadButton.Direction.UP);
-        upButton.whenPressed(new ExtendDelivery());
+        upButton.whileHeld(new ExtendDelivery());
 
         DPadButton downButton = new DPadButton(xboxController, DPadButton.Direction.DOWN);
         downButton.whenPressed(new RetractDelivery());
 
         DPadButton leftButton = new DPadButton(xboxController, DPadButton.Direction.LEFT);
-        leftButton.whenPressed(new RaiseWinch());
+        leftButton.whileHeld(new RaiseWinch());
 
         DPadButton rightButton = new DPadButton(xboxController, DPadButton.Direction.RIGHT);
-        rightButton.whenPressed(new StopClimberWinch());
+        rightButton.whileHeld(new RaiseWinch());
 
     }
 
