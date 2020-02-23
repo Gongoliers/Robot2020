@@ -105,7 +105,7 @@ public class OI {
                 return xboxController.getAButtonPressed();
             }
         });
-        manipulatorIntake.whenPressed(new DeployIntakePowerCell());
+        manipulatorIntake.toggleWhenPressed(new DeployIntakePowerCell());
 
         Button manipulatorShootHigh = Hardware.makeButton(new BooleanSupplier() {
             @Override
@@ -113,7 +113,7 @@ public class OI {
                 return xboxController.getXButtonPressed();
             }
         });
-        manipulatorShootHigh.whenPressed(new ShootPowerCellHigh());
+        manipulatorShootHigh.toggleWhenPressed(new ShootPowerCellHigh());
 
         Button manipulatorShootLow = Hardware.makeButton(new BooleanSupplier() {
             @Override
@@ -121,7 +121,7 @@ public class OI {
                 return xboxController.getBButtonPressed();
             }
         });
-        manipulatorShootLow.whenPressed(new ShootPowerCellLow());
+        manipulatorShootLow.toggleWhenPressed(new ShootPowerCellLow());
 
         Button manipulatorOuttake = Hardware.makeButton(new BooleanSupplier() {
             @Override
@@ -129,7 +129,7 @@ public class OI {
                 return xboxController.getYButtonPressed();
             }
         });
-        manipulatorOuttake.whenPressed(new OuttakePowerCell());
+        manipulatorOuttake.toggleWhenPressed(new OuttakePowerCell());
 
         // Control Panel Manipulator
 
