@@ -62,7 +62,7 @@ public class Drivetrain extends Subsystem {
         differentialDrive.setSafetyEnabled(true);
         differentialDrive.setExpiration(0.1);
         differentialDrive.setMaxOutput(1.0);
-        differentialDrive.setDeadband(0.02); // TODO: tune
+        differentialDrive.setDeadband(0.05); // TODO: tune
 
         modularDrivetrain = ModularDrivetrain.from(differentialDrive);
         Gyro gyro = new NavxGyro(navx);

@@ -157,7 +157,11 @@ public class ControlPanelManipulator extends Subsystem {
 
     // These two methods are mainly for approaching the control panel
     public int getProximity(){
-        return colorSensor.getProximity();
+        try {
+            return colorSensor.getProximity();
+        } catch (Exception ex) {
+            return -1;
+        }
     }
 
 }
