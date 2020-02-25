@@ -41,6 +41,7 @@ public class Drivetrain extends Subsystem {
 
     private ModularDrivetrain modularDrivetrain;
     private VoltageControlModule voltageControlModule;
+    private StabilityModule stabilityModule;
 
     private boolean turboEnabled = true;
     private Map<Subsystem, Double> enforcedMaxVoltages = new HashMap<>();
@@ -67,7 +68,7 @@ public class Drivetrain extends Subsystem {
         modularDrivetrain = ModularDrivetrain.from(differentialDrive);
         Gyro gyro = new NavxGyro(navx);
 
-        StabilityModule stabilityModule = new StabilityModule(gyro, 0.02, 0.5); // TODO: tune
+        stabilityModule = new StabilityModule(gyro, 0.02, 0.5); // TODO: tune
         stabilityModule.setTurnThreshold(0.05); // TODO: tune
 
         PathFollowerModule pathFollowerModule = new PathFollowerModule(gyro,
@@ -85,6 +86,10 @@ public class Drivetrain extends Subsystem {
         modularDrivetrain.setModules(stabilityModule, pathFollowerModule, targetAlignmentModule, voltageControlModule,
                 powerEfficiencyModule);
 
+    }
+
+    public void resetStabilityModule() {
+        stabilityModule.reset();
     }
 
     @Override

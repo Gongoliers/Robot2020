@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class PowerCellManipulator extends Subsystem {
 
     private static final double INTAKE_SPEED = 0.5; // TODO: test and tune these values
-    private static final double FEEDER_SPEED = 0.5;
+    private static /*final*/ double FEEDER_SPEED = 0.4;
     private static /*final*/ double LOW_SHOOTER_SPEED = 0.35;
     private static /*final*/ double HIGH_SHOOTER_SPEED = 0.95;
     // private static final double THRESHOLD_SHOOTER_RATE = 0;
@@ -68,8 +68,9 @@ public class PowerCellManipulator extends Subsystem {
         hoodPiston = new GPiston(new Solenoid(RobotMap.HOOD_PISTON));
         hoodPiston.setInverted(false);
 
-        SmartDashboard.putNumber("LOW SHOOT", 0.35); // TODO here for debug/testing only
-        SmartDashboard.putNumber("HIGH SHOOT", 0.95); // TODO here for debug/testing only
+        SmartDashboard.putNumber("LOW SHOOT", LOW_SHOOTER_SPEED); // TODO here for debug/testing only
+        SmartDashboard.putNumber("HIGH SHOOT", HIGH_SHOOTER_SPEED); // TODO here for debug/testing only
+        SmartDashboard.putNumber("FEEDER SPEED", FEEDER_SPEED); // TODO here for debug/testing only
 
     }
 
@@ -88,6 +89,7 @@ public class PowerCellManipulator extends Subsystem {
 
         LOW_SHOOTER_SPEED = SmartDashboard.getNumber("LOW SHOOT", 0.35); // TODO here for debug/testing only
         HIGH_SHOOTER_SPEED = SmartDashboard.getNumber("HIGH SHOOT", 0.95); // TODO here for debug/testing only
+        FEEDER_SPEED = SmartDashboard.getNumber("FEEDER SPEED", 0.4); // TODO here for debug/testing only
     }
 
     public void stopIntake() {

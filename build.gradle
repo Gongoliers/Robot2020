@@ -63,7 +63,7 @@ dependencies {
     simulation wpi.deps.sim.gui(wpi.platforms.desktop, false)
 
     // Library of Gongolierium by Team 5112
-    compile 'com.github.Gongoliers:Library-of-Gongolierium:v4.0.6'
+    compile 'com.github.Gongoliers:Library-of-Gongolierium:v4.0.7'
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')

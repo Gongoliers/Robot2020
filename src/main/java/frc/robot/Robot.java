@@ -80,6 +80,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
+        drivetrain.resetStabilityModule();
         autonomousCommand = autoChooser.getSelected();
 
         // schedule the autonomous command
@@ -101,6 +102,7 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopInit() {
+        drivetrain.resetStabilityModule();
     }
 
     /**
