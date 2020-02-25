@@ -9,7 +9,7 @@
 ## Controls
 We use a joystick / flightstick for driving the chassis and we use an Xbox controller for manipulating the other subsystems.
 ![Xbox Controller Mappings](https://github.com/Gongoliers/Robot2020/raw/master/XboxController.png "Xbox Controller Mappings")
-By default, the joystick plugged into port 0 will control drivetrain movement on the Y and Z axes, with button 11 being used for "stop all" and button 12 used for "align to target".  Xbox controller is plugged into port 1.  You may elect to use "single-player mode" by changing a flag in the OI class that will enable the thumbsticks on the Xbox controller to control drivetrain movement.
+By default, the joystick plugged into port 0 will control drivetrain movement on the Y and Z axes, with button 09-10 being used for "stop all" and button 11-12 used for "align to target".  Xbox controller is plugged into port 1.  You may elect to use "single-player mode" by changing a flag in the OI class that will enable the thumbsticks on the Xbox controller to control drivetrain movement.
 
 ## Design Synopsis
 Our robot consists of four major subsystems: the drivetrain, the climber, the control panel manipulator, and the power cell manipulator.
