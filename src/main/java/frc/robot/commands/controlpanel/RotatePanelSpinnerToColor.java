@@ -82,7 +82,7 @@ public class RotatePanelSpinnerToColor extends Command {
         Robot.controlPanelManipulator.resetSpinnerDistance();
     }
 
-    private boolean atDistance = false;
+    // private boolean atDistance = false;
 
     // Called repeatedly when this Command is scheduled to run
     @Override

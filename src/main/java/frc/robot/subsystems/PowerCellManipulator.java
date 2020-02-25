@@ -28,17 +28,17 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class PowerCellManipulator extends Subsystem {
 
     private static final double INTAKE_SPEED = 0.5; // TODO: test and tune these values
-    private static final double INDEX_SPEED = 0.4;
+    private static final double FEEDER_SPEED = 0.5;
     private static /*final*/ double LOW_SHOOTER_SPEED = 0.35;
     private static /*final*/ double HIGH_SHOOTER_SPEED = 0.95;
-    private static final double THRESHOLD_SHOOTER_RATE = 0;
+    // private static final double THRESHOLD_SHOOTER_RATE = 0;
     private static final double MAX_VOLTAGE = 12.5;
 
     private PID distancePID = new PID(0.1, 0.0, 0.0); // TODO: Tune PID values
     private PID velocityPID = new PID(0.1, 0.0, 0.0);
 
     private PWMVictorSPX intakeController;
-    private PWMVictorSPX indexerController;
+    private PWMVictorSPX feederController;
     private GSpeedController leftShooterController;
     private GSpeedController rightShooterController;
     private Encoder shooterEncoder;
@@ -50,8 +50,8 @@ public class PowerCellManipulator extends Subsystem {
         intakeController = new PWMVictorSPX(RobotMap.INTAKE_PWM);
         intakeController.setInverted(false);
 
-        indexerController = new PWMVictorSPX(RobotMap.INDEXER_PWM);
-        indexerController.setInverted(false);
+        feederController = new PWMVictorSPX(RobotMap.FEEDER_PWM);
+        feederController.setInverted(false);
 
         shooterEncoder = new Encoder(RobotMap.SHOOTER_ENCODER_A, RobotMap.SHOOTER_ENCODER_B);
         shooterEncoder.setDistancePerPulse(1.0);
@@ -92,7 +92,10 @@ public class PowerCellManipulator extends Subsystem {
 
     public void stopIntake() {
         intakeController.stopMotor();
-        indexerController.stopMotor();
+    }
+
+    public void stopFeeder() {
+        feederController.stopMotor();
     }
 
     public void stopShooter() {
@@ -102,12 +105,14 @@ public class PowerCellManipulator extends Subsystem {
 
     public void intake() {
         intakeController.set(INTAKE_SPEED);
-        indexerController.set(INDEX_SPEED);
+    }
+
+    public void feedBallsToShooter() {
+        feederController.set(FEEDER_SPEED);
     }
 
     public void outtake() {
         intakeController.set(-INTAKE_SPEED);
-        indexerController.set(-INDEX_SPEED);
     }
 
     public void shootHigh() {
@@ -129,7 +134,8 @@ public class PowerCellManipulator extends Subsystem {
     }
 
     public boolean isFlywheelReady() {
-        return shooterEncoder.getRate() >= THRESHOLD_SHOOTER_RATE;
+        return true;
+        // return shooterEncoder.getRate() >= THRESHOLD_SHOOTER_RATE;
     }
 
     public void lowerHood() {

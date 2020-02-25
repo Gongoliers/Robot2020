@@ -17,6 +17,7 @@ public class StopShooter extends InstantCommand {
     @Override
     protected void initialize() {
         Robot.powerCellManipulator.stopShooter();
+        Robot.powerCellManipulator.stopFeeder();
     }
 
 }

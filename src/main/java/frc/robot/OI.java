@@ -1,5 +1,7 @@
 package frc.robot;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.function.BooleanSupplier;
 
 import com.thegongoliers.commands.AlignTargetCommand;
@@ -73,11 +75,15 @@ public class OI {
         driverTrigger.whenReleased(new SetTurboDrivetrain(true));
         driverTrigger.whenPressed(new SetTurboDrivetrain(false));
 
-        Button driverStopAll = new JoystickButton(driverJoystick, 11);
-        driverStopAll.whenPressed(new StopAll());
+        Button driverStopAll1 = new JoystickButton(driverJoystick, 11);
+        Button driverStopAll2 = new JoystickButton(driverJoystick, 12);
+        driverStopAll1.whenPressed(new StopAll());
+        driverStopAll2.whenPressed(new StopAll());
 
-        Button driverAlignTarget = new JoystickButton(driverJoystick, 12);
-        driverAlignTarget.whenPressed(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
+        Button driverAlignTarget1 = new JoystickButton(driverJoystick, 9);
+        Button driverAlignTarget2 = new JoystickButton(driverJoystick, 10);
+        driverAlignTarget1.whileHeld(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
+        driverAlignTarget2.whileHeld(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
 
         Button driveStickMoved = Hardware.makeButton(new BooleanSupplier() {
             @Override
@@ -195,6 +201,18 @@ public class OI {
 
     public void setRightRumble(boolean rumble) {
         xboxController.setRumble(RumbleType.kRightRumble, rumble ? RUMBLE_INTENSITY : 0);
+    }
+
+    public void quickRumble(boolean left) {
+        xboxController.setRumble(left ? RumbleType.kLeftRumble : RumbleType.kRightRumble, 1.0);
+        
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask(){
+            @Override
+            public void run() {
+                xboxController.setRumble(left ? RumbleType.kLeftRumble : RumbleType.kRightRumble, 0);
+            }
+        }, 250);
     }
 
 }

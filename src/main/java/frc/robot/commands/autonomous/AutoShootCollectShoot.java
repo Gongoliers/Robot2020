@@ -6,9 +6,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.Robot;
 import frc.robot.commands.drivetrain.DriveDistance;
 import frc.robot.commands.powercell.DeployIntakePowerCell;
-import frc.robot.commands.powercell.EjectPowerCellHigh;
-import frc.robot.commands.powercell.ResetPowerCellManipulator;
 import frc.robot.commands.powercell.ShootPowerCellHigh;
+import frc.robot.commands.powercell.ResetPowerCellManipulator;
 
 /**
  * Condition: Starts the match lined up with the POWER PORT.
@@ -21,7 +20,7 @@ import frc.robot.commands.powercell.ShootPowerCellHigh;
 public class AutoShootCollectShoot extends CommandGroup {
 
     public AutoShootCollectShoot() {
-        addSequential(new EjectPowerCellHigh(), 3.5);
+        addSequential(new ShootPowerCellHigh(), 3.5);
         addParallel(new DeployIntakePowerCell(), 6.5);
         addSequential(new DriveDistance(17), 4);
         addSequential(new DriveDistance(-17), 4);
