@@ -23,7 +23,6 @@ public class RobotMap {
     public static final int CLIMBER_DELIVER_PWM = 2;
     public static final int CLIMBER_WINCH_PWM = 3;
     // --> DIGITAL (encoders & limit switches)
-    public static final int LOW_CLIMBER_SWITCH = 8;
     public static final int HIGH_CLIMBER_SWITCH = 9;
 
     // Control Panel Manipulator
