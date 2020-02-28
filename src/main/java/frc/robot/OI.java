@@ -138,7 +138,7 @@ public class OI {
                 return xboxController.getYButtonPressed();
             }
         });
-        manipulatorOuttake.toggleWhenPressed(new MiniFeedPowerCell());
+        manipulatorOuttake.whenPressed(new MiniFeedPowerCell());
 
         // Control Panel Manipulator
 
@@ -180,7 +180,7 @@ public class OI {
         upButton.whileHeld(new ExtendDelivery());
 
         DPadButton downButton = new DPadButton(xboxController, DPadButton.Direction.DOWN);
-        downButton.whenPressed(new RetractDelivery());
+        downButton.whileHeld(new RetractDelivery());
 
         DPadButton leftButton = new DPadButton(xboxController, DPadButton.Direction.LEFT);
         leftButton.whileHeld(new RaiseWinch());
