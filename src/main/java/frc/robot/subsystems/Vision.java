@@ -13,10 +13,10 @@ import frc.robot.InvertedCamera;
  */
 public class Vision extends Subsystem {
 
-    private TargetingCamera targetingCamera;
+    private LimelightCamera targetingCamera;
 
     public Vision() {
-        targetingCamera = new InvertedCamera(new LimelightCamera());
+        targetingCamera = new InvertedCamera();
     }
 
     public TargetingCamera getTargetingCamera() {
@@ -45,6 +45,13 @@ public class Vision extends Subsystem {
 
     public boolean isTargetFound() {
         return targetingCamera.hasTarget();
+    }
+
+    public void setDriverMode(boolean enabled) {
+        if (enabled)
+            targetingCamera.switchToDriverMode();
+        else
+            targetingCamera.switchToTargetingMode();
     }
 
 }

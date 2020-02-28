@@ -6,8 +6,8 @@ import frc.robot.Robot;
 /**
  * Feeds the ball through the power cell feeder for 1/2 second.
  */
-public class MiniFeedPowerCell extends TimedCommand {
-    public MiniFeedPowerCell() {
+public class FeedPowerCell extends TimedCommand {
+    public FeedPowerCell() {
         super(0.5);
         requires(Robot.powerCellManipulator);
     }

@@ -16,7 +16,9 @@ import frc.robot.DPadButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DisableCompressor;
+import frc.robot.commands.DisableLimelightTargeting;
 import frc.robot.commands.EnableCompressor;
+import frc.robot.commands.EnableLimelightTargeting;
 import frc.robot.commands.StopAll;
 import frc.robot.commands.controlpanel.*;
 import frc.robot.commands.climber.*;
@@ -83,10 +85,10 @@ public class OI {
         driverStopAll1.whenPressed(new StopAll());
         driverStopAll2.whenPressed(new StopAll());
 
-        Button driverAlignTarget1 = new JoystickButton(driverJoystick, 9);
-        Button driverAlignTarget2 = new JoystickButton(driverJoystick, 10);
-        driverAlignTarget1.whileHeld(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
-        driverAlignTarget2.whileHeld(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
+        Button driverAlignTarget = new JoystickButton(driverJoystick, 2); // TODO test this
+        driverAlignTarget.whenPressed(new EnableLimelightTargeting());
+        driverAlignTarget.whileHeld(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
+        driverAlignTarget.whenReleased(new DisableLimelightTargeting());
 
         Button driveStickMoved = Hardware.makeButton(new BooleanSupplier() {
             @Override
@@ -138,7 +140,7 @@ public class OI {
                 return xboxController.getYButtonPressed();
             }
         });
-        manipulatorOuttake.toggleWhenPressed(new MiniFeedPowerCell());
+        manipulatorOuttake.toggleWhenPressed(new FeedPowerCell());
 
         // Control Panel Manipulator
 
