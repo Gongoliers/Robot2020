@@ -18,7 +18,7 @@ public class ShootPowerCellLow extends Command {
     @Override
     protected void initialize() {
         Robot.powerCellManipulator.lowerHood();
-        Robot.oi.quickRumble(true);
+        Robot.oi.quickRumble(false);
     }
 
     // Called repeatedly when this Command is scheduled to run

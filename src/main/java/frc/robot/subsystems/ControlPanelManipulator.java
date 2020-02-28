@@ -16,6 +16,7 @@ import com.thegongoliers.output.actuators.GSpeedController;
 import com.thegongoliers.output.interfaces.Piston;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.PWMVictorSPX;
 import edu.wpi.first.wpilibj.Solenoid;
 
@@ -31,7 +32,7 @@ public class ControlPanelManipulator extends Subsystem {
     private Encoder panelSpinningEncoder;
     private Piston panelDeployPiston;
 
-    private PID distancePID = new PID(0.1, 0.0, 0.0); // TODO: Tune PID values
+    private PID distancePID = new PID(0.1, 0.0, 0.0); // TODO: Tune PID values (low priority for first comp)
     private PID velocityPID = new PID(0.1, 0.0, 0.0);
 
     private ColorSensorV3 colorSensor;
@@ -40,6 +41,8 @@ public class ControlPanelManipulator extends Subsystem {
     private final Color greenTarget;
     private final Color redTarget;
     private final Color yellowTarget;
+
+    private ColorAssignment colorSensorReading = ColorAssignment.Unknown;
 
     public ControlPanelManipulator() {
 
@@ -53,6 +56,7 @@ public class ControlPanelManipulator extends Subsystem {
         panelDeployPiston = new GPiston(new Solenoid(RobotMap.PANEL_DEPLOY_PISTON));
         panelDeployPiston.setInverted(false);
 
+        colorSensor = new ColorSensorV3(I2C.Port.kMXP);
         colorMatcher = new ColorMatch();
 
         blueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
@@ -81,9 +85,14 @@ public class ControlPanelManipulator extends Subsystem {
         SmartDashboard.putBoolean("Spinner Deployed?", isDeployed());
         SmartDashboard.putNumber("Spinner Encoder", getSpinnerDistance());
         SmartDashboard.putNumber("Proximity", getProximity());
+        readColorSensor();
     }
 
     public ColorAssignment getColor() {
+        return colorSensorReading;
+    }
+
+    public void readColorSensor() {
         ColorMatchResult matchResult;
         ColorAssignment colorResult;
 
@@ -108,7 +117,7 @@ public class ControlPanelManipulator extends Subsystem {
 
         SmartDashboard.putString("Detected Color", colorResult.name());
         SmartDashboard.putNumber("Color Confidence", matchResult.confidence);
-        return colorResult;
+        colorSensorReading = colorResult;
     }
 
     public void deploy() {

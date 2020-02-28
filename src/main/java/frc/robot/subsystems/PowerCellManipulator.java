@@ -27,14 +27,14 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class PowerCellManipulator extends Subsystem {
 
-    private static final double INTAKE_SPEED = 0.5; // TODO: test and tune these values
-    private static /*final*/ double FEEDER_SPEED = 0.4;
-    private static /*final*/ double LOW_SHOOTER_SPEED = 0.35;
-    private static /*final*/ double HIGH_SHOOTER_SPEED = 0.95;
+    private static final double INTAKE_SPEED = 0.8;
+    private static final double FEEDER_SPEED = 0.4;
+    private static final double LOW_SHOOTER_SPEED = 0.35;
+    private static final double HIGH_SHOOTER_SPEED = 0.95;
     // private static final double THRESHOLD_SHOOTER_RATE = 0;
     private static final double MAX_VOLTAGE = 12.5;
 
-    private PID distancePID = new PID(0.1, 0.0, 0.0); // TODO: Tune PID values
+    private PID distancePID = new PID(0.1, 0.0, 0.0); // TODO: Tune PID values (low priority for first comp)
     private PID velocityPID = new PID(0.1, 0.0, 0.0);
 
     private PWMVictorSPX intakeController;
@@ -68,10 +68,6 @@ public class PowerCellManipulator extends Subsystem {
         hoodPiston = new GPiston(new Solenoid(RobotMap.HOOD_PISTON));
         hoodPiston.setInverted(false);
 
-        SmartDashboard.putNumber("LOW SHOOT", LOW_SHOOTER_SPEED); // TODO here for debug/testing only
-        SmartDashboard.putNumber("HIGH SHOOT", HIGH_SHOOTER_SPEED); // TODO here for debug/testing only
-        SmartDashboard.putNumber("FEEDER SPEED", FEEDER_SPEED); // TODO here for debug/testing only
-
     }
 
     @Override
@@ -86,10 +82,6 @@ public class PowerCellManipulator extends Subsystem {
         SmartDashboard.putBoolean("High Goal Mode?", hoodPiston.isRetracted());
         SmartDashboard.putBoolean("Low Goal Mode?", hoodPiston.isExtended());
         SmartDashboard.putNumber("Shooter Encoder", shooterEncoder.getRate());
-
-        LOW_SHOOTER_SPEED = SmartDashboard.getNumber("LOW SHOOT", 0.35); // TODO here for debug/testing only
-        HIGH_SHOOTER_SPEED = SmartDashboard.getNumber("HIGH SHOOT", 0.95); // TODO here for debug/testing only
-        FEEDER_SPEED = SmartDashboard.getNumber("FEEDER SPEED", 0.4); // TODO here for debug/testing only
     }
 
     public void stopIntake() {
@@ -98,6 +90,7 @@ public class PowerCellManipulator extends Subsystem {
 
     public void stopFeeder() {
         feederController.stopMotor();
+        intakeController.stopMotor();
     }
 
     public void stopShooter() {
@@ -111,6 +104,7 @@ public class PowerCellManipulator extends Subsystem {
 
     public void feedBallsToShooter() {
         feederController.set(FEEDER_SPEED);
+        intakeController.set(FEEDER_SPEED);
     }
 
     public void outtake() {

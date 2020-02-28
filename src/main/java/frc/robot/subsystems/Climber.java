@@ -17,8 +17,7 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
 public class Climber extends Subsystem {
 
     private static final double WINCH_SPEED = 0.5;
-    private static final double FAST_DELIVERY_SPEED = 0.5;
-    private static final double SLOW_DELIVERY_SPEED = 0.05;
+    private static final double DELIVERY_SPEED = 0.5;
 
     private PWMVictorSPX climberDeliveryController;
     private PWMVictorSPX climberWinchController;
@@ -53,13 +52,12 @@ public class Climber extends Subsystem {
         climberDeliveryController.stopMotor();
     }
 
-    public void extendDelivery(boolean fast) {
-        if (fast) climberDeliveryController.set(FAST_DELIVERY_SPEED);
-        else climberDeliveryController.set(SLOW_DELIVERY_SPEED);
+    public void extendDelivery() {
+        climberDeliveryController.set(DELIVERY_SPEED);
     }
 
     public void retractDelivery() {
-        climberDeliveryController.set(-FAST_DELIVERY_SPEED);
+        climberDeliveryController.set(-DELIVERY_SPEED);
     }
 
     public boolean isDeliveryAtTop() {
@@ -71,3 +69,4 @@ public class Climber extends Subsystem {
 	}
 
 }
+

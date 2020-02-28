@@ -59,7 +59,6 @@ public class Robot extends TimedRobot {
     public void robotPeriodic() {
         SmartDashboard.putNumber("Match Time", Timer.getMatchTime());
         SmartDashboard.putNumber("Battery %", battery.getBatteryPercentage());
-        compressor.stop(); // TODO for early testing only (remove when ready for pneumatics) 
     }
 
     /**

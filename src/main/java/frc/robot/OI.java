@@ -14,6 +14,9 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.DPadButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.DisableCompressor;
+import frc.robot.commands.EnableCompressor;
 import frc.robot.commands.StopAll;
 import frc.robot.commands.controlpanel.*;
 import frc.robot.commands.climber.*;
@@ -185,6 +188,11 @@ public class OI {
         DPadButton rightButton = new DPadButton(xboxController, DPadButton.Direction.RIGHT);
         rightButton.whileHeld(new RaiseWinch());
 
+        // SmartDashboard buttons
+        
+        SmartDashboard.putData(new EnableCompressor());
+        SmartDashboard.putData(new DisableCompressor());
+
     }
 
     public double getDriverSpeed() {
@@ -212,7 +220,7 @@ public class OI {
             public void run() {
                 xboxController.setRumble(left ? RumbleType.kLeftRumble : RumbleType.kRightRumble, 0);
             }
-        }, 250);
+        }, 350);
     }
 
 }

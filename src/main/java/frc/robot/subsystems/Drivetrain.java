@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.kauailabs.navx.frc.AHRS;
+import com.kylecorry.pid.PID;
 import com.thegongoliers.output.drivetrain.ModularDrivetrain;
 import com.thegongoliers.output.drivetrain.PathFollowerModule;
 import com.thegongoliers.output.drivetrain.PowerEfficiencyModule;
@@ -76,8 +77,8 @@ public class Drivetrain extends Subsystem {
         pathFollowerModule.setForwardTolerance(0.6); // 1/2 feet
         pathFollowerModule.setTurnTolerance(1); // 1 degree
 
-        TargetAlignmentModule targetAlignmentModule = new TargetAlignmentModule(vision.getTargetingCamera(), 0.02, 0,
-                false); // TODO: tune
+        TargetAlignmentModule targetAlignmentModule = new TargetAlignmentModule(vision.getTargetingCamera(),
+                new PID(0.015, 0, 0), new PID(0, 0, 0), false); // TODO: tune
 
         voltageControlModule = new VoltageControlModule(NORMAL_VOLTAGE);
 
@@ -123,8 +124,7 @@ public class Drivetrain extends Subsystem {
      * This will be used for apporaching the control panel on the field, or
      * precisely position the robot.
      * 
-     * Turbo (true) = full speed
-     * Turtle (false) = super slow
+     * Turbo (true) = full speed Turtle (false) = super slow
      */
     public void setTurboEnabled(boolean turboEnabled) {
         this.turboEnabled = turboEnabled;

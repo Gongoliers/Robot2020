@@ -1,10 +1,10 @@
 package frc.robot.commands.climber;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 /**
- * Extends the arm that deploys the climber hook to
- * the shield generator switch.
+ * Extends the arm that deploys the climber hook to the shield generator switch.
  */
 public class ExtendDelivery extends Command {
 
@@ -17,18 +17,22 @@ public class ExtendDelivery extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
+        Robot.oi.quickRumble(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
     @Override
     protected void execute() {
-        Robot.climber.extendDelivery(!Robot.climber.isDeliveryAtTop());
+        if (!Robot.climber.isDeliveryAtTop())
+            Robot.climber.extendDelivery();
+        else
+            Robot.climber.stopDelivery();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return false;
+        return Robot.climber.isDeliveryAtTop();
     }
 
     // Called once after isFinished returns true

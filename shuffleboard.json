@@ -194,43 +194,10 @@
               "Colors/Color when false": "#8B0000FF"
             }
           },
-          "10,0": {
-            "size": [
-              1,
-              5
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "TEMPORARY",
-              "Layout/Label position": "BOTTOM",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/HIGH SHOOT",
-                  "_title": "HIGH SHOOT"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/LOW SHOOT",
-                  "_title": "LOW SHOOT"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///FMSInfo/EventName",
-                  "_title": "Event Name"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///FMSInfo/MatchNumber",
-                  "_title": "Match Number"
-                }
-              ]
-            }
-          },
           "5,0": {
             "size": [
-              5,
-              5
+              6,
+              4
             ],
             "content": {
               "_type": "Camera Stream",
@@ -244,6 +211,50 @@
               "fps": -1,
               "imageWidth": -1,
               "imageHeight": -1
+            }
+          },
+          "5,4": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///FMSInfo/EventName",
+              "_title": "Event Name"
+            }
+          },
+          "8,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///FMSInfo/MatchNumber",
+              "_title": "Match Number"
+            }
+          },
+          "9,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/EnableCompressor",
+              "_title": "Compressor ON"
+            }
+          },
+          "10,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/DisableCompressor",
+              "_title": "Compressor OFF"
             }
           }
         }
