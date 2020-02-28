@@ -138,7 +138,7 @@ public class OI {
                 return xboxController.getYButtonPressed();
             }
         });
-        manipulatorOuttake.toggleWhenPressed(new OuttakePowerCell());
+        manipulatorOuttake.toggleWhenPressed(new MiniFeedPowerCell());
 
         // Control Panel Manipulator
 

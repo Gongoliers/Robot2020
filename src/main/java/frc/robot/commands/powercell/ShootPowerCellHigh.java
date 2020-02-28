@@ -24,7 +24,7 @@ public class ShootPowerCellHigh extends Command {
     @Override
     protected void execute() {
         Robot.powerCellManipulator.shootHigh();
-        if (timeSinceInitialized() > 0.5) Robot.powerCellManipulator.feedBallsToShooter();
+        if (timeSinceInitialized() > 0.75) Robot.powerCellManipulator.feedBallsToShooter();
 
         // if (Robot.powerCellManipulator.isFlywheelReady()) Robot.powerCellManipulator.feedBallsToShooter();
     }
