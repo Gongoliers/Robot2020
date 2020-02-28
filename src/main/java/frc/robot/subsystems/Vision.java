@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.thegongoliers.input.vision.LimelightCamera;
 import com.thegongoliers.input.vision.TargetingCamera;
+import com.thegongoliers.input.vision.LimelightCamera.LEDMode;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -17,6 +18,7 @@ public class Vision extends Subsystem {
 
     public Vision() {
         targetingCamera = new InvertedCamera();
+        targetingCamera.switchToDriverMode();
     }
 
     public TargetingCamera getTargetingCamera() {
@@ -48,10 +50,13 @@ public class Vision extends Subsystem {
     }
 
     public void setDriverMode(boolean enabled) {
-        if (enabled)
+        if (enabled) {
             targetingCamera.switchToDriverMode();
-        else
+            targetingCamera.setLEDMode(LEDMode.Off);
+        } else {
             targetingCamera.switchToTargetingMode();
+            targetingCamera.setLEDMode(LEDMode.On);
+        }
     }
 
 }
