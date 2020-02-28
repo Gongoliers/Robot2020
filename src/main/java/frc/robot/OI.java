@@ -16,9 +16,8 @@ import frc.robot.DPadButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DisableCompressor;
-import frc.robot.commands.DisableLimelightTargeting;
 import frc.robot.commands.EnableCompressor;
-import frc.robot.commands.EnableLimelightTargeting;
+import frc.robot.commands.LimelightTargetingMode;
 import frc.robot.commands.StopAll;
 import frc.robot.commands.controlpanel.*;
 import frc.robot.commands.climber.*;
@@ -76,19 +75,22 @@ public class OI {
 
         //// -- Driver Joystick setup
 
-        Button driverTrigger = new JoystickButton(driverJoystick, 1);
-        driverTrigger.whenReleased(new SetTurboDrivetrain(true));
-        driverTrigger.whenPressed(new SetTurboDrivetrain(false));
+        Button driverTurbo = new JoystickButton(driverJoystick, 1); // trigger
+        driverTurbo.whenReleased(new SetTurboDrivetrain(true));
+        driverTurbo.whenPressed(new SetTurboDrivetrain(false));
 
-        Button driverStopAll1 = new JoystickButton(driverJoystick, 11);
+        Button driverCameraMode = new JoystickButton(driverJoystick, 2); // thumb button
+        driverCameraMode.toggleWhenPressed(new LimelightTargetingMode());
+
+        Button driverStopAll1 = new JoystickButton(driverJoystick, 11); // bottom row of buttons
         Button driverStopAll2 = new JoystickButton(driverJoystick, 12);
         driverStopAll1.whenPressed(new StopAll());
         driverStopAll2.whenPressed(new StopAll());
 
-        Button driverAlignTarget = new JoystickButton(driverJoystick, 2); // TODO test this
-        driverAlignTarget.whenPressed(new EnableLimelightTargeting());
-        driverAlignTarget.whileHeld(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
-        driverAlignTarget.whenReleased(new DisableLimelightTargeting());
+        Button driverAlignTarget1 = new JoystickButton(driverJoystick, 9); // second to bottom row of buttons
+        Button driverAlignTarget2 = new JoystickButton(driverJoystick, 10);
+        driverAlignTarget1.whileHeld(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
+        driverAlignTarget2.whileHeld(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
 
         Button driveStickMoved = Hardware.makeButton(new BooleanSupplier() {
             @Override
