@@ -27,7 +27,7 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class PowerCellManipulator extends Subsystem {
 
-    private static final double INTAKE_SPEED = 0.8;
+    private static final double INTAKE_SPEED = 0.9;
     private static final double FEEDER_SPEED = 0.4;
     private static final double LOW_SHOOTER_SPEED = 0.35;
     private static final double HIGH_SHOOTER_SPEED = 0.95;

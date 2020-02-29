@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.PWMVictorSPX;
  */
 public class Climber extends Subsystem {
 
-    private static final double WINCH_SPEED = 0.5;
+    private static final double WINCH_SPEED = 0.6;
     private static final double DELIVERY_SPEED = 0.5;
 
     private PWMVictorSPX climberDeliveryController;

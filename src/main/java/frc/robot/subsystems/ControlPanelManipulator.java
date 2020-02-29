@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.Solenoid;
  */
 public class ControlPanelManipulator extends Subsystem {
 
+    public static final int DISTANCE_FROM_SENSOR_TO_PANEL = 150;
     private static final double PANEL_SPINNER_SPEED = 0.6; // TODO: tune panel spinner speed
     private static final double SLOW_PANEL_SPINNER_SPEED = 0.1;
 
@@ -56,7 +57,7 @@ public class ControlPanelManipulator extends Subsystem {
         panelDeployPiston = new GPiston(new Solenoid(RobotMap.PANEL_DEPLOY_PISTON));
         panelDeployPiston.setInverted(false);
 
-        colorSensor = new ColorSensorV3(I2C.Port.kMXP);
+        colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
         colorMatcher = new ColorMatch();
 
         blueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
@@ -85,6 +86,7 @@ public class ControlPanelManipulator extends Subsystem {
         SmartDashboard.putBoolean("Spinner Deployed?", isDeployed());
         SmartDashboard.putNumber("Spinner Encoder", getSpinnerDistance());
         SmartDashboard.putNumber("Proximity", getProximity());
+        SmartDashboard.putBoolean("Above Panel", getProximity() > DISTANCE_FROM_SENSOR_TO_PANEL);
         readColorSensor();
     }
 

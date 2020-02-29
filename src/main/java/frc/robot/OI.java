@@ -118,7 +118,7 @@ public class OI {
                 return xboxController.getAButtonPressed();
             }
         });
-        manipulatorIntake.toggleWhenPressed(new DeployIntakePowerCell());
+        manipulatorIntake.toggleWhenPressed(new IntakePowerCell());
 
         Button manipulatorShootHigh = Hardware.makeButton(new BooleanSupplier() {
             @Override

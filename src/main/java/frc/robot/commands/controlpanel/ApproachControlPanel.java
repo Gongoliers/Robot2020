@@ -2,9 +2,9 @@ package frc.robot.commands.controlpanel;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.ControlPanelManipulator;
 
 public class ApproachControlPanel extends Command {
-    private static final int DISTANCE_FROM_SENSOR_TO_PANEL = 1000; // TODO: Tune this value
     private static final double DRIVING_FORWARD_SPEED = .2; // TODO: Tune this value
 
     public ApproachControlPanel() {
@@ -25,7 +25,7 @@ public class ApproachControlPanel extends Command {
     // Make this return true when this Command no longer needs to run execute()
     @Override
     protected boolean isFinished() {
-        return Robot.controlPanelManipulator.getProximity() >= DISTANCE_FROM_SENSOR_TO_PANEL;
+        return Robot.controlPanelManipulator.getProximity() >= ControlPanelManipulator.DISTANCE_FROM_SENSOR_TO_PANEL;
     }
 
     // Called once after isFinished returns true

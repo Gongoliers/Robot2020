@@ -31,7 +31,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Drivetrain extends Subsystem {
 
-    public static final double NORMAL_VOLTAGE = 12.5;
+    public static final double NORMAL_VOLTAGE = 11.5;
 
     private PWMVictorSPX leftDriveController;
     private PWMVictorSPX rightDriveController;

@@ -18,7 +18,7 @@ public class Vision extends Subsystem {
 
     public Vision() {
         targetingCamera = new InvertedCamera();
-        targetingCamera.switchToDriverMode();
+        setDriverMode(true);
     }
 
     public TargetingCamera getTargetingCamera() {
