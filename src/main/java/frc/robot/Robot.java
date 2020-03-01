@@ -39,15 +39,19 @@ public class Robot extends TimedRobot {
         climber = new Climber();
         compressor = new Compressor();
 
-        battery = new Battery(10.5, 13.5, 18);
+        battery = new Battery(11.5, 13.1, 18);
 
         oi = new OI();
 
-        autoChooser.setDefaultOption("No Auto", null);
-        autoChooser.addOption("Low Goal", new AutoLowGoal());
-        autoChooser.addOption("Shoot 3", new AutoShootAndBackup());
-        autoChooser.addOption("Shoot 6", new AutoShootCollectShoot());
-        autoChooser.addOption("Full System Check", new FullSystemCheck());
+        // autoChooser.addOption("Low Goal", new AutoLowGoal());
+        autoChooser.setDefaultOption("Shoot 3 No Delay", new AutoShootAndBackup());
+        autoChooser.addOption("Shoot 3 Delay 2s", new AutoShootAndBackup(2));
+        autoChooser.addOption("Shoot 3 Delay 3s", new AutoShootAndBackup(3));
+        autoChooser.addOption("Shoot 3 Delay 4s", new AutoShootAndBackup(4));
+        autoChooser.addOption("Shoot 3 Delay 5s", new AutoShootAndBackup(5));
+        // autoChooser.addOption("Shoot 6", new AutoShootCollectShoot());
+        // autoChooser.addOption("Full System Check", new FullSystemCheck());
+        autoChooser.addOption("No Auto", null);
         SmartDashboard.putData("Auto mode", autoChooser);
         
     }
@@ -79,7 +83,10 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void autonomousInit() {
+        vision.setDriverMode(true);
+        compressor.stop();
         drivetrain.resetStabilityModule();
+
         autonomousCommand = autoChooser.getSelected();
 
         // schedule the autonomous command
@@ -101,6 +108,8 @@ public class Robot extends TimedRobot {
      */
     @Override
     public void teleopInit() {
+        vision.setDriverMode(true);
+        compressor.stop();
         drivetrain.resetStabilityModule();
     }
 
@@ -110,6 +119,14 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+    }
+
+    /**
+     * This function is called once each time the robot enters test mode.
+     */
+    @Override
+    public void testInit() {
+        compressor.start();
     }
 
     /**

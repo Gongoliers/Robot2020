@@ -1,6 +1,7 @@
 package frc.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 import frc.robot.commands.drivetrain.Drive;
 import frc.robot.commands.powercell.ShootPowerCellHigh;
 
@@ -13,8 +14,13 @@ import frc.robot.commands.powercell.ShootPowerCellHigh;
  */
 public class AutoShootAndBackup extends CommandGroup {
 
-    public AutoShootAndBackup() {
+    public AutoShootAndBackup(double delay) {
+        addSequential(new WaitCommand(delay));
         addSequential(new ShootPowerCellHigh(), 8);
-        addSequential(new Drive(-0.5), 1);
+        addSequential(new Drive(0.75), 2.5);
+    }
+
+    public AutoShootAndBackup() {
+        this(0);
     }
 }

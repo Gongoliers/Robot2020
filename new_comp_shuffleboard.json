@@ -21,7 +21,7 @@
               "_title": "Auto mode"
             }
           },
-          "2,0": {
+          "3,0": {
             "size": [
               1,
               1
@@ -32,222 +32,23 @@
               "_title": "Match Time"
             }
           },
-          "3,0": {
+          "2,0": {
             "size": [
               1,
               1
             ],
             "content": {
-              "_type": "Text View",
+              "_type": "Simple Dial",
               "_source0": "network_table:///SmartDashboard/Battery %",
-              "_title": "Battery %"
-            }
-          },
-          "4,1": {
-            "size": [
-              1,
-              4
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Vision",
-              "Layout/Label position": "BOTTOM",
-              "_children": [
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///SmartDashboard/Target Found?",
-                  "_title": "Target Found?",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Angle to Target",
-                  "_title": "Angle to Target"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Detected Color",
-                  "_title": "Detected Color"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Color Confidence",
-                  "_title": "Color Confidence"
-                }
-              ]
-            }
-          },
-          "3,1": {
-            "size": [
-              1,
-              4
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Control Panel",
-              "Layout/Label position": "BOTTOM",
-              "_children": [
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///SmartDashboard/Spinner Deployed?",
-                  "_title": "Spinner Deployed?",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Control Panel Target Color",
-                  "_title": "Target Color"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///FMSInfo/GameSpecificMessage",
-                  "_title": "FMS Color"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Proximity",
-                  "_title": "Proximity"
-                },
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///SmartDashboard/Above Panel",
-                  "_title": "Above Panel?",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                }
-              ]
+              "_title": "Battery %",
+              "Range/Min": 0.0,
+              "Range/Max": 100.0,
+              "Visuals/Show value": true
             }
           },
           "0,1": {
             "size": [
-              1,
-              4
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Drivetrain",
-              "Layout/Label position": "BOTTOM",
-              "_children": [
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Heading",
-                  "_title": "Heading"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Distance",
-                  "_title": "Distance"
-                },
-                {
-                  "_type": "Text View",
-                  "_source0": "network_table:///SmartDashboard/Speed",
-                  "_title": "Speed"
-                }
-              ]
-            }
-          },
-          "1,1": {
-            "size": [
-              1,
-              4
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Power Cell",
-              "Layout/Label position": "BOTTOM",
-              "_children": [
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///SmartDashboard/Harvester Deployed?",
-                  "_title": "Harvester Deployed?",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                }
-              ]
-            }
-          },
-          "2,1": {
-            "size": [
-              1,
-              4
-            ],
-            "content": {
-              "_type": "List Layout",
-              "_title": "Climber",
-              "Layout/Label position": "BOTTOM",
-              "_children": [
-                {
-                  "_type": "Boolean Box",
-                  "_source0": "network_table:///SmartDashboard/Delivery High?",
-                  "_title": "Delivery High?",
-                  "Colors/Color when true": "#7CFC00FF",
-                  "Colors/Color when false": "#8B0000FF"
-                }
-              ]
-            }
-          },
-          "4,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Boolean Box",
-              "_source0": "network_table:///LiveWindow/Ungrouped/Compressor[0]/Enabled",
-              "_title": "Compressor",
-              "Colors/Color when true": "#7CFC00FF",
-              "Colors/Color when false": "#8B0000FF"
-            }
-          },
-          "5,4": {
-            "size": [
-              3,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///FMSInfo/EventName",
-              "_title": "Event Name"
-            }
-          },
-          "8,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///FMSInfo/MatchNumber",
-              "_title": "Match Number"
-            }
-          },
-          "9,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/EnableCompressor",
-              "_title": "Compressor ON"
-            }
-          },
-          "10,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/DisableCompressor",
-              "_title": "Compressor OFF"
-            }
-          },
-          "5,0": {
-            "size": [
-              6,
+              11,
               4
             ],
             "content": {
@@ -262,6 +63,35 @@
               "fps": -1,
               "imageWidth": -1,
               "imageHeight": -1
+            }
+          },
+          "4,0": {
+            "size": [
+              5,
+              1
+            ],
+            "content": {
+              "_type": "Number Bar",
+              "_source0": "network_table:///SmartDashboard/Angle to Target",
+              "_title": "Angle to Target",
+              "Range/Min": -20.0,
+              "Range/Max": 20.0,
+              "Range/Center": 0.0,
+              "Visuals/Num tick marks": 5,
+              "Visuals/Show text": true
+            }
+          },
+          "9,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///SmartDashboard/Aligned",
+              "_title": "Aligned to Target",
+              "Colors/Color when true": "#7CFC00FF",
+              "Colors/Color when false": "#8B0000FF"
             }
           }
         }
@@ -428,15 +258,6 @@
                   "Visuals/Show velocity vectors": true
                 },
                 {
-                  "_type": "Gyro",
-                  "_source0": "network_table:///LiveWindow/Ungrouped/navX-Sensor",
-                  "_title": "navX-Sensor",
-                  "Visuals/Major tick spacing": 45.0,
-                  "Visuals/Starting angle": 180.0,
-                  "Visuals/Show tick mark ring": true,
-                  "Visuals/Counter clockwise": false
-                },
-                {
                   "_type": "Encoder",
                   "_source0": "network_table:///LiveWindow/Ungrouped/Encoder[0]",
                   "_title": "Encoder[0]"
@@ -445,6 +266,15 @@
                   "_type": "Encoder",
                   "_source0": "network_table:///LiveWindow/Ungrouped/Encoder[1]",
                   "_title": "Encoder[1]"
+                },
+                {
+                  "_type": "Gyro",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/navX-Sensor",
+                  "_title": "navX-Sensor",
+                  "Visuals/Major tick spacing": 45.0,
+                  "Visuals/Starting angle": 180.0,
+                  "Visuals/Show tick mark ring": true,
+                  "Visuals/Counter clockwise": false
                 }
               ]
             }
@@ -471,6 +301,19 @@
                   "Visuals/Orientation": "HORIZONTAL"
                 }
               ]
+            }
+          },
+          "10,0": {
+            "size": [
+              2,
+              4
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/ControlPanelManipulator",
+              "_title": "ControlPanelManipulator",
+              "Layout/Label position": "BOTTOM",
+              "_children": []
             }
           }
         }

@@ -4,7 +4,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.function.BooleanSupplier;
 
-import com.thegongoliers.commands.AlignTargetCommand;
 import com.thegongoliers.hardware.Hardware;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -16,8 +15,9 @@ import frc.robot.DPadButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DisableCompressor;
+import frc.robot.commands.DisableTargetingMode;
 import frc.robot.commands.EnableCompressor;
-import frc.robot.commands.LimelightTargetingMode;
+import frc.robot.commands.EnableTargetingAlignToTarget;
 import frc.robot.commands.StopAll;
 import frc.robot.commands.controlpanel.*;
 import frc.robot.commands.climber.*;
@@ -36,7 +36,7 @@ public class OI {
      * split between a joystick and a controller.
      */
     private static final boolean SINGLE_DRIVER_MODE = false;
-    private static final double RUMBLE_INTENSITY = 0.3;
+    private static final double RUMBLE_INTENSITY = 0.9;
 
     private static final int DRIVER_JOYSTICK_PORT = 0;
     private static final int MANIPULATOR_XBOX_PORT = 1;
@@ -76,11 +76,8 @@ public class OI {
         //// -- Driver Joystick setup
 
         Button driverTurbo = new JoystickButton(driverJoystick, 1); // trigger
-        driverTurbo.whenReleased(new SetTurboDrivetrain(true));
-        driverTurbo.whenPressed(new SetTurboDrivetrain(false));
-
-        Button driverCameraMode = new JoystickButton(driverJoystick, 2); // thumb button
-        driverCameraMode.toggleWhenPressed(new LimelightTargetingMode());
+        driverTurbo.whenReleased(new SetTurboDrivetrain(false));
+        driverTurbo.whenPressed(new SetTurboDrivetrain(true));
 
         Button driverStopAll1 = new JoystickButton(driverJoystick, 11); // bottom row of buttons
         Button driverStopAll2 = new JoystickButton(driverJoystick, 12);
@@ -89,8 +86,10 @@ public class OI {
 
         Button driverAlignTarget1 = new JoystickButton(driverJoystick, 9); // second to bottom row of buttons
         Button driverAlignTarget2 = new JoystickButton(driverJoystick, 10);
-        driverAlignTarget1.whileHeld(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
-        driverAlignTarget2.whileHeld(new AlignTargetCommand(Robot.drivetrain, Robot.drivetrain.getModularDrivetrain(), 0, 0));
+        driverAlignTarget1.whileHeld(new EnableTargetingAlignToTarget());
+        driverAlignTarget2.whileHeld(new EnableTargetingAlignToTarget());
+        driverAlignTarget1.whenReleased(new DisableTargetingMode());
+        driverAlignTarget2.whenReleased(new DisableTargetingMode());
 
         Button driveStickMoved = Hardware.makeButton(new BooleanSupplier() {
             @Override
@@ -99,6 +98,11 @@ public class OI {
             }
         });
         driveStickMoved.whenPressed(new DrivetrainOperatorContol());
+
+        Button driverRaiseWinch1 = new JoystickButton(driverJoystick, 7);
+        Button driverRaiseWinch2 = new JoystickButton(driverJoystick, 8);
+        driverRaiseWinch1.whileHeld(new RaiseWinch());
+        driverRaiseWinch2.whileHeld(new RaiseWinch());
 
         //// -- Manipulator Xbox Controller setup
 
@@ -123,15 +127,15 @@ public class OI {
         Button manipulatorShootHigh = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
-                return xboxController.getXButtonPressed();
+                return xboxController.getXButton();
             }
         });
-        manipulatorShootHigh.toggleWhenPressed(new ShootPowerCellHigh());
+        manipulatorShootHigh.whileHeld(new ShootPowerCellHigh());
 
         Button manipulatorShootLow = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
-                return xboxController.getBButtonPressed();
+                return xboxController.getBButton();
             }
         });
         manipulatorShootLow.toggleWhenPressed(new ShootPowerCellLow());
@@ -139,10 +143,10 @@ public class OI {
         Button manipulatorOuttake = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
-                return xboxController.getYButtonPressed();
+                return xboxController.getYButton();
             }
         });
-        manipulatorOuttake.whenPressed(new FeedPowerCell());
+        manipulatorOuttake.whileHeld(new OuttakePowerCell());
 
         // Control Panel Manipulator
 
@@ -186,11 +190,11 @@ public class OI {
         DPadButton downButton = new DPadButton(xboxController, DPadButton.Direction.DOWN);
         downButton.whileHeld(new RetractDelivery());
 
-        DPadButton leftButton = new DPadButton(xboxController, DPadButton.Direction.LEFT);
-        leftButton.whileHeld(new RaiseWinch());
+        // DPadButton leftButton = new DPadButton(xboxController, DPadButton.Direction.LEFT);
+        // leftButton.whenPressed(new FeedPowerCell());
 
-        DPadButton rightButton = new DPadButton(xboxController, DPadButton.Direction.RIGHT);
-        rightButton.whileHeld(new RaiseWinch());
+        // DPadButton rightButton = new DPadButton(xboxController, DPadButton.Direction.RIGHT);
+        // rightButton.whenPressed(new FeedPowerCell());
 
         // SmartDashboard buttons
         
@@ -224,7 +228,7 @@ public class OI {
             public void run() {
                 xboxController.setRumble(left ? RumbleType.kLeftRumble : RumbleType.kRightRumble, 0);
             }
-        }, 350);
+        }, 500);
     }
 
 }

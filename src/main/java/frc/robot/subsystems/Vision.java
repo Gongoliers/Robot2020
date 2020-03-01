@@ -33,8 +33,11 @@ public class Vision extends Subsystem {
     @Override
     public void periodic() {
         // Put code here to be run every loop
-        SmartDashboard.putNumber("Angle to Target", getAngleToTarget());
-        SmartDashboard.putBoolean("Target Found?", isTargetFound());
+        var angle = getAngleToTarget();
+        var targetFound = isTargetFound();
+        SmartDashboard.putNumber("Angle to Target", angle);
+        SmartDashboard.putBoolean("Aligned", targetFound && Math.abs(angle) < 1.5);
+        SmartDashboard.putBoolean("Target Found?", targetFound);
     }
 
     public double getAngleToTarget() {
@@ -51,10 +54,10 @@ public class Vision extends Subsystem {
 
     public void setDriverMode(boolean enabled) {
         if (enabled) {
-            targetingCamera.switchToDriverMode();
+            // targetingCamera.switchToDriverMode();
             targetingCamera.setLEDMode(LEDMode.Off);
         } else {
-            targetingCamera.switchToTargetingMode();
+            // targetingCamera.switchToTargetingMode();
             targetingCamera.setLEDMode(LEDMode.On);
         }
     }

@@ -17,7 +17,7 @@ public class ExtendDelivery extends Command {
     // Called just before this Command runs the first time
     @Override
     protected void initialize() {
-        Robot.oi.quickRumble(true);
+        Robot.oi.setLeftRumble(true);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,6 +36,7 @@ public class ExtendDelivery extends Command {
     @Override
     protected void end() {
         Robot.climber.stopDelivery();
+        Robot.oi.setLeftRumble(false);
     }
 
     // Called when another command which requires one or more of the same

@@ -31,7 +31,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Drivetrain extends Subsystem {
 
-    public static final double NORMAL_VOLTAGE = 11.5;
+    public static final double NORMAL_VOLTAGE = 11.2;
+    public static final double SLOW_VOLTAGE = 5.25;
 
     private PWMVictorSPX leftDriveController;
     private PWMVictorSPX rightDriveController;
@@ -44,7 +45,7 @@ public class Drivetrain extends Subsystem {
     private VoltageControlModule voltageControlModule;
     private StabilityModule stabilityModule;
 
-    private boolean turboEnabled = true;
+    private boolean turboEnabled = false;
     private Map<Subsystem, Double> enforcedMaxVoltages = new HashMap<>();
 
     public Drivetrain(Vision vision) {
@@ -64,21 +65,23 @@ public class Drivetrain extends Subsystem {
         differentialDrive.setSafetyEnabled(true);
         differentialDrive.setExpiration(0.1);
         differentialDrive.setMaxOutput(1.0);
-        differentialDrive.setDeadband(0.05); // TODO: tune
+        differentialDrive.setDeadband(0.05);
 
         modularDrivetrain = ModularDrivetrain.from(differentialDrive);
         Gyro gyro = new NavxGyro(navx);
 
-        stabilityModule = new StabilityModule(gyro, 0.02, 0.5); // TODO: tune
-        stabilityModule.setTurnThreshold(0.05); // TODO: tune
+        stabilityModule = new StabilityModule(gyro, 0.05, 0.25);
+        stabilityModule.setTurnThreshold(0.075);
 
         PathFollowerModule pathFollowerModule = new PathFollowerModule(gyro,
-                List.of(leftDriveEncoder, rightDriveEncoder), 0.5, 0.02);
-        pathFollowerModule.setForwardTolerance(0.6); // 1/2 feet
+                List.of(leftDriveEncoder, rightDriveEncoder), 0.5, 0.02);  // TODO: tune
+        pathFollowerModule.setForwardTolerance(0.5); // 1/2 foot
         pathFollowerModule.setTurnTolerance(1); // 1 degree
 
+        // ***************************************************** FIXME! TUNE THIS NOW
+        // OLD: new PID(0.12, 0.04, 0.005)
         TargetAlignmentModule targetAlignmentModule = new TargetAlignmentModule(vision.getTargetingCamera(),
-                new PID(0.015, 0, 0), new PID(0, 0, 0), false); // TODO: tune
+                new PID(0.12, 0.04, 0.005), new PID(0, 0, 0), false); // TODO: tune
 
         voltageControlModule = new VoltageControlModule(NORMAL_VOLTAGE);
 
@@ -129,9 +132,9 @@ public class Drivetrain extends Subsystem {
     public void setTurboEnabled(boolean turboEnabled) {
         this.turboEnabled = turboEnabled;
         if (turboEnabled) {
-            voltageControlModule.setMaxVoltage(getMaxVoltage());
+            voltageControlModule.setMaxVoltage(NORMAL_VOLTAGE);
         } else {
-            voltageControlModule.setMaxVoltage(getMaxVoltage() / 2);
+            voltageControlModule.setMaxVoltage(SLOW_VOLTAGE);
         }
     }
 
