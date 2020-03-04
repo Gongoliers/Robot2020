@@ -89,7 +89,7 @@
             "content": {
               "_type": "Boolean Box",
               "_source0": "network_table:///SmartDashboard/Aligned",
-              "_title": "Aligned to Target",
+              "_title": "Aligned?",
               "Colors/Color when true": "#7CFC00FF",
               "Colors/Color when false": "#8B0000FF"
             }

@@ -31,7 +31,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Drivetrain extends Subsystem {
 
-    public static final double NORMAL_VOLTAGE = 11.2;
+    public static final double NORMAL_VOLTAGE = 10.5;
     public static final double SLOW_VOLTAGE = 5.25;
 
     private PWMVictorSPX leftDriveController;
@@ -81,7 +81,7 @@ public class Drivetrain extends Subsystem {
         // ***************************************************** FIXME! TUNE THIS NOW
         // OLD: new PID(0.12, 0.04, 0.005)
         TargetAlignmentModule targetAlignmentModule = new TargetAlignmentModule(vision.getTargetingCamera(),
-                new PID(0.12, 0.04, 0.005), new PID(0, 0, 0), false); // TODO: tune
+                new PID(0.12, 0.05, 0.005), new PID(0, 0, 0), false); // TODO: tune
 
         voltageControlModule = new VoltageControlModule(NORMAL_VOLTAGE);
 

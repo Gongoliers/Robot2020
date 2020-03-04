@@ -16,8 +16,8 @@ public class AutoShootAndBackup extends CommandGroup {
 
     public AutoShootAndBackup(double delay) {
         addSequential(new WaitCommand(delay));
-        addSequential(new ShootPowerCellHigh(), 8);
-        addSequential(new Drive(0.75), 2.5);
+        addSequential(new ShootPowerCellHigh(), 7);
+        addSequential(new Drive(-0.75), 2.5);
     }
 
     public AutoShootAndBackup() {
