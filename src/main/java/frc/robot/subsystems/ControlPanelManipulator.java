@@ -36,7 +36,7 @@ public class ControlPanelManipulator extends Subsystem {
     private PID distancePID = new PID(0.1, 0.0, 0.0); // TODO: Tune PID values (low priority for first comp)
     private PID velocityPID = new PID(0.1, 0.0, 0.0);
 
-    // private ColorSensorV3 colorSensor;
+    private ColorSensorV3 colorSensor;
     private ColorMatch colorMatcher;
     private final Color blueTarget;
     private final Color greenTarget;
@@ -57,7 +57,7 @@ public class ControlPanelManipulator extends Subsystem {
         panelDeployPiston = new GPiston(new Solenoid(RobotMap.PANEL_DEPLOY_PISTON));
         panelDeployPiston.setInverted(false);
 
-        // colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
+        colorSensor = new ColorSensorV3(I2C.Port.kOnboard);
         colorMatcher = new ColorMatch();
 
         blueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
@@ -85,22 +85,21 @@ public class ControlPanelManipulator extends Subsystem {
         // Put code here to be run every loop
         SmartDashboard.putBoolean("Spinner Deployed?", isDeployed());
         SmartDashboard.putNumber("Spinner Encoder", getSpinnerDistance());
-        // SmartDashboard.putNumber("Proximity", getProximity());
-        // SmartDashboard.putBoolean("Above Panel", getProximity() > DISTANCE_FROM_SENSOR_TO_PANEL);
-        // readColorSensor();
+        SmartDashboard.putNumber("Proximity", getProximity());
+        SmartDashboard.putBoolean("Above Panel", getProximity() > DISTANCE_FROM_SENSOR_TO_PANEL);
+        readColorSensor();
     }
 
     public ColorAssignment getColor() {
         return colorSensorReading;
     }
 
-    public void readColorSensor() {
+    private void readColorSensor() {
         ColorMatchResult matchResult;
         ColorAssignment colorResult;
 
         try {
-            // matchResult = colorMatcher.matchClosestColor(colorSensor.getColor());
-            matchResult = new ColorMatchResult(Color.kBlack, 0);
+            matchResult = colorMatcher.matchClosestColor(colorSensor.getColor());
         } catch (Exception e) {
             e.printStackTrace();
             matchResult = new ColorMatchResult(Color.kBlack, 0);
@@ -118,8 +117,8 @@ public class ControlPanelManipulator extends Subsystem {
             colorResult = ColorAssignment.Unknown;
         }
 
-        // SmartDashboard.putString("Detected Color", colorResult.name());
-        // SmartDashboard.putNumber("Color Confidence", matchResult.confidence);
+        SmartDashboard.putString("Detected Color", colorResult.name());
+        SmartDashboard.putNumber("Color Confidence", matchResult.confidence);
         colorSensorReading = colorResult;
     }
 
@@ -170,7 +169,7 @@ public class ControlPanelManipulator extends Subsystem {
     // These two methods are mainly for approaching the control panel
     public int getProximity(){
         try {
-            return -1;//colorSensor.getProximity();
+            return colorSensor.getProximity();
         } catch (Exception ex) {
             return -1;
         }

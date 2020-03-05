@@ -132,9 +132,9 @@ public class Drivetrain extends Subsystem {
     public void setTurboEnabled(boolean turboEnabled) {
         this.turboEnabled = turboEnabled;
         if (turboEnabled) {
-            voltageControlModule.setMaxVoltage(NORMAL_VOLTAGE);
+            voltageControlModule.setMaxVoltage(getMaxVoltage());
         } else {
-            voltageControlModule.setMaxVoltage(SLOW_VOLTAGE);
+            voltageControlModule.setMaxVoltage(getMaxVoltage() / 2);
         }
     }
 

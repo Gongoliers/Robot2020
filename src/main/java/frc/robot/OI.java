@@ -14,12 +14,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import frc.robot.DPadButton;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.commands.DisableCompressor;
-import frc.robot.commands.DisableTargetingMode;
-import frc.robot.commands.EnableCompressor;
-import frc.robot.commands.EnableTargetingAlignToTarget;
-import frc.robot.commands.StopAll;
-import frc.robot.commands.controlpanel.*;
+import frc.robot.commands.*;
+import frc.robot.commands.autonomous.*;
 import frc.robot.commands.climber.*;
 import frc.robot.commands.drivetrain.*;
 import frc.robot.commands.powercell.*;
@@ -150,6 +146,7 @@ public class OI {
 
         // Control Panel Manipulator
 
+        /*
         Button manipulatorDeployPanelSpinner = Hardware.makeButton(new BooleanSupplier() {
             @Override
             public boolean getAsBoolean() {
@@ -181,6 +178,7 @@ public class OI {
             }
         });
         manipulatorRotateColor.whenPressed(new RotatePanelSpinnerToColor());
+        */
 
         // Climber
 
@@ -190,16 +188,17 @@ public class OI {
         DPadButton downButton = new DPadButton(xboxController, DPadButton.Direction.DOWN);
         downButton.whileHeld(new RetractDelivery());
 
-        // DPadButton leftButton = new DPadButton(xboxController, DPadButton.Direction.LEFT);
-        // leftButton.whenPressed(new FeedPowerCell());
+        DPadButton leftButton = new DPadButton(xboxController, DPadButton.Direction.LEFT);
+        leftButton.whenPressed(new RaiseWinch());
 
-        // DPadButton rightButton = new DPadButton(xboxController, DPadButton.Direction.RIGHT);
-        // rightButton.whenPressed(new FeedPowerCell());
+        DPadButton rightButton = new DPadButton(xboxController, DPadButton.Direction.RIGHT);
+        rightButton.whenPressed(new RaiseWinch());
 
         // SmartDashboard buttons
         
         SmartDashboard.putData(new EnableCompressor());
         SmartDashboard.putData(new DisableCompressor());
+        SmartDashboard.putData(new FullSystemCheck());
 
     }
 

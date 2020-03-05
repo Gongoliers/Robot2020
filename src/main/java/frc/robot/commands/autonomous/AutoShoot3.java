@@ -12,15 +12,15 @@ import frc.robot.commands.powercell.ShootPowerCellHigh;
  * Shoots 3 preloaded balls at the high goal.
  * Backs up off the INITIATION LINE.
  */
-public class AutoShootAndBackup extends CommandGroup {
+public class AutoShoot3 extends CommandGroup {
 
-    public AutoShootAndBackup(double delay) {
+    public AutoShoot3(double delay) {
         addSequential(new WaitCommand(delay));
         addSequential(new ShootPowerCellHigh(), 7);
         addSequential(new Drive(-0.75), 2.5);
     }
 
-    public AutoShootAndBackup() {
+    public AutoShoot3() {
         this(0);
     }
 }

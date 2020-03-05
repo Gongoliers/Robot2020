@@ -17,9 +17,9 @@ import frc.robot.commands.powercell.ResetPowerCellManipulator;
  * Backs up to collect 3 more POWER CELLS from the TRENCH RUN.
  * Moves forwards again to shoot 3 new POWER CELLS at the high goal.
  */
-public class AutoShootCollectShoot extends CommandGroup {
+public class AutoShoot6 extends CommandGroup {
 
-    public AutoShootCollectShoot() {
+    public AutoShoot6() {
         addSequential(new ShootPowerCellHigh(), 3.5);
         addParallel(new DeployIntakePowerCell(), 6.5);
         addSequential(new DriveDistance(17), 4);

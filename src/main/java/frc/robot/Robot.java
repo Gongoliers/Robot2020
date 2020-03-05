@@ -35,7 +35,7 @@ public class Robot extends TimedRobot {
         vision = new Vision();
         drivetrain = new Drivetrain(vision);
         powerCellManipulator = new PowerCellManipulator();
-        controlPanelManipulator = new ControlPanelManipulator();
+        // controlPanelManipulator = new ControlPanelManipulator();
         climber = new Climber();
         compressor = new Compressor();
 
@@ -44,13 +44,12 @@ public class Robot extends TimedRobot {
         oi = new OI();
 
         // autoChooser.addOption("Low Goal", new AutoLowGoal());
-        autoChooser.setDefaultOption("Shoot 3 No Delay", new AutoShootAndBackup());
-        autoChooser.addOption("Shoot 3 Delay 2s", new AutoShootAndBackup(2));
-        autoChooser.addOption("Shoot 3 Delay 3s", new AutoShootAndBackup(3));
-        autoChooser.addOption("Shoot 3 Delay 4s", new AutoShootAndBackup(4));
-        autoChooser.addOption("Shoot 3 Delay 5s", new AutoShootAndBackup(5));
-        // autoChooser.addOption("Shoot 6", new AutoShootCollectShoot());
-        // autoChooser.addOption("Full System Check", new FullSystemCheck());
+        autoChooser.setDefaultOption("Shoot 3 No Delay", new AutoShoot3());
+        autoChooser.addOption("Shoot 3 Delay 2s", new AutoShoot3(2));
+        autoChooser.addOption("Shoot 3 Delay 3s", new AutoShoot3(3));
+        autoChooser.addOption("Shoot 3 Delay 4s", new AutoShoot3(4));
+        autoChooser.addOption("Shoot 3 Delay 5s", new AutoShoot3(5));
+        autoChooser.addOption("Shoot 6 Trench", new AutoShoot6());
         autoChooser.addOption("No Auto", null);
         SmartDashboard.putData("Auto mode", autoChooser);
         
